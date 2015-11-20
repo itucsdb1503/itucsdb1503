@@ -6,8 +6,12 @@ body {
   margin: 2ex 2em;
 }
 
-h1, h2, h3, h4 {
+h1, h3, h4 {
   color: #E9601A;
+}
+
+h2{
+color: #AD12B6
 }
 
 a {
