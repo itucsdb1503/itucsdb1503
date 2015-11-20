@@ -6,8 +6,13 @@ body {
   margin: 2ex 2em;
 }
 
+<<<<<<< HEAD
 h1, h3, h4 {
   color: #E9601A;
+=======
+h1, h2, h3, h4 {
+  color: #4E69A2;
+>>>>>>> origin/master
 }
 
 h2{
