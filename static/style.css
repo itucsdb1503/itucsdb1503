@@ -1,5 +1,9 @@
 body {
-  background-color: white;
+  background-color: #bdbdbd;
+  background-image: url("motogp-logo.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
   color: #6F6F6F;
   font-family: 'Droid Sans', 'Helvetica', 'sans';
   font-size: 12pt;
