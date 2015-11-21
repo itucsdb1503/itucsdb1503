@@ -44,6 +44,11 @@ def circuits():
     now = datetime.datetime.now()
     return render_template('circuits.html', current_time=now.ctime())
 
+@app.route('/brands')
+def brands():
+    now = datetime.datetime.now()
+    return render_template('brands.html', current_time=now.ctime())
+
 @app.route('/seasons')
 def seasons():
     now = datetime.datetime.now()
