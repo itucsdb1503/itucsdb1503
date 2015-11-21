@@ -29,6 +29,26 @@ def home_page():
     now = datetime.datetime.now()
     return render_template('home.html', current_time=now.ctime())
 
+@app.route('/teams')
+def teams():
+    now = datetime.datetime.now()
+    return render_template('teams.html', current_time=now.ctime())
+
+@app.route('/drivers')
+def drivers():
+    now = datetime.datetime.now()
+    return render_template('drivers.html', current_time=now.ctime())
+
+@app.route('/circuits')
+def circuits():
+    now = datetime.datetime.now()
+    return render_template('circuits.html', current_time=now.ctime())
+
+@app.route('/seasons')
+def seasons():
+    now = datetime.datetime.now()
+    return render_template('seasons.html', current_time=now.ctime())
+
 
 @app.route('/initdb')
 def initialize_database():

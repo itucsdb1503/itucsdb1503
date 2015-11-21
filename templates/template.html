@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %} - ITUCSDB1503</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+  </head>
+  <body>
+      <header>
+  		<table style="width: 25%; height: 50px; text-align: center; vertical-align: center;
+  		border: 1px solid black; border-radius: 5px; background-color: #424242;">
+		<tr>
+		<td onMouseOver="this.bgColor='#e3e3e3'" onMouseOut="this.bgColor='#424242'" bgColor=#424242
+		style=" width: 5%; border-radius: 2px;"> <a href="/">Home</a> </td>
+		<td onMouseOver="this.bgColor='#e3e3e3'" onMouseOut="this.bgColor='#424242'" bgColor=#424242
+		style=" width: 5%; border-radius: 2px;"> <a href="/teams">Teams</a> </td>
+		<td onMouseOver="this.bgColor='#e3e3e3'" onMouseOut="this.bgColor='#424242'" bgColor=#424242
+		style=" width: 5%; border-radius: 2px;"> <a href="/drivers">Drivers</a> </td>
+		<td onMouseOver="this.bgColor='#e3e3e3'" onMouseOut="this.bgColor='#424242'" bgColor=#424242
+		style=" width: 5%; border-radius: 2px;"> <a href="/circuits">Circuits</a> </td>
+		<td onMouseOver="this.bgColor='#e3e3e3'" onMouseOut="this.bgColor='#424242'" bgColor=#424242
+		style=" width: 5%; border-radius: 2px;"> <a href="/seasons">Seasons</a> </td>
+		</tr>
+		</table>
+  	</header>
+  	{% block content %}{% endblock %}
+  </body>
+  <footer>
+      <div id="datetime">{{ current_time }}</div>
+  </footer>
+</html>

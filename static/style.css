@@ -1,3 +1,9 @@
+<style type="text/css">
+
+html {
+	height: 100%;
+}
+
 body {
   background-color: #bdbdbd;
   background-image: url("motogp-logo.png");
@@ -8,6 +14,7 @@ body {
   font-family: 'Droid Sans', 'Helvetica', 'sans';
   font-size: 12pt;
   margin: 2ex 2em;
+  min-height: 99%;
 }
 
 h1, h3, h4 {
@@ -19,11 +26,21 @@ h2{
 }
 
 a {
-  color: #6F6F6F;
+  color: white;
   text-decoration: underline;
 }
 
 div#datetime {
   font-size: 80%;
   text-align: right;
+  position:relative;
+  right:0px;
+  bottom:0px;
 }
+
+#footer {
+	position:relative;
+	right:0px;
+	bottom:0px;
+}
+</style>
