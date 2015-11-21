@@ -34,10 +34,10 @@ def teams():
     now = datetime.datetime.now()
     return render_template('teams.html', current_time=now.ctime())
 
-@app.route('/drivers')
-def drivers():
+@app.route('/riders')
+def riders():
     now = datetime.datetime.now()
-    return render_template('drivers.html', current_time=now.ctime())
+    return render_template('riders.html', current_time=now.ctime())
 
 @app.route('/circuits')
 def circuits():
