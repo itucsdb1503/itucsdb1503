@@ -136,6 +136,17 @@ def circuits_page():
     elif 'deletecircuitwithid' in request.form:
         id = request.form['id']
         return page.delete_circuit_with_id(id)
+    elif 'updatecircuit' in request.form:
+        id = request.form['id']
+        name = request.form['name']
+        length = request.form['length']
+        width = request.form['width']
+        left_corners = request.form['left_corners']
+        right_corners = request.form['right_corners']
+        longest_straight = request.form['longest_straight']
+        country = request.form['country']
+        constructed_year = request.form['constructed_year']
+        return page.update_circuit(name, length, width, left_corners, right_corners, longest_straight, country, constructed_year, id)
     elif 'addcircuit' in request.form:
         name = request.form['name']
         length = request.form['length']
@@ -171,7 +182,7 @@ class Circuit:
                         constructed_year integer DEFAULT 0)"""
             cursor.execute(query)
 
-            query = "SELECT * FROM circuits"
+            query = "SELECT * FROM circuits ORDER BY id ASC"
             cursor.execute(query)
             circuits = cursor.fetchall()
         return render_template('circuits.html', circuits = circuits)
@@ -180,6 +191,17 @@ class Circuit:
             cursor = connection.cursor()
 
             query = """DELETE FROM circuits WHERE id = '%s' """ % (id)
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('circuits_page'))
+    def update_circuit(self, name, length, width, left_corners, right_corners, longest_straight, country, constructed_year, id):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """UPDATE  circuits SET name = '%s', length = %s, width = %s, left_corners = %s, right_corners = %s, longest_straight = %s, country = '%s', constructed_year = %s
+                        WHERE id = '%s' """ % (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year, id)
+
             cursor.execute(query)
 
             connection.commit()
