@@ -58,6 +58,17 @@ def teamsPage():
         id = request.form['id']
         return page.deleteTeamId(id)
 
+@app.route('/ridersreset', methods=['GET','POST'])
+def rreset():
+    with dbapi2.connect(app.config['dsn']) as connection:
+            cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS RIDERS"""
+            cursor.execute(query)
+            cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS STATS"""
+            cursor.execute(query)
+    return redirect(url_for('riders'))
+
 @app.route('/riders', methods=['GET','POST'])
 def riders():
     result = ridersClass(dsn = app.config['dsn'])
@@ -87,17 +98,6 @@ def rlist():
     result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     return render_template('/riders/list.html', result=result.load_riders(), current_time=now.ctime())
-
-@app.route('/ridersreset', methods=['GET','POST'])
-def rreset():
-    with dbapi2.connect(app.config['dsn']) as connection:
-            cursor = connection.cursor()
-            query = """DROP TABLE IF EXISTS RIDERS"""
-            cursor.execute(query)
-            cursor = connection.cursor()
-            query = """DROP TABLE IF EXISTS STATS"""
-            cursor.execute(query)
-    return redirect(url_for('riders'))
 
 @app.route('/riders/add', methods=['GET','POST'])
 def radd():
@@ -158,7 +158,7 @@ def stats():
         result.del_stats_default(BIKENO)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
-        result.del_rider_by_num(NUM)
+        result.del_stats_by_num(NUM)
     return render_template('/riders/stats.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/list', methods=['GET','POST'])
@@ -179,7 +179,7 @@ def sadd():
         CHAMP = request.form['champ']
         TOTALP= request.form['totalpoints']
         BIKENO = request.form['bikeno']
-        result.add_rider_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+        result.add_stats_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
     return render_template('/riders/stats/add.html', current_time=now.ctime())
 
 @app.route('/riders/stats/search', methods=['GET','POST'])
@@ -201,7 +201,7 @@ def sdelete():
         result.del_stats_default(BIKENO)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
-        result.del_rider_by_num(NUM)
+        result.del_stats_by_num(NUM)
     return render_template('/riders/stats/delete.html', current_time=now.ctime())
 
 @app.route('/circuits', methods=['GET', 'POST'])

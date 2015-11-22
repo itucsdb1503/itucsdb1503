@@ -64,7 +64,7 @@ class ridersClass:
             connection.commit()
         return
 
-    def add_stat_default(self, years, wins, podium, pole, champ, totalp, bikeno):
+    def add_stats_default(self, years, wins, podium, pole, champ, totalp, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """INSERT INTO STATS (YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)    VALUES
@@ -82,7 +82,7 @@ class ridersClass:
             connection.commit()
         return
 
-    def del_stat_default(self, bikeno):
+    def del_stats_default(self, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """DELETE FROM STATS WHERE BIKENO = '%s' """ % (bikeno)
@@ -98,7 +98,7 @@ class ridersClass:
             connection.commit()
         return
 
-    def del_rider_by_num(self, num):
+    def del_stats_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """DELETE FROM STATS WHERE NUM = '%s' """ % (num)

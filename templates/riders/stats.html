@@ -28,7 +28,7 @@
 	</table>
 	<br>
 	<div style="float:left; width:30%;">
-		<form id="adddefault" action="{{ url_for('sadd') }}" method="post">
+		<form id="adddefault" action="{{ url_for('stats') }}" method="post">
 	       	<table class="ridersadd" style="width: 100%;">
 				<tr class="ridersadd">
 					<th class="ridersadd">Years in:</th><td><input type="text" name="years"/></td>
@@ -66,7 +66,7 @@
 	<br>
 	</div>
 	<div style="float:left; width:30%;">
-	<form id="deldefault" action="{{ url_for('sdelete') }}" method="post">
+	<form id="deldefault" action="{{ url_for('stats') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
 				<th class="ridersdel">Bike No: </th>
@@ -77,7 +77,7 @@
 		<input class="ridersdel" value="Delete Stats" name="deldefault" type="submit"/>
 	</form>
 	<br>
-	<form id="delbynum" action="{{ url_for('sdelete') }}" method="post">
+	<form id="delbynum" action="{{ url_for('stats') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
 				<th class="ridersdel">Index: </th>
