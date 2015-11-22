@@ -9,6 +9,8 @@ from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
 
+from riders import riders
+
 
 app = Flask(__name__)
 

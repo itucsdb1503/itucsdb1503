@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} - ITUCSDB1503</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
+	<link  rel="stylesheet" href="/static/{% block css %}{% endblock %}">
   </head>
   <body>
       <header>
