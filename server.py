@@ -8,9 +8,10 @@ from flask import Flask
 from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
+from flask import request
 
 from riders import riders
-
+from teams import Teams
 
 app = Flask(__name__)
 
@@ -31,8 +32,13 @@ def home_page():
     now = datetime.datetime.now()
     return render_template('home.html', current_time=now.ctime())
 
-@app.route('/teams')
-def teams():
+@app.route('/teams', methods=['GET', 'POST'])
+def teamsPage():
+    page = Teams(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        page.insertTestTuples();
+        return page.openPage()
+
     now = datetime.datetime.now()
     return render_template('teams.html', current_time=now.ctime())
 

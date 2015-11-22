@@ -1,5 +1,6 @@
 {% extends "template.html" %}
 {% block title %}Teams{% endblock %}
+{% block css %}teams.css{% endblock %}
 {% block teams %}active{% endblock %}
 {% block content %}
 	<style>
@@ -7,7 +8,28 @@
 			background-color: #6d6d6d; width: 10%; border-radius: 2px;
 		}
 	</style>
-	
 
+	<table>
+    <tr>
+    	<th> ID </th>
+       	<th> Name </th>
+       	<th> Country </th>
+       	<th> Constructor </th>
+       	<th> Motorcycle </th>
+       	<th> RiderNo </th>
+    </tr>
+       	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
+       	<tr>
+       		<td>{{id}} </td>
+       		<td>{{name}} </td>
+       		<td> {{country}} </td>
+       		<td> {{constructor}} </td>
+       		<td> {{motorcycle}} </td>
+       		<td> {{riderNo}}</td>
+       		<td> {{ranking}}</td>
+       		<td> {{gender}}</td>
+       	</tr>
+       	{%endfor%}
+    </table>
 
 {% endblock %}
