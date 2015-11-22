@@ -46,6 +46,14 @@ def teamsPage():
         motorcycle = request.form['motorcycle']
         riderNo = request.form['riderNo']
         return page.addTeam(name, country, constructor, motorcycle, riderNo)
+    elif 'updateTeam' in request.form:
+        id = request.form['id']
+        name = request.form['name']
+        country = request.form['country']
+        constructor = request.form['constructor']
+        motorcycle = request.form['motorcycle']
+        riderNo = request.form['riderNo']
+        return page.updateTeam(id, name, country, constructor, motorcycle, riderNo)
     elif 'deleteTeam' in request.form:
         id = request.form['id']
         return page.deleteTeamId(id)
@@ -77,7 +85,7 @@ def riders():
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_by_num(NUM)
-    return render_template('/riders.html', result=result.load(), current_time=now.ctime())   
+    return render_template('/riders.html', result=result.load(), current_time=now.ctime())
 
 @app.route('/riders/list', methods=['GET','POST'])
 def rlist():

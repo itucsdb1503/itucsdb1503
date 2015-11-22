@@ -30,7 +30,7 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = "SELECT * FROM teams"
+            query = "SELECT * FROM teams ORDER BY id ASC"
             cursor.execute(query)
 
             teamsdb = cursor.fetchall()
@@ -71,6 +71,17 @@ class Teams:
             query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
                         VALUES
                         ('%s', '%s', '%s', '%s', %s)""" % (name, country, constructor, motorcycle, riderNo)
+            cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('teamsPage'))
+
+    def updateTeam(self, id, name, country, constructor, motorcycle, riderNo):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """UPDATE  teams
+                        SET name = '%s', country = '%s', constructor = '%s', motorcycle = '%s', riderNo = %s
+                        WHERE id = '%s' """ % (name, country, constructor, motorcycle, riderNo, id)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('teamsPage'))

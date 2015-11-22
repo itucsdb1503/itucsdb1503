@@ -46,6 +46,30 @@
 		<input class="modifyTeam" value="Add Team" name="addTeam" type="submit"/>
 	</form>
 	<br>
+	    <form id="updateTeam" action="{{ url_for('teamsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">ID:</th><td><input type="text" name="id"/></td>
+			</tr>
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Country:</th><td><input type="text" name="country"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Constructor:</th><td><input type="text" name="constructor"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Motorcycle:</th><td><input type="text" name="motorcycle"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Rider No: </th><td><input type="text" name="riderNo"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Update Team" name="updateTeam" type="submit"/>
+	</form>
+	<br>
 	<form id="deleteTeam" action="{{ url_for('teamsPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
