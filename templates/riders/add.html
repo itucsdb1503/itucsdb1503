@@ -1,12 +1,56 @@
 {% extends "template.html" %}
-{% block title %}Riders{% endblock %}
+{% block title %}Add Rider{% endblock %}
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
-	<style>
-		th.riders{
-			background-color: #6d6d6d; width: 10%; border-radius: 2px;
-		}
-	</style>
+
+
+	<form id="adddefault" action="{{ url_for('radd') }}" method="post">
+       	<table class="ridersadd">
+       		<tr class="ridersadd">
+				<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Surname:</th><td><input type="text" name="surname"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Age:</th><td><input type="text" name="age"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Gender:</th><td><input type="text" name="gender"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Team: </th><td><input type="text" name="team"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Brand:</th><td><input type="text" name="brand"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Model:</th><td><input type="text" name="model"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Nation:</th><td><input type="text" name="nation"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Years in:</th><td><input type="text" name="years"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Wins:</th><td><input type="text" name="wins"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Podium:</th><td><input type="text" name="podium"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Pole:</th><td><input type="text" name="pole"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Champion Count:</th><td><input type="text" name="champ"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Total Points:</th><td><input type="text" name="totalpoints"/></td>
+			</tr>
+			</table>
+		<input class="ridersadd" value="Add Rider" name="adddefault" type="submit"/>
+	</form>
 
 {% endblock %}
