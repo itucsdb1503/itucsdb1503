@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% block title %}Delete Stats{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+	<div style="float:left; width:30%;">
+	<form id="deldefault" action="{{ url_for('sdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Bike No: </th>
+				<td><input type="text" name="bikeno"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="ridersdel" value="Delete Stats" name="deldefault" type="submit"/>
+	</form>
+	</div>
+	<div style="float:left; width:5%;">
+	<br>
+	</div>
+	<div style="float:left; width:30%;">
+	<form id="delbynum" action="{{ url_for('sdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Index: </th>
+				<td><input type="text" name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="ridersdel" value="Delete Stats" name="delbynum" type="submit"/>
+	</form>
+	</div>
+
+{% endblock %}

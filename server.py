@@ -71,27 +71,22 @@ def riders():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
-        YEARS = request.form['years']
-        WINS = request.form['wins']
-        PODIUM = request.form['podium']
-        POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP= request.form['totalpoints']
-        result.add_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)
+        BIKENO = request.form['bikeno']
+        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
     if 'deldefault' in request.form:
         NAME = request.form['name']
         SURNAME = request.form['surname']
-        result.del_default(NAME, SURNAME)
+        result.del_rider_default(NAME, SURNAME)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
-        result.del_by_num(NUM)
-    return render_template('/riders.html', result=result.load(), current_time=now.ctime())
+        result.del_rider_by_num(NUM)
+    return render_template('/riders.html', result=result.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/list', methods=['GET','POST'])
 def rlist():
     result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('/riders/list.html', result=result.load(), current_time=now.ctime())
+    return render_template('/riders/list.html', result=result.load_riders(), current_time=now.ctime())
 
 @app.route('/ridersreset', methods=['GET','POST'])
 def rreset():
@@ -103,7 +98,7 @@ def rreset():
             query = """DROP TABLE IF EXISTS STATS"""
             cursor.execute(query)
     return redirect(url_for('riders'))
-    
+
 @app.route('/riders/add', methods=['GET','POST'])
 def radd():
     result = ridersClass(dsn = app.config['dsn'])
@@ -117,22 +112,20 @@ def radd():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
-        YEARS = request.form['years']
-        WINS = request.form['wins']
-        PODIUM = request.form['podium']
-        POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP= request.form['totalpoints']
-        result.add_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)
-        return render_template('/riders/add.html', current_time=now.ctime())
-    else:
-        return render_template('/riders/add.html', current_time=now.ctime())
-
+        BIKENO = request.form['bikeno']
+        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+    return render_template('/riders/add.html', current_time=now.ctime())
 
 @app.route('/riders/search', methods=['GET','POST'])
 def rsearch():
     now = datetime.datetime.now()
     return render_template('/riders/search.html', current_time=now.ctime())
+
+@app.route('/riders/update', methods=['GET','POST'])
+def rupdate():
+    now = datetime.datetime.now()
+    return render_template('/riders/update.html', current_time=now.ctime())
+
 
 @app.route('/riders/delete', methods=['GET','POST'])
 def rdelete():
@@ -141,11 +134,75 @@ def rdelete():
     if 'deldefault' in request.form:
         NAME = request.form['name']
         SURNAME = request.form['surname']
-        result.del_default(NAME, SURNAME)
+        result.del_rider_default(NAME, SURNAME)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
-        result.del_by_num(NUM)
+        result.del_rider_by_num(NUM)
     return render_template('/riders/delete.html', current_time=now.ctime())
+
+@app.route('/riders/stats', methods=['GET','POST'])
+def stats():
+    result = ridersClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'adddefault' in request.form:
+        YEARS = request.form['years']
+        WINS = request.form['wins']
+        PODIUM = request.form['podium']
+        POLE = request.form['pole']
+        CHAMP = request.form['champ']
+        TOTALP= request.form['totalpoints']
+        BIKENO = request.form['bikeno']
+        result.add_stats_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+    if 'deldefault' in request.form:
+        BIKENO = request.form['bikeno']
+        result.del_stats_default(BIKENO)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_rider_by_num(NUM)
+    return render_template('/riders/stats.html', result=result.load_stats(), current_time=now.ctime())
+
+@app.route('/riders/stats/list', methods=['GET','POST'])
+def slist():
+    result = ridersClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    return render_template('/riders/stats/list.html', result=result.load_stats(), current_time=now.ctime())
+
+@app.route('/riders/stats/add', methods=['GET','POST'])
+def sadd():
+    result = ridersClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'adddefault' in request.form:
+        YEARS = request.form['years']
+        WINS = request.form['wins']
+        PODIUM = request.form['podium']
+        POLE = request.form['pole']
+        CHAMP = request.form['champ']
+        TOTALP= request.form['totalpoints']
+        BIKENO = request.form['bikeno']
+        result.add_rider_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+    return render_template('/riders/stats/add.html', current_time=now.ctime())
+
+@app.route('/riders/stats/search', methods=['GET','POST'])
+def ssearch():
+    now = datetime.datetime.now()
+    return render_template('/riders/stats/search.html', current_time=now.ctime())
+
+@app.route('/riders/stats/update', methods=['GET','POST'])
+def supdate():
+    now = datetime.datetime.now()
+    return render_template('/riders/stats/update.html', current_time=now.ctime())
+
+@app.route('/riders/stats/delete', methods=['GET','POST'])
+def sdelete():
+    result = ridersClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'deldefault' in request.form:
+        BIKENO = request.form['bikeno']
+        result.del_stats_default(BIKENO)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_rider_by_num(NUM)
+    return render_template('/riders/stats/delete.html', current_time=now.ctime())
 
 @app.route('/circuits', methods=['GET', 'POST'])
 def circuits_page():

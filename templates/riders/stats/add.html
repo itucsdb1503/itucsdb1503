@@ -1,0 +1,34 @@
+{% extends "template.html" %}
+{% block title %}Add Stats{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+	<form id="adddefault" action="{{ url_for('sadd') }}" method="post">
+       	<table class="ridersadd">
+			<tr class="ridersadd">
+				<th class="ridersadd">Years in:</th><td><input type="text" name="years"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Wins:</th><td><input type="text" name="wins"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Podium:</th><td><input type="text" name="podium"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Pole:</th><td><input type="text" name="pole"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Championship Wins:</th><td><input type="text" name="champ"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Total Points:</th><td><input type="text" name="totalpoints"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
+			</tr>
+			</table>
+		<br>
+		<input class="ridersadd" value="Add Stats" name="adddefault" type="submit"/>
+	</form>
+
+{% endblock %}

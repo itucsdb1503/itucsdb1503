@@ -1,0 +1,92 @@
+{% extends "template.html" %}
+{% block title %}Stats Dashboard{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 12%"> Years in </th>
+        	<th class="riderslist" style="width: 12%"> Wins </th>
+        	<th class="riderslist" style="width: 12%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 12%"> Pole Positions </th>
+        	<th class="riderslist" style="width: 12%"> Championship Wins </th>
+        	<th class="riderslist" style="width: 12%"> Total Points </th>
+        	<th class="riderslist" style="width: 12%"> Bike No</th>
+		</tr>
+		{% for NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP in result %}
+        <tr>
+
+	        <td class="riderslist" style="width: 12%"> {{YEARS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{WINS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 12%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 12%"> {{CHAMP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{TOTALP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{BIKENO}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	<br>
+	<div style="float:left; width:30%;">
+		<form id="adddefault" action="{{ url_for('sadd') }}" method="post">
+	       	<table class="ridersadd" style="width: 100%;">
+				<tr class="ridersadd">
+					<th class="ridersadd">Years in:</th><td><input type="text" name="years"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Wins:</th><td><input type="text" name="wins"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Podium:</th><td><input type="text" name="podium"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Pole:</th><td><input type="text" name="pole"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Championship Wins:</th><td><input type="text" name="champ"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Total Points:</th><td><input type="text" name="totalpoints"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
+				</tr>
+				</table>
+			<br>
+			<input class="ridersadd" value="Add Stats" name="adddefault" type="submit"/>
+		</form>
+	</div>
+	<div style="float:left; width:5%;">
+	<br>
+	</div>
+	<div style="float:left; width:30%;">
+	<br> <!-- TODO: ADD UPDATE FORM HERE -->
+	</div>
+	<div style="float:left; width:5%;">
+	<br>
+	</div>
+	<div style="float:left; width:30%;">
+	<form id="deldefault" action="{{ url_for('sdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Bike No: </th>
+				<td><input type="text" name="bikeno"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="ridersdel" value="Delete Stats" name="deldefault" type="submit"/>
+	</form>
+	<br>
+	<form id="delbynum" action="{{ url_for('sdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Index: </th>
+				<td><input type="text" name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="ridersdel" value="Delete Stats" name="delbynum" type="submit"/>
+	</form>
+	</div>
+
+{% endblock %}

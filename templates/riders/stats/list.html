@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% block title %}List Stats{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 12%"> Years in </th>
+        	<th class="riderslist" style="width: 12%"> Wins </th>
+        	<th class="riderslist" style="width: 12%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 12%"> Pole Positions </th>
+        	<th class="riderslist" style="width: 12%"> Championship Wins </th>
+        	<th class="riderslist" style="width: 12%"> Total Points </th>
+        	<th class="riderslist" style="width: 12%"> Bike No</th>
+		</tr>
+		{% for NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP in result %}
+        <tr>
+
+	        <td class="riderslist" style="width: 12%"> {{YEARS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{WINS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 12%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 12%"> {{CHAMP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{TOTALP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{BIKENO}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+
+{% endblock %}

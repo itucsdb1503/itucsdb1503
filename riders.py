@@ -22,17 +22,24 @@ class ridersClass:
                         BRAND text NOT NULL,
                         MODEL text NOT NULL,
                         NATION text NOT NULL,
+                        BIKENO integer NOT NULL
+                        )"""    #NUM is index
+            cursor.execute(query)
+            cursor = connection.cursor()
+            query = """CREATE TABLE IF NOT EXISTS STATS (
+                        NUM serial PRIMARY KEY,
                         YEARS integer DEFAULT 0,
                         WINS integer DEFAULT 0,
                         PODIUM integer DEFAULT 0,
                         POLE integer DEFAULT 0,
                         CHAMP integer DEFAULT 0,
-                        TOTALP integer DEFAULT 0
-                        )"""
+                        TOTALP integer DEFAULT 0,
+                        BIKENO integer NOT NULL
+                        )"""    #NUM is index
             cursor.execute(query)
         return
 
-    def load(self):
+    def load_riders(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = "SELECT * FROM RIDERS"
@@ -40,29 +47,61 @@ class ridersClass:
             riders = cursor.fetchall()
         return (riders)
 
-    def add_default(self, name, surname, age, gender, team, brand, model, nation, years, wins, podium, pole, champ, totalp):
+    def load_stats(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)    VALUES
-                        ('%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s, %s )""" % (name, surname, age, gender, team, brand, model, nation, years, wins, podium, pole, champ, totalp)
+            query = "SELECT * FROM STATS"
+            cursor.execute(query)
+            stats = cursor.fetchall()
+        return (stats)
+
+    def add_rider_default(self, name, surname, age, gender, team, brand, model, nation, bikeno):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)    VALUES
+                        ('%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', %s )""" % (name, surname, age, gender, team, brand, model, nation, bikeno)
             cursor.execute(query)
             connection.commit()
         return
-    
-    def del_default(self, name, surname):
+
+    def add_stat_default(self, years, wins, podium, pole, champ, totalp, bikeno):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """INSERT INTO STATS (YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)    VALUES
+                        ( %s, %s, %s, %s, %s, %s , %s)""" % (years, wins, podium, pole, champ, totalp, bikeno)
+            cursor.execute(query)
+            connection.commit()
+        return
+
+    def del_rider_default(self, name, surname):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """DELETE FROM RIDERS WHERE NAME = '%s'
                         AND SURNAME = '%s' """ % (name, surname)
             cursor.execute(query)
             connection.commit()
-            
-        return 
-    
-    def del_by_num(self, num):
+        return
+
+    def del_stat_default(self, bikeno):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """DELETE FROM STATS WHERE BIKENO = '%s' """ % (bikeno)
+            cursor.execute(query)
+            connection.commit()
+        return
+
+    def del_rider_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """DELETE FROM RIDERS WHERE NUM = '%s' """ % (num)
+            cursor.execute(query)
+            connection.commit()
+        return
+
+    def del_rider_by_num(self, num):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """DELETE FROM STATS WHERE NUM = '%s' """ % (num)
             cursor.execute(query)
             connection.commit()
         return
