@@ -1,6 +1,6 @@
 input.riders {
 	height: 50px;
-	width: 30%;
+	width: 100%;
 	border-radius: 5px; 
 	border: 1px solid black;
 	background-color: #b2b2b2;
@@ -39,6 +39,7 @@ td.riderslist {
 
 table.ridersadd {
 	width: 30%; 
+	height: 700px;
 	text-align: center; 
 	vertical-align: center; 
 	padding: 5px;
@@ -63,8 +64,20 @@ td.ridersadd {
 	color: black;		 
 	padding: 5px;
 }
+
+input.ridersadd {
+	height: 50px;
+	width: 30%;
+	border-radius: 5px; 
+	border: 1px solid black;
+	background-color: #b2b2b2;
+	font-weight: bold;
+	color: #000000;
+}
+
 table.ridersdel {
-	width: 30%; 
+	width: 100%; 
+	height: 100px;
 	text-align: center; 
 	vertical-align: center; 
 	padding: 5px;
@@ -88,4 +101,14 @@ td.ridersdel {
 	border-radius: 5px; 
 	color: black;		 
 	padding: 5px;
+}
+
+input.ridersdel {
+	height: 50px;
+	width: 100%;
+	border-radius: 5px; 
+	border: 1px solid black;
+	background-color: #b2b2b2;
+	font-weight: bold;
+	color: #000000;
 }

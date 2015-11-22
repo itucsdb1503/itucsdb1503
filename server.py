@@ -70,6 +70,13 @@ def riders():
         CHAMP = request.form['champ']
         TOTALP= request.form['totalpoints']
         result.add_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)
+    if 'deldefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        result.del_default(NAME, SURNAME)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_by_num(NUM)
     return render_template('/riders.html', result=result.load(), current_time=now.ctime())   
 
 @app.route('/riders/list', methods=['GET','POST'])

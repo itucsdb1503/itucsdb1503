@@ -3,8 +3,49 @@
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
-	<form id="adddefault" action="{{ url_for('riders') }}" method="post">
-       	<table class="ridersadd">
+
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 3%"> Index </th>
+        	<th class="riderslist" style="width: 10%"> Name </th>
+        	<th class="riderslist" style="width: 10%"> Surname </th>
+        	<th class="riderslist" style="width: 3%"> Age </th>
+        	<th class="riderslist" style="width: 3%"> Gender </th>
+        	<th class="riderslist" style="width: 10%"> Team </th>
+        	<th class="riderslist" style="width: 10%"> Brand </th>
+        	<th class="riderslist" style="width: 6%"> Model </th>
+        	<th class="riderslist" style="width: 10%"> Nation </th>
+        	<th class="riderslist" style="width: 5%"> Years in </th>
+        	<th class="riderslist" style="width: 6%"> Wins </th>
+        	<th class="riderslist" style="width: 6%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 6%"> Pole Positions </th>
+        	<th class="riderslist" style="width: 6%"> Championship Wins </th>
+        	<th class="riderslist" style="width: 6%"> Total Points </th>
+		</tr>
+		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP in result %}
+        <tr>
+	        <td class="riderslist" style="width: 3%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 10%"> {{NAME}} </td>
+	        <td class="riderslist" style="width: 10%"> {{SURNAME}} </td>
+	        <td class="riderslist" style="width: 3%"> {{AGE}} </td>
+	        <td class="riderslist" style="width: 3%"> {{GENDER}} </td>
+	        <td class="riderslist" style="width: 10%"> {{TEAM}} </td>
+	        <td class="riderslist" style="width: 10%"> {{BRAND}} </td>
+	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
+	        <td class="riderslist" style="width: 10%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 5%"> {{YEARS}} </td>
+	        <td class="riderslist" style="width: 6%"> {{WINS}} </td>
+	        <td class="riderslist" style="width: 6%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 6%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 6%"> {{CHAMP}} </td>
+	        <td class="riderslist" style="width: 6%"> {{TOTALP}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	<br>
+	<div style="float:left; width:30%;">
+		<form id="adddefault" action="{{ url_for('riders') }}" method="post">
+       	<table class="ridersadd" style="width:100%;">
        		<tr class="ridersadd">
 				<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
 			</tr>
@@ -47,47 +88,45 @@
 			<tr class="ridersadd">
 				<th class="ridersadd">Total Points:</th><td><input type="text" name="totalpoints"/></td>
 			</tr>
-			</table>
-		<br>
+			</table>		
+			<br>
 		<input class="riders" value="Add Rider" name="adddefault" type="submit"/>
 	</form>
+	</div>
+	<div style="float:left; width:5%;">
 	<br>
-	<table class="riderslist">
-		<tr>
-        	<th class="riderslist" style="width: 3%"> Index </th>
-        	<th class="riderslist" style="width: 10%"> Name </th>
-        	<th class="riderslist" style="width: 10%"> Surname </th>
-        	<th class="riderslist" style="width: 3%"> Age </th>
-        	<th class="riderslist" style="width: 3%"> Gender </th>
-        	<th class="riderslist" style="width: 10%"> Team </th>
-        	<th class="riderslist" style="width: 10%"> Brand </th>
-        	<th class="riderslist" style="width: 6%"> Model </th>
-        	<th class="riderslist" style="width: 10%"> Nation </th>
-        	<th class="riderslist" style="width: 5%"> Years in </th>
-        	<th class="riderslist" style="width: 6%"> Wins </th>
-        	<th class="riderslist" style="width: 6%"> Podiums Count </th>
-        	<th class="riderslist" style="width: 6%"> Pole Positions </th>
-        	<th class="riderslist" style="width: 6%"> Championship Wins </th>
-        	<th class="riderslist" style="width: 6%"> Total Points </th>
-		</tr>
-		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP in result %}
-        <tr>
-	        <td class="riderslist" style="width: 3%"> {{NUM}} </td>
-	        <td class="riderslist" style="width: 10%"> {{NAME}} </td>
-	        <td class="riderslist" style="width: 10%"> {{SURNAME}} </td>
-	        <td class="riderslist" style="width: 3%"> {{AGE}} </td>
-	        <td class="riderslist" style="width: 3%"> {{GENDER}} </td>
-	        <td class="riderslist" style="width: 10%"> {{TEAM}} </td>
-	        <td class="riderslist" style="width: 10%"> {{BRAND}} </td>
-	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
-	        <td class="riderslist" style="width: 10%"> {{NATION}} </td>
-	        <td class="riderslist" style="width: 5%"> {{YEARS}} </td>
-	        <td class="riderslist" style="width: 6%"> {{WINS}} </td>
-	        <td class="riderslist" style="width: 6%"> {{PODIUM}} </td>
-	        <td class="riderslist" style="width: 6%"> {{POLE}} </td>
-	        <td class="riderslist" style="width: 6%"> {{CHAMP}} </td>
-	        <td class="riderslist" style="width: 6%"> {{TOTALP}} </td>
-        </tr>
-        	{%endfor%}
-	</table>
+	</div>
+	<div style="float:left; width:30%;">
+	<br> <!-- TODO: ADD UPDATE FORM HERE -->
+	</div>
+	<div style="float:left; width:5%;">
+	<br>
+	</div>
+	<div style="float:left; width:30%;">
+	<form id="deldefault" action="{{ url_for('riders') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Name: </th>
+				<td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="ridersdel">
+				<th class="ridersdel">Surname: </th>
+				<td><input type="text" name="surname"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Player" name="deldefault" type="submit"/>
+	</form>
+	<br>
+	<form id="delbynum" action="{{ url_for('riders') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Index: </th>
+				<td><input type="text" name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Player" name="delbynum" type="submit"/>
+	</form>
+	</div>
 {% endblock %}

@@ -3,6 +3,7 @@
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
+	<div style="float:left; width:30%;">
 	<form id="deldefault" action="{{ url_for('rdelete') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
@@ -15,9 +16,13 @@
 			</tr>
 		</table>
 		<br>
-		<input class="riders" value="Delete Player" name="deldefault" type="submit"/>
+		<input class="ridersdel" value="Delete Player" name="deldefault" type="submit"/>
 	</form>
+	</div>
+	<div style="float:left; width:5%;">
 	<br>
+	</div>
+	<div style="float:left; width:30%;">
 	<form id="delbynum" action="{{ url_for('rdelete') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
@@ -26,7 +31,8 @@
 			</tr>
 		</table>
 		<br>
-		<input class="riders" value="Delete Player" name="delbynum" type="submit"/>
+		<input class="ridersdel" value="Delete Player" name="delbynum" type="submit"/>
 	</form>
+	</div>
 
 {% endblock %}
