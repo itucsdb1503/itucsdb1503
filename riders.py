@@ -12,7 +12,7 @@ class riders:
                         NAME text NOT NULL,
                         SURNAME text NOT NULL,
                         AGE integer,
-                        GENDER test NOT NULL,
+                        GENDER text NOT NULL,
                         TEAM text NOT NULL,
                         BIKE text NOT NULL,
                         NATION text NOT NULL,
