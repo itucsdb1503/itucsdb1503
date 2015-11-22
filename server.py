@@ -5,12 +5,12 @@ import psycopg2 as dbapi2
 import re
 
 from flask import Flask
-from flask import redirect
+from flask import request
 from flask import render_template
 from flask.helpers import url_for
-from flask import request
+from flask import redirect
 
-from riders import riders
+from riders import ridersClass
 from teams import Teams
 
 app = Flask(__name__)
@@ -47,20 +47,46 @@ def riders():
     now = datetime.datetime.now()
     return render_template('riders.html', current_time=now.ctime())
 
-@app.route('/riders/list')
+@app.route('/riders/list', methods=['GET','POST'])
 def rlist():
+    result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('/riders/list.html', current_time=now.ctime())
+    return render_template('/riders/list.html', result=result.load(), current_time=now.ctime())
 
-@app.route('/riders/add')
+@app.route('/riders/add', methods=['GET','POST'])
 def radd():
+    result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('/riders/add.html', current_time=now.ctime())
+    if 'adddefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        AGE = request.form['age']
+        GENDER = request.form['gender']
+        TEAM = request.form['team']
+        BRAND = request.form['brand']
+        MODEL = request.form['model']
+        NATION = request.form['nation']
+        YEARS = request.form['years']
+        WINS = request.form['wins']
+        PODIUM = request.form['podium']
+        POLE = request.form['pole']
+        CHAMP = request.form['champ']
+        TOTALP= request.form['totalpoints']
+        result.add_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)
+        return render_template('/riders/add.html', current_time=now.ctime())
+    else:
+        return render_template('/riders/add.html', current_time=now.ctime())
+
 
 @app.route('/riders/search')
 def rsearch():
     now = datetime.datetime.now()
     return render_template('/riders/search.html', current_time=now.ctime())
+
+@app.route('/riders/delete')
+def rdelete():
+    now = datetime.datetime.now()
+    return render_template('/riders/delete.html', current_time=now.ctime())
 
 @app.route('/circuits')
 def circuits():
