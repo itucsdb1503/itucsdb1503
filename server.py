@@ -85,10 +85,73 @@ def rdelete():
     now = datetime.datetime.now()
     return render_template('/riders/delete.html', current_time=now.ctime())
 
-@app.route('/circuits')
-def circuits():
-    now = datetime.datetime.now()
-    return render_template('circuits.html', current_time=now.ctime())
+@app.route('/circuits', methods=['GET', 'POST'])
+def circuits_page():
+    page = Circuit(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.open_page()
+    elif 'deletecircuitwithid' in request.form:
+        id = request.form['id']
+        return page.delete_circuit_with_id(id)
+    elif 'addcircuit' in request.form:
+        name = request.form['name']
+        length = request.form['length']
+        width = request.form['width']
+        left_corners = request.form['left_corners']
+        right_corners = request.form['right_corners']
+        longest_straight = request.form['longest_straight']
+        country = request.form['country']
+        constructed_year = request.form['constructed_year']
+        return page.add_circuit(name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
+
+    else:
+        return redirect(url_for('home_page'))
+
+class Circuit:
+    def __init__(self, dsn):
+        self.dsn = dsn
+        return
+
+    def open_page(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """CREATE TABLE IF NOT EXISTS circuits (
+                        id serial PRIMARY KEY,
+                        name text NOT NULL,
+                        length integer DEFAULT 0,
+                        width integer DEFAULT 0,
+                        left_corners integer DEFAULT 0,
+                        right_corners integer DEFAULT 0,
+                        longest_straight integer DEFAULT 0,
+                        country text NOT NULL,
+                        constructed_year integer DEFAULT 0)"""
+            cursor.execute(query)
+
+            query = "SELECT * FROM circuits"
+            cursor.execute(query)
+            circuits = cursor.fetchall()
+        return render_template('circuits.html', circuits = circuits)
+    def delete_circuit_with_id(self, id):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """DELETE FROM circuits WHERE id = '%s' """ % (id)
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('circuits_page'))
+    def add_circuit(self, name, length, width, left_corners, right_corners, longest_straight, country, constructed_year):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """INSERT INTO circuits (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
+                        VALUES
+                        ('%s', %s, %s, %s, %s, %s, '%s', %s)""" % (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('circuits_page'))
 
 @app.route('/brands')
 def brands():
