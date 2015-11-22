@@ -93,6 +93,17 @@ def rlist():
     now = datetime.datetime.now()
     return render_template('/riders/list.html', result=result.load(), current_time=now.ctime())
 
+@app.route('/ridersreset', methods=['GET','POST'])
+def rreset():
+    with dbapi2.connect(app.config['dsn']) as connection:
+            cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS RIDERS"""
+            cursor.execute(query)
+            cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS STATS"""
+            cursor.execute(query)
+    return redirect(url_for('riders'))
+    
 @app.route('/riders/add', methods=['GET','POST'])
 def radd():
     result = ridersClass(dsn = app.config['dsn'])
