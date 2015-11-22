@@ -1,30 +1,45 @@
 {% extends "template.html" %}
-{% block title %}Riders{% endblock %}
+{% block title %}Riders List{% endblock %}
 {% block css %}riders.css{% endblock %}
-{% block riders %}active{% endblock %}
+{% block riders%}active{% endblock %}
 {% block content %}
-	<style>
-		th.riders{
-			background-color: #6d6d6d; width: 10%; border-radius: 2px;
-		}
-	</style>
-
-	<table class="rdrtable">
+	<table class="riderslist">
 		<tr>
-        	<th class="rdrth" style="width: 6%"> NUM </th>
-        	<th class="rdrth" style="width: 10%"> Name </th>
-        	<th class="rdrth" style="width: 10%"> Surname </th>
-        	<th class="rdrth" style="width: 6%"> Age </th>
-        	<th class="rdrth" style="width: 10%"> Team </th>
-        	<th class="rdrth" style="width: 10%"> Bike </th>
-        	<th class="rdrth" style="width: 10%"> Nation </th>
-        	<th class="rdrth" style="width: 6%"> Years in </th>
-        	<th class="rdrth" style="width: 8%"> Wins </th>
-        	<th class="rdrth" style="width: 6%"> Podiums Count </th>
-        	<th class="rdrth" style="width: 6%"> Pole Positions </th>
-        	<th class="rdrth" style="width: 6%"> Champion Count </th>
-        	<th class="rdrth" style="width: 6%"> Total Points </th>
+        	<th class="riderslist" style="width: 3%"> NUM </th>
+        	<th class="riderslist" style="width: 10%"> Name </th>
+        	<th class="riderslist" style="width: 10%"> Surname </th>
+        	<th class="riderslist" style="width: 3%"> Age </th>
+        	<th class="riderslist" style="width: 3%"> Gender </th>
+        	<th class="riderslist" style="width: 10%"> Team </th>
+        	<th class="riderslist" style="width: 10%"> Brand </th>
+        	<th class="riderslist" style="width: 6%"> Model </th>
+        	<th class="riderslist" style="width: 10%"> Nation </th>
+        	<th class="riderslist" style="width: 5%"> Years in </th>
+        	<th class="riderslist" style="width: 6%"> Wins </th>
+        	<th class="riderslist" style="width: 6%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 6%"> Pole Positions </th>
+        	<th class="riderslist" style="width: 6%"> Champion Count </th>
+        	<th class="riderslist" style="width: 6%"> Total Points </th>
 		</tr>
+		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP in result %}
+        <tr>
+	        <td class="riderslist"> {{NUM}} </td>
+	        <td class="riderslist"> {{NAME}} </td>
+	        <td class="riderslist"> {{SURNAME}} </td>
+	        <td class="riderslist"> {{AGE}} </td>
+	        <td class="riderslist"> {{GENDER}} </td>
+	        <td class="riderslist"> {{TEAM}} </td>
+	        <td class="riderslist"> {{BRAND}} </td>
+	        <td class="riderslist"> {{MODEL}} </td>
+	        <td class="riderslist"> {{NATION}} </td>
+	        <td class="riderslist"> {{YEARS}} </td>
+	        <td class="riderslist"> {{WINS}} </td>
+	        <td class="riderslist"> {{PODIUM}} </td>
+	        <td class="riderslist"> {{POLE}} </td>
+	        <td class="riderslist"> {{CHAMP}} </td>
+	        <td class="riderslist"> {{TOTALP}} </td>
+        </tr>
+        	{%endfor%}
 	</table>
 
 {% endblock %}

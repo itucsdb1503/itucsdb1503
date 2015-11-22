@@ -3,18 +3,24 @@ from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
 
-class riders:
-    def load(self):
+class ridersClass:
+    def __init__(self,dsn):
+        self.dsn = dsn
+        self.init()
+        return
+
+    def init(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """CREATE TABLE IF NOT EXISTS RIDERS (
                         NUM serial PRIMARY KEY,
                         NAME text NOT NULL,
                         SURNAME text NOT NULL,
-                        AGE integer,
+                        AGE integer DEFAULT 0,
                         GENDER text NOT NULL,
                         TEAM text NOT NULL,
-                        BIKE text NOT NULL,
+                        BRAND text NOT NULL,
+                        MODEL text NOT NULL,
                         NATION text NOT NULL,
                         YEARS integer DEFAULT 0,
                         WINS integer DEFAULT 0,
@@ -24,7 +30,21 @@ class riders:
                         TOTALP integer DEFAULT 0
                         )"""
             cursor.execute(query)
+        return
+
+    def load(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
             query = "SELECT * FROM RIDERS"
             cursor.execute(query)
             riders = cursor.fetchall()
-        return render_template('riders.html', riders)
+        return (riders)
+
+    def add_default(self, name, surname, age, gender, team, brand, model, nation, years, wins, podium, pole, champ, totalp):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)    VALUES
+                        ('%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s, %s, %s, %s, %s )""" % (name, surname, age, gender, team, brand, model, nation, years, wins, podium, pole, champ, totalp)
+            cursor.execute(query)
+            connection.commit()
+        return
