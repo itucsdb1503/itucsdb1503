@@ -1,6 +1,7 @@
 {% extends "template.html" %}
 {% block title %}Riders{% endblock %}
 {% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
 {% block content %}
 	<style>
 		th.riders{
@@ -9,22 +10,5 @@
 	</style>
 	<script src="static/javascript/riders.js"></script>
 
-	<table class="rdrtable">
-		<tr>
-        	<th class="rdrth"> NUM </th>
-        	<th class="rdrth"> Name </th>
-        	<th class="rdrth"> Surname </th>
-        	<th class="rdrth"> Age </th>
-        	<th class="rdrth"> Team </th>
-        	<th class="rdrth"> Bike </th>
-        	<th class="rdrth"> Nation </th>
-        	<th class="rdrth"> Years in </th>
-        	<th class="rdrth"> Wins </th>
-        	<th class="rdrth"> Podiums Count </th>
-        	<th class="rdrth"> Pole Positions </th>
-        	<th class="rdrth"> Champion Count </th>
-        	<th class="rdrth"> Total Points </th>
-		</tr>
-	</table>
 
 {% endblock %}

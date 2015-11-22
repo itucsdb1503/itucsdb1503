@@ -1,0 +1,13 @@
+{% extends "template.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+	<style>
+		th.home{
+			background-color: #6d6d6d; width: 10%; border-radius: 2px;
+		}
+	</style>
+	<br><br>
+    <h1>This page was accessed {{ count }} times.</h1>
+    <br><br><br>
+    <footer>Current time is {{ current_time }}</footer>
+{% endblock %}

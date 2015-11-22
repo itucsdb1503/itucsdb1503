@@ -1,0 +1,30 @@
+{% extends "template.html" %}
+{% block title %}Riders{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+	<style>
+		th.riders{
+			background-color: #6d6d6d; width: 10%; border-radius: 2px;
+		}
+	</style>
+
+	<table class="rdrtable">
+		<tr>
+        	<th class="rdrth" style="width: 6%"> NUM </th>
+        	<th class="rdrth" style="width: 10%"> Name </th>
+        	<th class="rdrth" style="width: 10%"> Surname </th>
+        	<th class="rdrth" style="width: 6%"> Age </th>
+        	<th class="rdrth" style="width: 10%"> Team </th>
+        	<th class="rdrth" style="width: 10%"> Bike </th>
+        	<th class="rdrth" style="width: 10%"> Nation </th>
+        	<th class="rdrth" style="width: 6%"> Years in </th>
+        	<th class="rdrth" style="width: 8%"> Wins </th>
+        	<th class="rdrth" style="width: 6%"> Podiums Count </th>
+        	<th class="rdrth" style="width: 6%"> Pole Positions </th>
+        	<th class="rdrth" style="width: 6%"> Champion Count </th>
+        	<th class="rdrth" style="width: 6%"> Total Points </th>
+		</tr>
+	</table>
+
+{% endblock %}

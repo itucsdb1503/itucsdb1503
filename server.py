@@ -41,6 +41,21 @@ def riders():
     now = datetime.datetime.now()
     return render_template('riders.html', current_time=now.ctime())
 
+@app.route('/riders/list')
+def rlist():
+    now = datetime.datetime.now()
+    return render_template('/riders/list.html', current_time=now.ctime())
+
+@app.route('/riders/add')
+def radd():
+    now = datetime.datetime.now()
+    return render_template('/riders/add.html', current_time=now.ctime())
+
+@app.route('/riders/search')
+def rsearch():
+    now = datetime.datetime.now()
+    return render_template('/riders/search.html', current_time=now.ctime())
+
 @app.route('/circuits')
 def circuits():
     now = datetime.datetime.now()
@@ -77,6 +92,7 @@ def initialize_database():
 
 @app.route('/count')
 def counter_page():
+    now = datetime.datetime.now()
     with dbapi2.connect(app.config['dsn']) as connection:
         cursor = connection.cursor()
 
@@ -87,7 +103,7 @@ def counter_page():
         query = "SELECT N FROM COUNTER"
         cursor.execute(query)
         count = cursor.fetchone()[0]
-    return "This page was accessed %d times." % count
+    return render_template('count.html', count = count, current_time=now.ctime())
 
 
 if __name__ == '__main__':

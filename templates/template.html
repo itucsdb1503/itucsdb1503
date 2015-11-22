@@ -4,22 +4,43 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %} - ITUCSDB1503</title>
+  	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+  	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}" />
 	<link  rel="stylesheet" href="/static/{% block css %}{% endblock %}">
   </head>
   <body>
       <header>
-  		<table>
-		<tr>
-		<th class="home" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/">   Home   </a> </th>
-		<th class="teams" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/teams">   Teams   </a> </th>
-		<th class="riders" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/riders">   Riders   </a> </th>
-		<th class="circuits" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/circuits">   Circuits   </a> </th>
-		<th class="brands" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/brands">   Brands   </a> </th>
-		<th class="seasons" onMouseOver="this.bgColor='#bdbdbd'" onMouseOut="this.bgColor='#424242'" bgColor=transparent> <a href="/seasons">   Seasons   </a> </th>
-		<th class="blank"> <a>{{ current_time }}</a> </th>
-		</tr>
-		</table>
+      	 <nav class="navbar navbar-inverse">
+  			<div class="container-fluid">
+    			<div class="navbar-header">
+      				<a class="navbar-brand" style="color:red;">MOTOGP</a>
+    			</div>
+    			<div>
+      				<ul class="nav navbar-nav">
+        			<li class="{% block home %}{% endblock %}"><a href="/">Home</a></li>
+       				<li class="{% block riders %}{% endblock %}">
+          				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Riders
+          				<span class="caret"></span></a>
+          				<ul class="dropdown-menu">
+            				<li><a href="/riders">Dashboard</a></li>
+            				<li><a href="/riders/list">List Riders</a></li>
+            				<li><a href="/riders/add">Add Rider</a></li>
+            				<li><a href="/riders/search">Search Rider</a></li>
+          				</ul>
+        			</li>
+        			<li class="{% block teams %}{% endblock %}"><a href="/teams">Teams</a></li>
+        			<li class="{% block circuits %}{% endblock %}"><a href="/circuits">Circuits</a></li>
+        			<li class="{% block brands %}{% endblock %}"><a href="/brands">Brands</a></li>
+        			<li class="{% block seasons %}{% endblock %}"><a href="/seasons">Seasons</a></li>
+      				</ul>
+      				<ul class="nav navbar-nav navbar-right">
+       					<li><a href="/count">{{ current_time }}</a></li>
+      				</ul>
+    			</div>
+  			</div>
+		</nav>
   	</header>
   	{% block content %}{% endblock %}
   </body>
