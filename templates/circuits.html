@@ -1,86 +1,87 @@
 {% extends "template.html" %}
 {% block title %}Circuits{% endblock %}
+{% block css %}circuits.css{% endblock %}
 {% block content %}
 <h1>Circuits</h1>
 
-        <table>
+        <table class="circuits">
         <tr>
-        	<th> ID </th>
-        	<th> Name </th>
-        	<th> Length </th>
-        	<th> Width </th>
-        	<th> Left Corners </th>
-        	<th> Right Corners </th>
-        	<th> Longest Straight (m) </th>
-        	<th> Country </th>
-        	<th> Constructed Year </th>
+        	<th class="circuits"> ID </th>
+        	<th class="circuits"> Name </th>
+        	<th class="circuits"> Length </th>
+        	<th class="circuits"> Width </th>
+        	<th class="circuits"> Left Corners </th>
+        	<th class="circuits"> Right Corners </th>
+        	<th class="circuits"> Longest Straight (m) </th>
+        	<th class="circuits"> Country </th>
+        	<th class="circuits"> Constructed Year </th>
         </tr>
         	{% for id, name, length, width, left_corners, right_corners, longest_straight, country, constructed_year in circuits %}
         	<tr>
-        		<td> {{id}} </td>
-        		<td> {{name}} </td>
-        		<td> {{length}} </td>
-        		<td> {{width}} </td>
-        		<td> {{left_corners}} </td>
-        		<td> {{right_corners}} </td>
-        		<td> {{longest_straight}}</td>
-        		<td> {{country}}</td>
-        		<td> {{constructed_year}}</td>
+        		<td class="circuits"> {{id}} </td>
+        		<td class="circuits"> {{name}} </td>
+        		<td class="circuits"> {{length}} </td>
+        		<td class="circuits"> {{width}} </td>
+        		<td class="circuits"> {{left_corners}} </td>
+        		<td class="circuits"> {{right_corners}} </td>
+        		<td class="circuits"> {{longest_straight}}</td>
+        		<td class="circuits"> {{country}}</td>
+        		<td class="circuits"> {{constructed_year}}</td>
         	</tr>
         	{%endfor%}
         </table>
- <form id="updatecircuit" action="{{ url_for('circuits_page') }}" method="post">
+ <form id="updatecircuit" class= "op" action="{{ url_for('circuits_page') }}" method="post">
         	<table>
         	<tr>
-				<th>ID of the circuit you want to update: </th>
+				<th class= "op">ID of the circuit you want to update: </th>
 				<td>
 					<input type="text" name="id"/>
 				</td>
 			</tr>
         	<tr>
-				<th>Name: </th>
+				<th class= "op">Name: </th>
 				<td>
 					<input type="text" name="name"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Length:</th>
+				<th class= "op">Length:</th>
 				<td>
 					<input type="text" name="length"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Width:</th>
+				<th class= "op">Width:</th>
 				<td>
 					<input type="text" name="width"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Left Corners:</th>
+				<th class= "op">Left Corners:</th>
 				<td>
 					<input type="text" name="left_corners"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Right Corners: </th>
+				<th class= "op">Right Corners: </th>
 				<td>
 					<input type="text" name="right_corners"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Longest Straight (m):</th>
+				<th class= "op">Longest Straight (m):</th>
 				<td>
 					<input type="text" name="longest_straight"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Country:</th>
+				<th class= "op">Country:</th>
 				<td>
 					<input type="text" name="country"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Constructed Year:</th>
+				<th class= "op">Constructed Year:</th>
 				<td>
 					<input type="text" name="constructed_year"/>
 				</td>
@@ -88,52 +89,52 @@
 			</table>
 		<input value="Update Circuit" name="updatecircuit" type="submit"/>
 	</form>
-        <form id="addcircuit" action="{{ url_for('circuits_page') }}" method="post">
+        <form id="addcircuit" class= "op" action="{{ url_for('circuits_page') }}" method="post">
         	<table>
         		<tr>
-				<th>Name: </th>
+				<th class= "op">Name: </th>
 				<td>
 					<input type="text" name="name"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Length:</th>
+				<th class= "op">Length:</th>
 				<td>
 					<input type="text" name="length"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Width:</th>
+				<th class= "op">Width:</th>
 				<td>
 					<input type="text" name="width"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Left Corners:</th>
+				<th class= "op">Left Corners:</th>
 				<td>
 					<input type="text" name="left_corners"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Right Corners: </th>
+				<th class= "op">Right Corners: </th>
 				<td>
 					<input type="text" name="right_corners"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Longest Straight (m):</th>
+				<th class= "op">Longest Straight (m):</th>
 				<td>
 					<input type="text" name="longest_straight"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Country:</th>
+				<th class= "op">Country:</th>
 				<td>
 					<input type="text" name="country"/>
 				</td>
 			</tr>
 			<tr>
-				<th>Constructed Year:</th>
+				<th class= "op">Constructed Year:</th>
 				<td>
 					<input type="text" name="constructed_year"/>
 				</td>
@@ -143,10 +144,10 @@
 	</form>
 
 	#<div id="yy">
-	<form id="xx" action="{{ url_for('circuits_page') }}" method="post">
+	<form id="xx" class= "op" action="{{ url_for('circuits_page') }}" method="post">
 	<table>
 		<tr>
-				<th>ID:</th>
+				<th class= "op">ID:</th>
 				<td>
 					<input type="text" name="id"/>
 				</td>
