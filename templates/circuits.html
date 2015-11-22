@@ -29,7 +29,65 @@
         	</tr>
         	{%endfor%}
         </table>
-
+ <form id="updatecircuit" action="{{ url_for('circuits_page') }}" method="post">
+        	<table>
+        	<tr>
+				<th>ID of the circuit you want to update: </th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+			</tr>
+        	<tr>
+				<th>Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Length:</th>
+				<td>
+					<input type="text" name="length"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Width:</th>
+				<td>
+					<input type="text" name="width"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Left Corners:</th>
+				<td>
+					<input type="text" name="left_corners"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Right Corners: </th>
+				<td>
+					<input type="text" name="right_corners"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Longest Straight (m):</th>
+				<td>
+					<input type="text" name="longest_straight"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Constructed Year:</th>
+				<td>
+					<input type="text" name="constructed_year"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Update Circuit" name="updatecircuit" type="submit"/>
+	</form>
         <form id="addcircuit" action="{{ url_for('circuits_page') }}" method="post">
         	<table>
         		<tr>
@@ -84,7 +142,7 @@
 		<input value="Add Circuit" name="addcircuit" type="submit"/>
 	</form>
 
-	<div id="yy">
+	#<div id="yy">
 	<form id="xx" action="{{ url_for('circuits_page') }}" method="post">
 	<table>
 		<tr>
@@ -96,5 +154,6 @@
 	</table>
 		<input value="Delete Circuit" name="deletecircuitwithid" type="submit"/>
 	</form>
-	</div>
+
+	#</div>
 {% endblock %}
