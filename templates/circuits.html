@@ -1,13 +1,100 @@
 {% extends "template.html" %}
 {% block title %}Circuits{% endblock %}
-{% block circuits %}active{% endblock %}
 {% block content %}
-	<style>
-		th.circuits{
-			background-color: #6d6d6d; width: 10%; border-radius: 2px;
-		}
-	</style>
-	
+<h1>Circuits</h1>
 
+        <table>
+        <tr>
+        	<th> ID </th>
+        	<th> Name </th>
+        	<th> Length </th>
+        	<th> Width </th>
+        	<th> Left Corners </th>
+        	<th> Right Corners </th>
+        	<th> Longest Straight (m) </th>
+        	<th> Country </th>
+        	<th> Constructed Year </th>
+        </tr>
+        	{% for id, name, length, width, left_corners, right_corners, longest_straight, country, constructed_year in circuits %}
+        	<tr>
+        		<td> {{id}} </td>
+        		<td> {{name}} </td>
+        		<td> {{length}} </td>
+        		<td> {{width}} </td>
+        		<td> {{left_corners}} </td>
+        		<td> {{right_corners}} </td>
+        		<td> {{longest_straight}}</td>
+        		<td> {{country}}</td>
+        		<td> {{constructed_year}}</td>
+        	</tr>
+        	{%endfor%}
+        </table>
 
+        <form id="addcircuit" action="{{ url_for('circuits_page') }}" method="post">
+        	<table>
+        		<tr>
+				<th>Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Length:</th>
+				<td>
+					<input type="text" name="length"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Width:</th>
+				<td>
+					<input type="text" name="width"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Left Corners:</th>
+				<td>
+					<input type="text" name="left_corners"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Right Corners: </th>
+				<td>
+					<input type="text" name="right_corners"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Longest Straight (m):</th>
+				<td>
+					<input type="text" name="longest_straight"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			</tr>
+			<tr>
+				<th>Constructed Year:</th>
+				<td>
+					<input type="text" name="constructed_year"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Add Circuit" name="addcircuit" type="submit"/>
+	</form>
+
+	<div id="yy">
+	<form id="xx" action="{{ url_for('circuits_page') }}" method="post">
+	<table>
+		<tr>
+				<th>ID:</th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Delete Circuit" name="deletecircuitwithid" type="submit"/>
+	</form>
+	</div>
 {% endblock %}
