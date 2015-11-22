@@ -1,4 +1,5 @@
 import psycopg2 as dbapi2
+import datetime
 
 from flask import Flask
 from flask import redirect
@@ -26,7 +27,8 @@ class Teams:
             query = "SELECT * FROM teams"
             cursor.execute(query)
             teamsdb = cursor.fetchall()
-        return render_template('teams.html', teams = teamsdb)
+            now = datetime.datetime.now()
+        return render_template('teams.html', teams = teamsdb, current_time=now.ctime())
 
     def insertTestTuples(self):
         with dbapi2.connect(self.dsn) as connection:

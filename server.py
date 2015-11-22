@@ -39,9 +39,6 @@ def teamsPage():
         page.insertTestTuples();
         return page.openPage()
 
-    now = datetime.datetime.now()
-    return render_template('teams.html', current_time=now.ctime())
-
 @app.route('/riders')
 def riders():
     now = datetime.datetime.now()
