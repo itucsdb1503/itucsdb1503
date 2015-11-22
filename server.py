@@ -36,8 +36,19 @@ def home_page():
 def teamsPage():
     page = Teams(dsn = app.config['dsn'])
     if request.method == 'GET':
-        page.insertTestTuples();
-        return page.openPage()
+        page.createTable();
+        #page.insertTestTuples();
+        return page.loadPage()
+    elif 'addTeam' in request.form:
+        name = request.form['name']
+        country = request.form['country']
+        constructor = request.form['constructor']
+        motorcycle = request.form['motorcycle']
+        riderNo = request.form['riderNo']
+        return page.addTeam(name, country, constructor, motorcycle, riderNo)
+    elif 'deleteTeam' in request.form:
+        id = request.form['id']
+        return page.deleteTeamId(id)
 
 @app.route('/riders')
 def riders():

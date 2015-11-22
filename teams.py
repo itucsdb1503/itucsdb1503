@@ -11,7 +11,7 @@ class Teams:
         self.dsn = dsn
         return
 
-    def openPage(self):
+    def createTable(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
@@ -24,8 +24,15 @@ class Teams:
                         riderNo integer DEFAULT 0)"""
             cursor.execute(query)
 
+        return render_template('teams.html')
+
+    def loadPage(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
             query = "SELECT * FROM teams"
             cursor.execute(query)
+
             teamsdb = cursor.fetchall()
             now = datetime.datetime.now()
         return render_template('teams.html', teams = teamsdb, current_time=now.ctime())
@@ -52,6 +59,27 @@ class Teams:
                         ('E-MOTION IODARACING TEAM', 'ITALY', 'ART', 'ART', 3),
                         ('REPSOL HONDA TEAM', 'JAPAN', 'HONDA', 'HONDA RC213V', 3),
                         ('AB MOTORACING', 'CZECH REPUBLIC', 'HONDA', 'HONDA RC213V-RS', 5)"""
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('teamsPage'))
+
+    def addTeam(self, name, country, constructor, motorcycle, riderNo):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
+                        VALUES
+                        ('%s', '%s', '%s', '%s', %s)""" % (name, country, constructor, motorcycle, riderNo)
+            cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('teamsPage'))
+
+    def deleteTeamId(self, id):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """DELETE FROM teams WHERE id = '%s' """ % (id)
             cursor.execute(query)
 
             connection.commit()

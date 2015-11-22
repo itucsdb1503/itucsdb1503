@@ -3,33 +3,56 @@
 {% block css %}teams.css{% endblock %}
 {% block teams %}active{% endblock %}
 {% block content %}
-	<style>
-		th.teams{
-			background-color: #6d6d6d; width: 10%; border-radius: 2px;
-		}
-	</style>
 
-	<table>
-    <tr>
-    	<th> ID </th>
-       	<th> Name </th>
-       	<th> Country </th>
-       	<th> Constructor </th>
-       	<th> Motorcycle </th>
-       	<th> RiderNo </th>
+	<table class=listTeams>
+    <tr class=listTeams>
+    	<th class=listTeams> ID </th>
+       	<th class=listTeams> Name </th>
+       	<th class=listTeams> Country </th>
+       	<th class=listTeams> Constructor </th>
+       	<th class=listTeams> Motorcycle </th>
+       	<th class=listTeams> RiderNo </th>
     </tr>
        	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
-       	<tr>
-       		<td>{{id}} </td>
-       		<td>{{name}} </td>
-       		<td> {{country}} </td>
-       		<td> {{constructor}} </td>
-       		<td> {{motorcycle}} </td>
-       		<td> {{riderNo}}</td>
-       		<td> {{ranking}}</td>
-       		<td> {{gender}}</td>
-       	</tr>
+       	<tr class=listTeams>
+       		<td class=listTeams>{{id}} </td>
+       		<td class=listTeams>{{name}} </td>
+       		<td class=listTeams> {{country}} </td>
+       		<td class=listTeams> {{constructor}} </td>
+       		<td class=listTeams> {{motorcycle}} </td>
+       		<td class=listTeams> {{riderNo}}</td>
+       	</tr class=listTeams>
        	{%endfor%}
     </table>
+	<br>
+    <form id="addTeam" action="{{ url_for('teamsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Country:</th><td><input type="text" name="country"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Constructor:</th><td><input type="text" name="constructor"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Motorcycle:</th><td><input type="text" name="motorcycle"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Rider No: </th><td><input type="text" name="riderNo"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Add Team" name="addTeam" type="submit"/>
+	</form>
+	<br>
+	<form id="deleteTeam" action="{{ url_for('teamsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">ID:</th><td><input type="text" name="id"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Delete Team" name="deleteTeam" type="submit"/>
+	</form>
 
 {% endblock %}
