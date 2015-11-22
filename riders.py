@@ -48,3 +48,21 @@ class ridersClass:
             cursor.execute(query)
             connection.commit()
         return
+    
+    def del_default(self, name, surname):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """DELETE FROM RIDERS WHERE NAME = '%s'
+                        AND SURNAME = '%s' """ % (name, surname)
+            cursor.execute(query)
+            connection.commit()
+            
+        return 
+    
+    def del_by_num(self, num):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """DELETE FROM RIDERS WHERE NUM = '%s' """ % (num)
+            cursor.execute(query)
+            connection.commit()
+        return

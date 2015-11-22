@@ -3,6 +3,30 @@
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
-
+	<form id="deldefault" action="{{ url_for('rdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Name: </th>
+				<td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="ridersdel">
+				<th class="ridersdel">Surname: </th>
+				<td><input type="text" name="surname"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Player" name="deldefault" type="submit"/>
+	</form>
+	<br>
+	<form id="delbynum" action="{{ url_for('rdelete') }}" method="post">
+		<table class="ridersdel">
+			<tr class="ridersdel">
+				<th class="ridersdel">Index: </th>
+				<td><input type="text" name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Player" name="delbynum" type="submit"/>
+	</form>
 
 {% endblock %}

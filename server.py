@@ -50,10 +50,27 @@ def teamsPage():
         id = request.form['id']
         return page.deleteTeamId(id)
 
-@app.route('/riders')
+@app.route('/riders', methods=['GET','POST'])
 def riders():
+    result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('riders.html', current_time=now.ctime())
+    if 'adddefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        AGE = request.form['age']
+        GENDER = request.form['gender']
+        TEAM = request.form['team']
+        BRAND = request.form['brand']
+        MODEL = request.form['model']
+        NATION = request.form['nation']
+        YEARS = request.form['years']
+        WINS = request.form['wins']
+        PODIUM = request.form['podium']
+        POLE = request.form['pole']
+        CHAMP = request.form['champ']
+        TOTALP= request.form['totalpoints']
+        result.add_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP)
+    return render_template('/riders.html', result=result.load(), current_time=now.ctime())   
 
 @app.route('/riders/list', methods=['GET','POST'])
 def rlist():
@@ -86,14 +103,22 @@ def radd():
         return render_template('/riders/add.html', current_time=now.ctime())
 
 
-@app.route('/riders/search')
+@app.route('/riders/search', methods=['GET','POST'])
 def rsearch():
     now = datetime.datetime.now()
     return render_template('/riders/search.html', current_time=now.ctime())
 
-@app.route('/riders/delete')
+@app.route('/riders/delete', methods=['GET','POST'])
 def rdelete():
+    result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
+    if 'deldefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        result.del_default(NAME, SURNAME)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_by_num(NUM)
     return render_template('/riders/delete.html', current_time=now.ctime())
 
 @app.route('/circuits', methods=['GET', 'POST'])
