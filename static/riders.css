@@ -1,0 +1,9 @@
+table.rdrtable {
+	width: 100%; height: 50px; text-align: center; vertical-align: center;
+	border: 1px solid black; border-radius: 5px; background-color: #424242;
+	padding 2px;
+}
+
+th.rdrth {
+	background-color: #dddddd; width 5%;
+}
