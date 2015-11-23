@@ -78,7 +78,7 @@ class Teams:
 
             query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
                         VALUES
-                        ('%s', '%s', '%s', '%s', %s)""" % (name, country, constructor, motorcycle, riderNo)
+                        ('%s', '%s', '%s', '%s', %s)""" % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo.upper())
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('teamsPage'))
@@ -89,7 +89,7 @@ class Teams:
 
             query = """UPDATE  teams
                         SET name = '%s', country = '%s', constructor = '%s', motorcycle = '%s', riderNo = %s
-                        WHERE id = '%s' """ % (name, country, constructor, motorcycle, riderNo, id)
+                        WHERE id = '%s' """ % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo.upper(), id)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('teamsPage'))
@@ -106,7 +106,7 @@ class Teams:
 
     def searchTeamName(self, name):
         Teams.searchFlag = 1
-        Teams.searchName = name
+        Teams.searchName = name.upper()
         return redirect(url_for('teamsPage'))
 
     def listFullTable(self):

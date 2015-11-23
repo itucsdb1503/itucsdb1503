@@ -48,7 +48,7 @@ class Countries:
 
             query = """INSERT INTO countries (name, abbreviation, continent)
                         VALUES
-                        ('%s', '%s', '%s')""" % (name, abbreviation, continent)
+                        ('%s', '%s', '%s')""" % (name.upper(), abbreviation.upper(), continent.upper())
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('countriesPage'))
@@ -59,7 +59,7 @@ class Countries:
 
             query = """UPDATE  countries
                         SET name = '%s', abbreviation = '%s', continent = '%s'
-                        WHERE name = '%s' """ % (newName, abbreviation, continent, name)
+                        WHERE name = '%s' """ % (newName.upper(), abbreviation.upper(), continent.upper(), name.upper())
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('countriesPage'))
@@ -68,7 +68,7 @@ class Countries:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """DELETE FROM countries WHERE name = '%s' """ % (name)
+            query = """DELETE FROM countries WHERE name = '%s' """ % (name.upper())
             cursor.execute(query)
 
             connection.commit()
@@ -76,7 +76,7 @@ class Countries:
 
     def searchCountryName(self, name):
         Countries.searchFlag = 1
-        Countries.searchName = name
+        Countries.searchName = name.upper()
         return redirect(url_for('countriesPage'))
 
     def listFullTable(self):
