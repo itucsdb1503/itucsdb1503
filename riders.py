@@ -81,7 +81,12 @@ class ridersClass:
             connection.commit()
         return
     
-    def search_rider_by_namesurname(self):
+    def search_rider_default(self, name, surname, team, brand, model, nation):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-        return
+            query = """SELECT * FROM RIDERS WHERE NAME LIKE '%s' AND SURNAME LIKE '%s' AND TEAM LIKE '%s' 
+            AND BRAND LIKE '%s' AND MODEL LIKE '%s' AND NATION LIKE '%s' 
+            ORDER BY NUM ASC""" % (('%'+name+'%'),('%'+surname+'%'),('%'+team+'%'),('%'+brand+'%'),('%'+model+'%'),('%'+nation+'%'))
+            cursor.execute(query)
+            riders = cursor.fetchall()
+        return (riders)

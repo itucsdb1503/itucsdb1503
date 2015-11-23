@@ -133,6 +133,14 @@ def riders():
         YEARS = request.form['years']
         BIKENO = request.form['bikeno']
         result.update_rider_by_num(NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
+    elif 'searchdefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        TEAM = request.form['team']
+        BRAND = request.form['brand']
+        MODEL = request.form['model']
+        NATION = request.form['nation']
+        return render_template('/riders.html', result=result.search_rider_default(NAME,SURNAME, TEAM, BRAND, MODEL, NATION), current_time=now.ctime())
     elif 'deldefault' in request.form:
         NAME = request.form['name']
         SURNAME = request.form['surname']
@@ -168,8 +176,19 @@ def radd():
 
 @app.route('/riders/search', methods=['GET','POST'])
 def rsearch():
+    result = ridersClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('/riders/search.html', current_time=now.ctime())
+    if 'searchdefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        TEAM = request.form['team']
+        BRAND = request.form['brand']
+        MODEL = request.form['model']
+        NATION = request.form['nation']
+        return render_template('/riders/search.html', result=result.search_rider_default(NAME,SURNAME, TEAM, BRAND, MODEL, NATION), current_time=now.ctime())
+    elif request.method == 'GET':
+        return render_template('/riders/search.html', result=result.load_riders(), current_time=now.ctime())
+    return render_template('/riders/search.html', result=result.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/update', methods=['GET','POST'])
 def rupdate():
