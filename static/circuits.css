@@ -2,28 +2,26 @@ table.circuits{
 	text-align: center;
 	vertical-align: center;
 	width: 90%;
-	border: 3px solid red;
+	border: 3px solid #015873;
 	border-radius:3px;
-	background-color: #005399
+	background-color: #b2b2b2
 	color: #black;
 }
 th.circuits {
 	text-align: center;
 	vertical-align: center;
-	background-color: #005399;
-	border-radius: 3px;
-	border: 4px solid #blue;
+	background-color: #015873;
 	color: black;
 }
 th.op{
 	text-align: center;
 	vertical-align: center;
-	color: #005399;
+	color: #b2b2b2;
 
 }
 form.op{
 	text-align: center;
 	vertical-align: center;
 	color: black;
-	background-color: #005399
+	background-color: #b2b2b2
 }
