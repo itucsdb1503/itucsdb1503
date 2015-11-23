@@ -25,7 +25,7 @@ class Race:
                         fastest_lap_time integer DEFAULT 0,
                         winners_average_lap_time integer DEFAULT 0,
                         average_lap_time integer DEFAULT 0,
-                        first_position text NOT NULL,
+                        first_position serial REFERENCES circuits(id),
                         track_circuit_id text NOT NULL,
                         number_of_laps integer DEFAULT 0,
                         total_accidents integer DEFAULT 0)"""
