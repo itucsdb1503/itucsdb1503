@@ -12,7 +12,7 @@ class Circuit:
     def search_circuit(self, name):
         with dbapi2.connect(self.dsn) as connection:
             Circuit.search_bool=1;
-            Circuit.search_name=name;
+            Circuit.search_name=name.upper();
         return redirect(url_for('circuits_page'))
     def list_page(self):
         with dbapi2.connect(self.dsn) as connection:
@@ -31,7 +31,7 @@ class Circuit:
                         constructed_year integer DEFAULT 0)"""
             cursor.execute(query)
             if Circuit.search_bool==1 :
-                query = "SELECT * FROM circuits WHERE name = '%s' ORDER BY id ASC" % (Circuit.search_name)
+                query = "SELECT * FROM circuits WHERE name LIKE '%s' ORDER BY id ASC" % (('%' + Circuit.search_name + '%'))
                 cursor.execute(query)
                 circuits = cursor.fetchall()
                 Circuit.search_bool=0;
