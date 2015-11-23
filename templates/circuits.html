@@ -142,9 +142,19 @@
 			</table>
 		<input value="Add Circuit" name="addcircuit" type="submit"/>
 	</form>
+	<form id="searchcircuit" class= "op" action="{{ url_for('circuits_page') }}" method="post">
+	<table>
+		<tr>
+				<th class= "op">NAME TO SEARCH:</th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Search Circuit" name="searchcircuit" type="submit"/>
+	</form>
 
-	#<div id="yy">
-	<form id="xx" class= "op" action="{{ url_for('circuits_page') }}" method="post">
+	<form id="deletecircuit" class= "op" action="{{ url_for('circuits_page') }}" method="post">
 	<table>
 		<tr>
 				<th class= "op">ID:</th>
@@ -156,5 +166,5 @@
 		<input value="Delete Circuit" name="deletecircuitwithid" type="submit"/>
 	</form>
 
-	#</div>
+
 {% endblock %}
