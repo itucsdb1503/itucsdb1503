@@ -94,7 +94,7 @@ def countriesPage():
         return page.searchCountryName(name)
 
 @app.route('/rsreset', methods=['GET','POST'])
-def rreset():
+def rsreset():
     with dbapi2.connect(app.config['dsn']) as connection:
             cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS YEARSTATS"""
@@ -107,6 +107,8 @@ def rreset():
             cursor.execute(query)
     riders = ridersClass(dsn = app.config['dsn'])
     riders.fill()
+    stats = yearstatsClass(dsn = app.config['dsn'])
+    stats.fill()
     return redirect(url_for('home_page'))
 
 @app.route('/riders', methods=['GET','POST'])

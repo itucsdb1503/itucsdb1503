@@ -33,8 +33,10 @@ class yearstatsClass:
             cursor = connection.cursor()
             query = """INSERT INTO YEARSTATS (YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
                         VALUES
-                        (15, 86, 175, 51, 7, 3942, 46, 1),
-                        (9, 28, 100, 28, 0, 2488, 26, 2) """
+                        (2013, 16, 11, 2, 3, 16, 9, 178, 1, 1),
+                        (2009, 18, 4, 9, 3, 16, 7, 127, 1, 1),
+                        (2009, 16, 5, 4, 3, 12, 5, 87, 5, 2),
+                        (2005, 17, 12, 3, 1, 16, 14, 246, 1, 1) """
             cursor.execute(query)
         return
 
