@@ -13,6 +13,7 @@ from flask import redirect
 from riders import ridersClass
 from stats import statsClass
 from teams import Teams
+from countries import Countries
 from circuits import Circuit
 app = Flask(__name__)
 
@@ -61,6 +62,33 @@ def teamsPage():
     elif 'searchTeamName' in request.form:
         name = request.form['name']
         return page.searchTeamName(name)
+    elif 'listFullTable' in request.form:
+        return page.listFullTable()
+
+@app.route('/countries', methods=['GET', 'POST'])
+def countriesPage():
+    page = Countries(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        page.createTable();
+        #page.insertTestTuples();
+        return page.loadPage()
+    elif 'addCountry' in request.form:
+        name = request.form['name']
+        abbreviation = request.form['abbreviation']
+        continent = request.form['continent']
+        return page.addCountry(name, abbreviation, continent)
+    elif 'updateCountry' in request.form:
+        name = request.form['name']
+        newName = request.form['newName']
+        abbreviation = request.form['abbreviation']
+        continent = request.form['continent']
+        return page.updateCountry(name, newName, abbreviation, continent)
+    elif 'deleteCountry' in request.form:
+        name = request.form['name']
+        return page.deleteCountryName(name)
+    elif 'searchCountryName' in request.form:
+        name = request.form['name']
+        return page.searchCountryName(name)
     elif 'listFullTable' in request.form:
         return page.listFullTable()
 
