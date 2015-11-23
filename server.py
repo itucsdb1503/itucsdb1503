@@ -96,10 +96,13 @@ def countriesPage():
 def rreset():
     with dbapi2.connect(app.config['dsn']) as connection:
             cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS YEARSTATS"""
+            cursor.execute(query)
+            cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS RIDERS"""
             cursor.execute(query)
             cursor = connection.cursor()
-            query = """DROP TABLE IF EXISTS YEARSTATS"""
+            query = """DROP TABLE IF EXISTS STATS"""
             cursor.execute(query)
     riders = ridersClass(dsn = app.config['dsn'])
     riders.fill()
