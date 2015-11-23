@@ -4,13 +4,20 @@ from flask import render_template
 from flask.helpers import url_for
 
 class Circuit:
+    search_bool=0;
+    search_name='';
     def __init__(self, dsn):
         self.dsn = dsn
         return
-
+    def search_circuit(self, name):
+        with dbapi2.connect(self.dsn) as connection:
+            Circuit.search_bool=1;
+            Circuit.search_name=name;
+        return redirect(url_for('circuits_page'))
     def list_page(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
+
 
             query = """CREATE TABLE IF NOT EXISTS circuits (
                         id serial PRIMARY KEY,
@@ -23,16 +30,23 @@ class Circuit:
                         country text NOT NULL,
                         constructed_year integer DEFAULT 0)"""
             cursor.execute(query)
+            if Circuit.search_bool==1 :
+                query = "SELECT * FROM circuits WHERE name = '%s' ORDER BY id ASC" % (Circuit.search_name)
+                cursor.execute(query)
+                circuits = cursor.fetchall()
+                Circuit.search_bool=0;
+                return render_template('circuits.html', circuits = circuits)
+            elif Circuit.search_bool==0 :
+                query = "SELECT * FROM circuits ORDER BY id ASC"
+                cursor.execute(query)
+                circuits = cursor.fetchall()
+                return render_template('circuits.html', circuits = circuits)
 
-            query = "SELECT * FROM circuits ORDER BY id ASC"
-            cursor.execute(query)
-            circuits = cursor.fetchall()
-        return render_template('circuits.html', circuits = circuits)
     def delete_circuit_with_id(self, id):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """DELETE FROM circuits WHERE id = '%s' """ % (id)
+            query = "DELETE FROM circuits WHERE id = '%s' " % (id)
             cursor.execute(query)
 
             connection.commit()
