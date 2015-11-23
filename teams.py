@@ -34,7 +34,7 @@ class Teams:
             cursor = connection.cursor()
 
             if Teams.searchFlag == 1:
-                query = """SELECT * FROM teams WHERE name LIKE '%s' ORDER BY id ASC""" % ((Teams.searchName + '%'))
+                query = """SELECT * FROM teams WHERE name LIKE '%s' ORDER BY id ASC""" % (('%' + Teams.searchName + '%'))
                 Teams.searchFlag = 0;
             else:
                 query = "SELECT * FROM teams ORDER BY id ASC"

@@ -31,7 +31,7 @@ class Countries:
             cursor = connection.cursor()
 
             if Countries.searchFlag == 1:
-                query = """SELECT * FROM countries WHERE name LIKE '%s' ORDER BY name ASC""" % ((Countries.searchName + '%'))
+                query = """SELECT * FROM countries WHERE name LIKE '%s' ORDER BY name ASC""" % (('%' + Countries.searchName + '%'))
                 Countries.searchFlag = 0
             else:
                 query = "SELECT * FROM countries ORDER BY name ASC"
