@@ -10,6 +10,9 @@
 					<th class="ridersadd">Current Stat Index:</th><td><input type="text" name="num"/></td>
 				</tr>
 				<tr class="ridersadd">
+					<th class="ridersadd">Rider Index:</th><td><input type="text" name="statid"/></td>
+				</tr>
+				<tr class="ridersadd">
 					<th class="ridersadd">Year:</th><td><input type="text" name="year"/></td>
 				</tr>
 				<tr class="ridersadd">
@@ -36,9 +39,6 @@
 				<tr class="ridersadd">
 					<th class="ridersadd">Position:</th><td><input type="text" name="position"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Rider Index:</th><td><input type="text" name="statid"/></td>
-				</tr>
 				</table>
 			<br>
 			<input class="riders" value="Update Stats" name="updatebynum" type="submit"/>
@@ -51,20 +51,21 @@
 	<table class="riderslist">
 		<tr>
         	<th class="riderslist" style="width: 9%"> Stat Index </th>
+        	<th class="riderslist" style="width: 9%"> Rider Index</th>
         	<th class="riderslist" style="width: 9%"> Year </th>
         	<th class="riderslist" style="width: 9%"> Completed Races </th>
         	<th class="riderslist" style="width: 9%"> Victory </th>
         	<th class="riderslist" style="width: 9%"> Second Position </th>
         	<th class="riderslist" style="width: 9%"> Third Position </th>
-        	<th class="riderslist" style="width: 9%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 9%"> Podium </th>
         	<th class="riderslist" style="width: 9%"> Pole Position </th>
         	<th class="riderslist" style="width: 9%"> Points </th>
         	<th class="riderslist" style="width: 9%"> Season Position </th>
-        	<th class="riderslist" style="width: 9%"> Rider Index</th>
 		</tr>
 		{% for NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID in result %}
         <tr>
 	        <td class="riderslist" style="width: 9%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
 	        <td class="riderslist" style="width: 9%"> {{YEAR}} </td>
 	        <td class="riderslist" style="width: 9%"> {{RACES}} </td>
 	        <td class="riderslist" style="width: 9%"> {{VICTORY}} </td>
@@ -74,7 +75,6 @@
 	        <td class="riderslist" style="width: 9%"> {{POLE}} </td>
 	        <td class="riderslist" style="width: 9%"> {{POINTS}} </td>
 	        <td class="riderslist" style="width: 9%"> {{POSITION}} </td>
-	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
         </tr>
         	{%endfor%}
 	</table>

@@ -2,7 +2,7 @@ import psycopg2 as dbapi2
 from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
-
+        
 class ridersClass:
     def __init__(self,dsn):
         self.dsn = dsn
@@ -43,7 +43,7 @@ class ridersClass:
             query = "SELECT * FROM RIDERS ORDER BY NUM ASC"
             cursor.execute(query)
             riders = cursor.fetchall()
-        return (riders)
+        return (riders)        
 
     def add_rider_default(self, name, surname, age, gender, team, brand, model, nation, years, bikeno):
         with dbapi2.connect(self.dsn) as connection:
