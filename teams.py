@@ -20,7 +20,7 @@ class Teams:
             query = """CREATE TABLE IF NOT EXISTS teams (
                         id serial PRIMARY KEY,
                         name text NOT NULL,
-                        country text NOT NULL,
+                        country text REFERENCES countries(abbreviation) ON DELETE RESTRICT ON UPDATE CASCADE,
                         constructor text NOT NULL,
                         motorcycle text NOT NULL,
                         riderNo integer DEFAULT 0)"""
@@ -41,32 +41,34 @@ class Teams:
             now = datetime.datetime.now()
         return render_template('teams.html', teams = teamsdb, current_time=now.ctime())
 
-    def insertTestTuples(self):
+    def initTable(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            self.dropTable()
+            self.createTable()
+
+            query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
+                        VALUES
+                        ('DUCATI TEAM', 'ITA', 'DUCATI', 'DUCATI DESMOSEDICI GP15', 3),
+                        ('REPSOL HONDA TEAM', 'JPN', 'HONDA', 'HONDA RC213V', 3),
+                        ('AB MOTORACING', 'CZE', 'HONDA', 'HONDA RC213V-RS', 5),
+                        ('E-MOTION IODARACING TEAM', 'ITA', 'ART', 'ART', 3),
+                        ('MOVISTAR YAMAHA MOTOGP', 'JPN', 'YAMAHA', 'YAMAHA YZR-M1', 2),
+                        ('MONSTER YAMAHA TECH 3', 'FRA', 'YAMAHA', 'YAMAHA YZR-M1', 2)"""
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('teamsPage'))
+
+    def dropTable(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
             query = """DROP TABLE IF EXISTS teams"""
             cursor.execute(query)
 
-            query = """CREATE TABLE teams (
-                        id serial PRIMARY KEY,
-                        name text NOT NULL,
-                        country text NOT NULL,
-                        constructor text NOT NULL,
-                        motorcycle text NOT NULL,
-                        riderNo integer DEFAULT 0)"""
-            cursor.execute(query)
-
-            query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
-                        VALUES
-                        ('DUCATI TEAM', 'ITALY', 'DUCATI', 'DUCATI DESMOSEDICI GP15', 3),
-                        ('E-MOTION IODARACING TEAM', 'ITALY', 'ART', 'ART', 3),
-                        ('REPSOL HONDA TEAM', 'JAPAN', 'HONDA', 'HONDA RC213V', 3),
-                        ('AB MOTORACING', 'CZECH REPUBLIC', 'HONDA', 'HONDA RC213V-RS', 5)"""
-            cursor.execute(query)
-
             connection.commit()
-        return redirect(url_for('teamsPage'))
 
     def addTeam(self, name, country, constructor, motorcycle, riderNo):
         with dbapi2.connect(self.dsn) as connection:

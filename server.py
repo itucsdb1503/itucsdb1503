@@ -49,6 +49,8 @@ def teamsPage():
         motorcycle = request.form['motorcycle']
         riderNo = request.form['riderNo']
         return page.addTeam(name, country, constructor, motorcycle, riderNo)
+    elif 'initTable' in request.form:
+        return page.initTable()
     elif 'updateTeam' in request.form:
         id = request.form['id']
         name = request.form['name']
@@ -76,6 +78,8 @@ def countriesPage():
         abbreviation = request.form['abbreviation']
         continent = request.form['continent']
         return page.addCountry(name, abbreviation, continent)
+    elif 'initTable' in request.form:
+        return page.initTable()
     elif 'updateCountry' in request.form:
         name = request.form['name']
         newName = request.form['newName']
@@ -365,7 +369,7 @@ def circuits_page():
         return page.search_circuit(page.search_name)
     else:
         return redirect(url_for('home_page'))
-        
+
 @app.route('/races', methods=['GET', 'POST'])
 def races_page():
     page = Race(dsn = app.config['dsn'])

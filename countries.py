@@ -18,8 +18,8 @@ class Countries:
             cursor = connection.cursor()
 
             query = """CREATE TABLE IF NOT EXISTS countries (
-                        name text NOT NULL PRIMARY KEY,
-                        abbreviation text NOT NULL,
+                        name text NOT NULL,
+                        abbreviation text NOT NULL PRIMARY KEY,
                         continent text NOT NULL)"""
             cursor.execute(query)
 
@@ -37,6 +37,37 @@ class Countries:
             countriesdb = cursor.fetchall()
             now = datetime.datetime.now()
         return render_template('countries.html', countries = countriesdb, current_time=now.ctime())
+
+    def initTable(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            self.dropTable()
+            self.createTable()
+
+            query = """INSERT INTO countries (name, abbreviation, continent)
+                        VALUES
+                        ('ITALY', 'ITA', 'EUROPE'),
+                        ('JAPAN', 'JPN', 'ASIA'),
+                        ('CZECH REPUBLIC', 'CZE', 'EUROPE'),
+                        ('AUSTRALIA', 'AUS', 'NORTH AMERICA'),
+                        ('FRANCE', 'FRA', 'EUROPE'),
+                        ('UNITED STATES OF AMERICA', 'USA', 'NORTH AMERICA'),
+                        ('SPAIN', 'ESP', 'EUROPE'),
+                        ('COLOMBIA', 'COL', 'SOUTH AMERICA')"""
+            cursor.execute(query)
+
+            connection.commit()
+        return redirect(url_for('countriesPage'))
+
+    def dropTable(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """DROP TABLE IF EXISTS countries CASCADE"""
+            cursor.execute(query)
+
+            connection.commit()
 
     def addCountry(self, name, abbreviation, continent):
         with dbapi2.connect(self.dsn) as connection:
