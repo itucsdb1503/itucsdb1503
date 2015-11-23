@@ -62,8 +62,6 @@ def teamsPage():
     elif 'searchTeamName' in request.form:
         name = request.form['name']
         return page.searchTeamName(name)
-    elif 'listFullTable' in request.form:
-        return page.listFullTable()
 
 @app.route('/countries', methods=['GET', 'POST'])
 def countriesPage():
@@ -89,8 +87,6 @@ def countriesPage():
     elif 'searchCountryName' in request.form:
         name = request.form['name']
         return page.searchCountryName(name)
-    elif 'listFullTable' in request.form:
-        return page.listFullTable()
 
 @app.route('/rsreset', methods=['GET','POST'])
 def rreset():

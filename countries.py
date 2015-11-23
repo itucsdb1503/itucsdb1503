@@ -7,7 +7,6 @@ from flask import render_template
 from flask.helpers import url_for
 
 class Countries:
-    searchFlag = 0
     searchName = ''
 
     def __init__(self, dsn):
@@ -30,11 +29,8 @@ class Countries:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            if Countries.searchFlag == 1:
-                query = """SELECT * FROM countries WHERE name LIKE '%s' ORDER BY name ASC""" % (('%' + Countries.searchName + '%'))
-                Countries.searchFlag = 0
-            else:
-                query = "SELECT * FROM countries ORDER BY name ASC"
+            query = """SELECT * FROM countries WHERE name LIKE '%s' ORDER BY name ASC""" % (('%' + Countries.searchName + '%'))
+            Countries.searchName = ''
 
             cursor.execute(query)
 
@@ -75,11 +71,6 @@ class Countries:
         return redirect(url_for('countriesPage'))
 
     def searchCountryName(self, name):
-        Countries.searchFlag = 1
         Countries.searchName = name.upper()
-        return redirect(url_for('countriesPage'))
-
-    def listFullTable(self):
-        Countries.searchFlag = 0
         return redirect(url_for('countriesPage'))
 
