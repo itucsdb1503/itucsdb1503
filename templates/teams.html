@@ -6,21 +6,21 @@
 
 	<table class=listTeams>
     <tr class=listTeams>
-    	<th class=listTeams> ID </th>
-       	<th class=listTeams> Name </th>
-       	<th class=listTeams> Country </th>
-       	<th class=listTeams> Constructor </th>
-       	<th class=listTeams> Motorcycle </th>
-       	<th class=listTeams> RiderNo </th>
+    	<th class=listTeams style="width: 5%"> ID </th>
+       	<th class=listTeams style="width: 18%"> Name </th>
+       	<th class=listTeams style="width: 12%"> Country </th>
+       	<th class=listTeams style="width: 10%"> Constructor </th>
+       	<th class=listTeams style="width: 18%"> Motorcycle </th>
+       	<th class=listTeams style="width: 5%"> RiderNo </th>
     </tr>
        	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
        	<tr class=listTeams>
-       		<td class=listTeams>{{id}} </td>
-       		<td class=listTeams>{{name}} </td>
-       		<td class=listTeams> {{country}} </td>
-       		<td class=listTeams> {{constructor}} </td>
-       		<td class=listTeams> {{motorcycle}} </td>
-       		<td class=listTeams> {{riderNo}}</td>
+       		<td class=listTeams style="width: 5%">{{id}} </td>
+       		<td class=listTeams style="width: 18%">{{name}} </td>
+       		<td class=listTeams style="width: 12%"> {{country}} </td>
+       		<td class=listTeams style="width: 10%"> {{constructor}} </td>
+       		<td class=listTeams style="width: 18%"> {{motorcycle}} </td>
+       		<td class=listTeams style="width: 5%"> {{riderNo}}</td>
        	</tr class=listTeams>
        	{%endfor%}
     </table>
@@ -77,6 +77,18 @@
 			</tr>
 			</table>
 		<input class="modifyTeam" value="Delete Team" name="deleteTeam" type="submit"/>
+	</form>
+	<br>
+	<form id="searchTeamName" action="{{ url_for('teamsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Search Team" name="searchTeamName" type="submit"/>
+	</form>
+	<form id="listFullTable" action="{{ url_for('teamsPage') }}" method="post">
+		<input class="modifyTeam" value="List All" name="listFullTable" type="submit"/>
 	</form>
 
 {% endblock %}

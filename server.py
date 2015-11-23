@@ -57,6 +57,11 @@ def teamsPage():
     elif 'deleteTeam' in request.form:
         id = request.form['id']
         return page.deleteTeamId(id)
+    elif 'searchTeamName' in request.form:
+        name = request.form['name']
+        return page.searchTeamName(name)
+    elif 'listFullTable' in request.form:
+        return page.listFullTable()
 
 @app.route('/ridersreset', methods=['GET','POST'])
 def rreset():

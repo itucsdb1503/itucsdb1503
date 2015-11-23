@@ -7,6 +7,9 @@ from flask import render_template
 from flask.helpers import url_for
 
 class Teams:
+    searchFlag = 0
+    searchName = ''
+
     def __init__(self, dsn):
         self.dsn = dsn
         return
@@ -30,7 +33,11 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = "SELECT * FROM teams ORDER BY id ASC"
+            if Teams.searchFlag == 1:
+                query = """SELECT * FROM teams WHERE name = '%s' ORDER BY id ASC""" % (self.searchName)
+            else:
+                query = "SELECT * FROM teams ORDER BY id ASC"
+
             cursor.execute(query)
 
             teamsdb = cursor.fetchall()
@@ -95,3 +102,13 @@ class Teams:
 
             connection.commit()
         return redirect(url_for('teamsPage'))
+
+    def searchTeamName(self, name):
+        Teams.searchFlag = 1
+        Teams.searchName = name
+        return redirect(url_for('teamsPage'))
+
+    def listFullTable(self):
+        Teams.searchFlag = 0
+        return redirect(url_for('teamsPage'))
+
