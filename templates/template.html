@@ -47,7 +47,14 @@
             				<li><a href="/countries">Countries</a></li>
           				</ul>
         			</li>
-        			<li class="{% block circuits %}{% endblock %}"><a href="/circuits">Circuits</a></li>
+        			<li class="{% block circuits %}{% endblock %}">
+          				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Circuits & Races
+          				<span class="caret"></span></a>
+          				<ul class="dropdown-menu">
+            				<li><a href="/circuits">Circuits</a></li>
+            				<li><a href="/races">Races</a></li>
+          				</ul>
+        			</li>
         			<li class="{% block brands %}{% endblock %}"><a href="/brands">Brands</a></li>
         			<li class="{% block seasons %}{% endblock %}"><a href="/seasons">Seasons</a></li>
       				</ul>
