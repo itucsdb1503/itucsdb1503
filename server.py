@@ -15,6 +15,7 @@ from stats import yearstatsClass
 from teams import Teams
 from countries import Countries
 from circuits import Circuit
+from races import Race
 app = Flask(__name__)
 
 
@@ -362,6 +363,41 @@ def circuits_page():
     elif 'searchcircuit' in request.form:
         page.search_name = request.form['name']
         return page.search_circuit(page.search_name)
+    else:
+        return redirect(url_for('home_page'))
+        
+@app.route('/races', methods=['GET', 'POST'])
+def races_page():
+    page = Race(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.list_page()
+    elif 'deleteracewithid' in request.form:
+        id = request.form['id']
+        return page.delete_race_with_id(id)
+    elif 'updaterace' in request.form:
+        id = request.form['id']
+        name = request.form['name']
+        fastest_lap_time = request.form['fastest_lap_time']
+        winners_average_lap_time = request.form['winners_average_lap_time']
+        average_lap_time = request.form['average_lap_time']
+        first_position = request.form['first_position']
+        track_circuit_id = request.form['track_circuit_id']
+        number_of_laps = request.form['number_of_laps']
+        total_accidents = request.form['total_accidents']
+        return page.update_race(name, fastest_lap_time, winners_average_lap_time, average_lap_time, first_position, track_circuit_id, number_of_laps, total_accidents, id)
+    elif 'addrace' in request.form:
+        name = request.form['name']
+        fastest_lap_time = request.form['fastest_lap_time']
+        winners_average_lap_time = request.form['winners_average_lap_time']
+        average_lap_time = request.form['average_lap_time']
+        first_position = request.form['first_position']
+        track_circuit_id = request.form['track_circuit_id']
+        number_of_laps = request.form['number_of_laps']
+        total_accidents = request.form['total_accidents']
+        return page.add_race(name, fastest_lap_time, winners_average_lap_time, average_lap_time, first_position, track_circuit_id, number_of_laps,total_accidents)
+    elif 'searchrace' in request.form:
+        page.search_name = request.form['name']
+        return page.search_race(page.search_name)
     else:
         return redirect(url_for('home_page'))
 
