@@ -56,7 +56,7 @@ class Circuit:
             cursor = connection.cursor()
 
             query = """UPDATE  circuits SET name = '%s', length = %s, width = %s, left_corners = %s, right_corners = %s, longest_straight = %s, country = '%s', constructed_year = %s
-                        WHERE id = '%s' """ % (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year, id)
+                        WHERE id = '%s' """ % (name.upper(), length, width, left_corners, right_corners, longest_straight, country.upper(), constructed_year, id)
 
             cursor.execute(query)
 
@@ -68,7 +68,7 @@ class Circuit:
 
             query = """INSERT INTO circuits (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
                         VALUES
-                        ('%s', %s, %s, %s, %s, %s, '%s', %s)""" % (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
+                        ('%s', %s, %s, %s, %s, %s, '%s', %s)""" % (name.upper(), length, width, left_corners, right_corners, longest_straight, country.upper(), constructed_year)
             cursor.execute(query)
 
             connection.commit()
