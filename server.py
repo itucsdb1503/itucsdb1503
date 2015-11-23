@@ -251,6 +251,10 @@ def stats():
         POSITION= request.form['position']
         STATID = request.form['statid']
         result.update_stats_by_num(NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
+    elif 'searchdefault' in request.form:
+        YEAR = request.form['year']
+        POSITION = request.form['position']
+        return render_template('/riders/stats.html', result=result.search_stats_default(YEAR, POSITION), current_time=now.ctime())
     elif 'delbyrider' in request.form:
         STATID = request.form['statid']
         result.del_stats_by_rider(STATID)
@@ -285,8 +289,15 @@ def sadd():
 
 @app.route('/riders/stats/search', methods=['GET','POST'])
 def ssearch():
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    return render_template('/riders/stats/search.html', current_time=now.ctime())
+    if 'searchdefault' in request.form:
+        YEAR = request.form['year']
+        POSITION = request.form['position']
+        return render_template('/riders/stats/search.html', result=result.search_stats_default(YEAR, POSITION), current_time=now.ctime())
+    elif request.method == 'GET':
+        return render_template('/riders/stats/search.html', result=result.load_stats(), current_time=now.ctime())
+    return render_template('/riders/stats/search.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/update', methods=['GET','POST'])
 def supdate():

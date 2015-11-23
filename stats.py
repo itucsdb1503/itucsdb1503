@@ -81,3 +81,20 @@ class yearstatsClass:
             cursor.execute(query)
             connection.commit()
         return
+    
+    def search_stats_default(self, year, position):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            if not year and not position:
+                    query = """SELECT * FROM YEARSTATS ORDER BY NUM ASC"""
+            elif not year :
+                query = """SELECT * FROM YEARSTATS WHERE POSITION = %s
+                    ORDER BY NUM ASC""" % (position)
+            elif not position:
+                query = """SELECT * FROM YEARSTATS WHERE YEAR = %s ORDER BY NUM ASC""" % (year)
+            else:
+                query = """SELECT * FROM YEARSTATS WHERE YEAR = %s AND POSITION = %s
+                ORDER BY NUM ASC""" % (year,position)
+            cursor.execute(query)
+            riders = cursor.fetchall()
+        return (riders)

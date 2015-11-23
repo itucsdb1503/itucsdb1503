@@ -3,6 +3,54 @@
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
-
+	<div style="float:left; width:30%;">
+	<form id="searchdefault" action="{{ url_for('ssearch') }}" method="post">
+       	<table class="ridersdel" style="height:200px">
+       		<tr class="ridersadd">
+				<th class="ridersadd">Year:</th><td><input type="text" name="year"/></td>
+			</tr>
+       		<tr class="ridersadd">
+				<th class="ridersadd">Position:</th><td><input type="text" name="position"/></td>
+			</tr>
+			</table>
+			<br>
+		<input class="riders" value="Search Stats" name="searchdefault" type="submit"/>
+	</form>
+	</div>
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 9%"> Stat Index </th>
+        	<th class="riderslist" style="width: 9%"> Year </th>
+        	<th class="riderslist" style="width: 9%"> Completed Races </th>
+        	<th class="riderslist" style="width: 9%"> Victory </th>
+        	<th class="riderslist" style="width: 9%"> Second Position </th>
+        	<th class="riderslist" style="width: 9%"> Third Position </th>
+        	<th class="riderslist" style="width: 9%"> Podium </th>
+        	<th class="riderslist" style="width: 9%"> Pole Position </th>
+        	<th class="riderslist" style="width: 9%"> Points </th>
+        	<th class="riderslist" style="width: 9%"> Season Position </th>
+        	<th class="riderslist" style="width: 9%"> Rider Index</th>
+		</tr>
+		{% for NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID in result %}
+        <tr>
+	        <td class="riderslist" style="width: 9%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{YEAR}} </td>
+	        <td class="riderslist" style="width: 9%"> {{RACES}} </td>
+	        <td class="riderslist" style="width: 9%"> {{VICTORY}} </td>
+	        <td class="riderslist" style="width: 9%"> {{SECOND}} </td>
+	        <td class="riderslist" style="width: 9%"> {{THIRD}} </td>
+	        <td class="riderslist" style="width: 9%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POINTS}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POSITION}} </td>
+	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	</div>
 
 {% endblock %}
