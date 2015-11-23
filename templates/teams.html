@@ -4,27 +4,7 @@
 {% block teams %}active{% endblock %}
 {% block content %}
 
-	<table class=listTeams>
-    <tr class=listTeams>
-    	<th class=listTeams style="width: 5%"> ID </th>
-       	<th class=listTeams style="width: 18%"> Name </th>
-       	<th class=listTeams style="width: 12%"> Country </th>
-       	<th class=listTeams style="width: 10%"> Constructor </th>
-       	<th class=listTeams style="width: 18%"> Motorcycle </th>
-       	<th class=listTeams style="width: 5%"> RiderNo </th>
-    </tr>
-       	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
-       	<tr class=listTeams>
-       		<td class=listTeams style="width: 5%">{{id}} </td>
-       		<td class=listTeams style="width: 18%">{{name}} </td>
-       		<td class=listTeams style="width: 12%"> {{country}} </td>
-       		<td class=listTeams style="width: 10%"> {{constructor}} </td>
-       		<td class=listTeams style="width: 18%"> {{motorcycle}} </td>
-       		<td class=listTeams style="width: 5%"> {{riderNo}}</td>
-       	</tr class=listTeams>
-       	{%endfor%}
-    </table>
-	<br>
+    <div style="float:left; width:25%;">
     <form id="addTeam" action="{{ url_for('teamsPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
@@ -45,8 +25,12 @@
 			</table>
 		<input class="modifyTeam" value="Add Team" name="addTeam" type="submit"/>
 	</form>
+	</div>
+	<div style="float:left; width:2.5%;">
 	<br>
-	    <form id="updateTeam" action="{{ url_for('teamsPage') }}" method="post">
+	</div>
+    <div style="float:left; width:25%;">
+    <form id="updateTeam" action="{{ url_for('teamsPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
 				<th class="modifyTeam">ID:</th><td><input type="text" name="id"/></td>
@@ -69,7 +53,11 @@
 			</table>
 		<input class="modifyTeam" value="Update Team" name="updateTeam" type="submit"/>
 	</form>
+	</div>
+	<div style="float:left; width:2.5%;">
 	<br>
+	</div>
+    <div style="float:left; width:25%;">
 	<form id="deleteTeam" action="{{ url_for('teamsPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
@@ -87,8 +75,30 @@
 			</table>
 		<input class="modifyTeam" value="Search Team" name="searchTeamName" type="submit"/>
 	</form>
+	<br>
 	<form id="listFullTable" action="{{ url_for('teamsPage') }}" method="post">
 		<input class="modifyTeam" value="List All" name="listFullTable" type="submit"/>
 	</form>
+	</div>
+	<table class=listTeams>
+    <tr class=listTeams>
+    	<th class=listTeams style="width: 5%"> ID </th>
+       	<th class=listTeams style="width: 18%"> Name </th>
+       	<th class=listTeams style="width: 12%"> Country </th>
+       	<th class=listTeams style="width: 10%"> Constructor </th>
+       	<th class=listTeams style="width: 18%"> Motorcycle </th>
+       	<th class=listTeams style="width: 5%"> RiderNo </th>
+    </tr>
+       	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
+       	<tr class=listTeams>
+       		<td class=listTeams style="width: 5%">{{id}} </td>
+       		<td class=listTeams style="width: 18%">{{name}} </td>
+       		<td class=listTeams style="width: 12%"> {{country}} </td>
+       		<td class=listTeams style="width: 10%"> {{constructor}} </td>
+       		<td class=listTeams style="width: 18%"> {{motorcycle}} </td>
+       		<td class=listTeams style="width: 5%"> {{riderNo}}</td>
+       	</tr class=listTeams>
+       	{%endfor%}
+    </table>
 
 {% endblock %}
