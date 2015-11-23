@@ -1,0 +1,170 @@
+{% extends "template.html" %}
+{% block title %}races{% endblock %}
+{% block css %}races.css{% endblock %}
+{% block content %}
+<h1>Races</h1>
+
+        <table class="races">
+        <tr>
+        	<th class="races"> ID </th>
+        	<th class="races"> Name </th>
+        	<th class="races"> Fastest Lap Time </th>
+        	<th class="races"> Winner's Average Lap Time  </th>
+        	<th class="races"> Average Lap Time </th>
+        	<th class="races"> First Position </th>
+        	<th class="races"> Track Circuit ID </th>
+        	<th class="races"> Number of Laps </th>
+        	<th class="races"> Total Accidents </th>
+        </tr>
+        	{% for id, name, fastest_lap_time, winners_average_lap_time, average_lap_time, first_position, track_circuit_id, number_of_laps, total_accidents in races %}
+        	<tr>
+        		<td class="races"> {{id}} </td>
+        		<td class="races"> {{name}} </td>
+        		<td class="races"> {{fastest_lap_time}} </td>
+        		<td class="races"> {{winners_average_lap_time}} </td>
+        		<td class="races"> {{average_lap_time}} </td>
+        		<td class="races"> {{first_position}} </td>
+        		<td class="races"> {{track_circuit_id}}</td>
+        		<td class="races"> {{number_of_laps}}</td>
+        		<td class="races"> {{total_accidents}}</td>
+        	</tr>
+        	{%endfor%}
+        </table>
+ <form id="updaterace" class= "ope" action="{{ url_for('races_page') }}" method="post">
+        	<table>
+        	<tr>
+				<th class= "ope">ID of the circuit you want to update: </th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+			</tr>
+        	<tr>
+				<th class= "ope">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Fastest Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="fastest_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Winner's Average Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="winners_average_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Average Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="average_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">First Position: </th>
+				<td>
+					<input type="text" name="first_position"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Track Circuit ID:</th>
+				<td>
+					<input type="text" name="track_circuit_id"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Number of Laps:</th>
+				<td>
+					<input type="text" name="number_of_laps"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Total Accidents:</th>
+				<td>
+					<input type="text" name="total_accidents"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Update Race" name="updaterace" type="submit"/>
+	</form>
+        <form id="addrace" class= "ope" action="{{ url_for('races_page') }}" method="post">
+        	<table>
+        		<tr>
+				<th class= "ope">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Fastest Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="fastest_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Winner's Average Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="winners_average_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Average Lap Time (seconds):</th>
+				<td>
+					<input type="text" name="average_lap_time"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">First Position: </th>
+				<td>
+					<input type="text" name="first_position"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Track Circuit ID:</th>
+				<td>
+					<input type="text" name="track_circuit_id"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Number of Laps:</th>
+				<td>
+					<input type="text" name="number_of_laps"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Total Accidents:</th>
+				<td>
+					<input type="text" name="total_accidents"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Add Race" name="addrace" type="submit"/>
+	</form>
+	<form id="searchrace" class= "ope" action="{{ url_for('races_page') }}" method="post">
+	<table>
+		<tr>
+				<th class= "ope">Name to Search (Please just press 'Search Race' without typing for listing all...'):</th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Search Race" name="searchrace" type="submit"/>
+	</form>
+
+	<form id="deleterace" class= "ope" action="{{ url_for('races_page') }}" method="post">
+	<table>
+		<tr>
+				<th class= "ope">ID:</th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Delete Race" name="deleteracewithid" type="submit"/>
+	</form>
+
+
+{% endblock %}
