@@ -330,9 +330,12 @@ def circuits_page():
         country = request.form['country']
         constructed_year = request.form['constructed_year']
         return page.add_circuit(name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
-
+    elif 'searchcircuit' in request.form:
+        page.search_name = request.form['name']
+        return page.search_circuit(page.search_name)
     else:
         return redirect(url_for('home_page'))
+
 
 
 @app.route('/brands')
