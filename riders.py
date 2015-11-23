@@ -85,7 +85,7 @@ class ridersClass:
     def del_stats_default(self, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = """DELETE FROM STATS WHERE BIKENO = '%s' """ % (bikeno)
+            query = """DELETE FROM STATS WHERE BIKENO = %s """ % (bikeno)
             cursor.execute(query)
             connection.commit()
         return
@@ -102,6 +102,26 @@ class ridersClass:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """DELETE FROM STATS WHERE NUM = '%s' """ % (num)
+            cursor.execute(query)
+            connection.commit()
+        return
+    
+    def update_rider_by_num(self, num, name, surname, age, gender, team, brand, model, nation, bikeno):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """UPDATE  RIDERS
+                        SET NAME = '%s', SURNAME = '%s', AGE = %s, GENDER = '%s', TEAM = '%s', BRAND = '%s', MODEL = '%s', NATION = '%s', BIKENO = %s
+                        WHERE NUM = '%s' """ % (name, surname, age, gender, team, brand, model, nation, bikeno, num)
+            cursor.execute(query)
+            connection.commit()
+        return
+    
+    def update_stats_by_num(self, num, years, wins, podium, pole, champ, totalp, bikeno):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """UPDATE  STATS
+                        SET YEARS = %s, WINS = %s, PODIUM = %s, POLE = %s, CHAMP = %s, TOTALP = %s, BIKENO = %s
+                        WHERE NUM = '%s' """ % (years, wins, podium, pole, champ, totalp, bikeno, num)
             cursor.execute(query)
             connection.commit()
         return

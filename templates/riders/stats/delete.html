@@ -12,13 +12,9 @@
 			</tr>
 		</table>
 		<br>
-		<input class="ridersdel" value="Delete Stats" name="deldefault" type="submit"/>
+		<input class="riders" value="Delete Stats" name="deldefault" type="submit"/>
 	</form>
-	</div>
-	<div style="float:left; width:5%;">
 	<br>
-	</div>
-	<div style="float:left; width:30%;">
 	<form id="delbynum" action="{{ url_for('sdelete') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
@@ -27,8 +23,37 @@
 			</tr>
 		</table>
 		<br>
-		<input class="ridersdel" value="Delete Stats" name="delbynum" type="submit"/>
+		<input class="riders" value="Delete Stats" name="delbynum" type="submit"/>
 	</form>
+	</div>
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 12%"> Index </th>
+        	<th class="riderslist" style="width: 12%"> Years in </th>
+        	<th class="riderslist" style="width: 12%"> Wins </th>
+        	<th class="riderslist" style="width: 12%"> Podiums Count </th>
+        	<th class="riderslist" style="width: 12%"> Pole Positions </th>
+        	<th class="riderslist" style="width: 12%"> Championship Wins </th>
+        	<th class="riderslist" style="width: 12%"> Total Points </th>
+        	<th class="riderslist" style="width: 12%"> Bike No</th>
+		</tr>
+		{% for NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO in result %}
+        <tr>
+	        <td class="riderslist" style="width: 12%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 12%"> {{YEARS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{WINS}} </td>
+	        <td class="riderslist" style="width: 12%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 12%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 12%"> {{CHAMP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{TOTALP}} </td>
+	        <td class="riderslist" style="width: 12%"> {{BIKENO}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
 	</div>
 
 {% endblock %}

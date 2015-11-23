@@ -28,9 +28,9 @@
         	{%endfor%}
 	</table>
 	<br>
-	<div style="float:left; width:30%;">
+	<div style="float:left; width:32%;">
 		<form id="adddefault" action="{{ url_for('stats') }}" method="post">
-	       	<table class="ridersadd" style="width: 100%;">
+	       	<table class="ridersadd">
 				<tr class="ridersadd">
 					<th class="ridersadd">Years in:</th><td><input type="text" name="years"/></td>
 				</tr>
@@ -47,26 +47,55 @@
 					<th class="ridersadd">Championship Wins:</th><td><input type="text" name="champ"/></td>
 				</tr>
 				<tr class="ridersadd">
-					<th class="ridersadd">Total Points:</th><td><input type="text" name="totalpoints"/></td>
+					<th class="ridersadd">Total Points:</th><td><input type="text" name="totalp"/></td>
 				</tr>
 				<tr class="ridersadd">
 					<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
 				</tr>
 				</table>
 			<br>
-			<input class="ridersadd" value="Add Stats" name="adddefault" type="submit"/>
+			<input class="riders" value="Add Stats" name="adddefault" type="submit"/>
 		</form>
 	</div>
-	<div style="float:left; width:5%;">
+	<div style="float:left; width:2%;">
 	<br>
 	</div>
-	<div style="float:left; width:30%;">
-	<br> <!-- TODO: ADD UPDATE FORM HERE -->
+	<div style="float:left; width:32%;">
+		<form id="updatebynum" action="{{ url_for('stats') }}" method="post">
+       	<table class="ridersadd">
+       		<tr class="ridersadd">
+				<th class="ridersadd">Current Index:</th><td><input type="text" name="num"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Years in:</th><td><input type="text" name="years"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Wins:</th><td><input type="text" name="wins"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Podium:</th><td><input type="text" name="podium"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Pole:</th><td><input type="text" name="pole"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Championship Wins:</th><td><input type="text" name="champ"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Total Points:</th><td><input type="text" name="totalp"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Bike No:</th><td><input type="text" name="bikeno"/></td>
+			</tr>
+			</table>
+		<br>
+		<input class="riders" value="Update Stats" name="updatebynum" type="submit"/>
+	</form>
 	</div>
-	<div style="float:left; width:5%;">
+	<div style="float:left; width:2%;">
 	<br>
 	</div>
-	<div style="float:left; width:30%;">
+	<div style="float:left; width:32%;">
 	<form id="deldefault" action="{{ url_for('stats') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
@@ -75,7 +104,7 @@
 			</tr>
 		</table>
 		<br>
-		<input class="ridersdel" value="Delete Stats" name="deldefault" type="submit"/>
+		<input class="riders" value="Delete Stats" name="deldefault" type="submit"/>
 	</form>
 	<br>
 	<form id="delbynum" action="{{ url_for('stats') }}" method="post">
@@ -86,7 +115,7 @@
 			</tr>
 		</table>
 		<br>
-		<input class="ridersdel" value="Delete Stats" name="delbynum" type="submit"/>
+		<input class="riders" value="Delete Stats" name="delbynum" type="submit"/>
 	</form>
 	</div>
 

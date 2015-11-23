@@ -33,9 +33,9 @@
         	{%endfor%}
 	</table>
 	<br>
-	<div style="float:left; width:30%;">
+	<div style="float:left; width:32%;">
 		<form id="adddefault" action="{{ url_for('riders') }}" method="post">
-       	<table class="ridersadd" style="width:100%;">
+       	<table class="ridersadd">
        		<tr class="ridersadd">
 				<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
 			</tr>
@@ -68,16 +68,51 @@
 		<input class="riders" value="Add Rider" name="adddefault" type="submit"/>
 	</form>
 	</div>
-	<div style="float:left; width:5%;">
+	<div style="float:left; width:2%;">
 	<br>
 	</div>
-	<div style="float:left; width:30%;">
-	<br> <!-- TODO: ADD UPDATE FORM HERE -->
+	<div style="float:left; width:32%;">
+		<form id="updatebynum" action="{{ url_for('riders') }}" method="post">
+       	<table class="ridersadd">
+       		<tr class="ridersadd">
+				<th class="ridersadd">Current Index:</th><td><input type="text" name="num"/></td>
+			</tr>
+       		<tr class="ridersadd">
+				<th class="ridersadd">New Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Surname:</th><td><input type="text" name="surname"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Age:</th><td><input type="text" name="age"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Gender:</th><td><input type="text" name="gender"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Team: </th><td><input type="text" name="team"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Brand:</th><td><input type="text" name="brand"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Model:</th><td><input type="text" name="model"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Nation:</th><td><input type="text" name="nation"/></td>
+			</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">New Bike No:</th><td><input type="text" name="bikeno"/></td>
+			</tr>
+			</table>
+			<br>
+		<input class="riders" value="Update Rider" name="updatebynum" type="submit"/>
+	</form>
 	</div>
-	<div style="float:left; width:5%;">
+	<div style="float:left; width:2%;">
 	<br>
 	</div>
-	<div style="float:left; width:30%;">
+	<div style="float:left; width:32%;">
 	<form id="deldefault" action="{{ url_for('riders') }}" method="post">
 		<table class="ridersdel">
 			<tr class="ridersdel">
