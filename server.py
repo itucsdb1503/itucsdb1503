@@ -12,7 +12,6 @@ from flask import redirect
 
 from riders import ridersClass
 from teams import Teams
-from pyexpat import model
 
 app = Flask(__name__)
 
