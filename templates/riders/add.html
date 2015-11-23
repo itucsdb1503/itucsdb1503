@@ -4,7 +4,7 @@
 {% block riders %}active{% endblock %}
 {% block content %}
 	<div style="float:left; width:30%;">
-	<form id="adddefault" action="{{ url_for('riders') }}" method="post">
+	<form id="adddefault" action="{{ url_for('radd') }}" method="post">
        	<table class="ridersadd">
        		<tr class="ridersadd">
 				<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
@@ -31,6 +31,9 @@
 				<th class="ridersadd">Nation:</th><td><input type="text" name="nation"/></td>
 			</tr>
 			<tr class="ridersadd">
+				<th class="ridersadd">Years in MOTOGP:</th><td><input type="text" name="years"/></td>
+			</tr>
+			<tr class="ridersadd">
 				<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
 			</tr>
 			</table>
@@ -42,7 +45,7 @@
 	<br>
 	</div>
 	<div style="float:left; width:68%;">
-		<table class="riderslist">
+	<table class="riderslist">
 		<tr>
         	<th class="riderslist" style="width: 3%"> Index </th>
         	<th class="riderslist" style="width: 10%"> Name </th>
@@ -50,12 +53,13 @@
         	<th class="riderslist" style="width: 3%"> Age </th>
         	<th class="riderslist" style="width: 3%"> Gender </th>
         	<th class="riderslist" style="width: 10%"> Team </th>
-        	<th class="riderslist" style="width: 10%"> Brand </th>
+        	<th class="riderslist" style="width: 8%"> Brand </th>
         	<th class="riderslist" style="width: 6%"> Model </th>
-        	<th class="riderslist" style="width: 10%"> Nation </th>
+        	<th class="riderslist" style="width: 6%"> Nation </th>
+        	<th class="riderslist" style="width: 8%"> Years in MOTOGP </th>
         	<th class="riderslist" style="width: 5%"> Bike No </th>
 		</tr>
-		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO in result %}
+		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
         <tr>
 	        <td class="riderslist" style="width: 3%"> {{NUM}} </td>
 	        <td class="riderslist" style="width: 10%"> {{NAME}} </td>
@@ -63,9 +67,10 @@
 	        <td class="riderslist" style="width: 3%"> {{AGE}} </td>
 	        <td class="riderslist" style="width: 3%"> {{GENDER}} </td>
 	        <td class="riderslist" style="width: 10%"> {{TEAM}} </td>
-	        <td class="riderslist" style="width: 10%"> {{BRAND}} </td>
+	        <td class="riderslist" style="width: 8%"> {{BRAND}} </td>
 	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
-	        <td class="riderslist" style="width: 10%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 6%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 8%"> {{YEARS}} </td>
 	        <td class="riderslist" style="width: 5%"> {{BIKENO}} </td>
         </tr>
         	{%endfor%}

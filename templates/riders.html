@@ -12,12 +12,13 @@
         	<th class="riderslist" style="width: 3%"> Age </th>
         	<th class="riderslist" style="width: 3%"> Gender </th>
         	<th class="riderslist" style="width: 10%"> Team </th>
-        	<th class="riderslist" style="width: 10%"> Brand </th>
+        	<th class="riderslist" style="width: 8%"> Brand </th>
         	<th class="riderslist" style="width: 6%"> Model </th>
-        	<th class="riderslist" style="width: 10%"> Nation </th>
+        	<th class="riderslist" style="width: 6%"> Nation </th>
+        	<th class="riderslist" style="width: 8%"> Years in MOTOGP </th>
         	<th class="riderslist" style="width: 5%"> Bike No </th>
 		</tr>
-		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO in result %}
+		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
         <tr>
 	        <td class="riderslist" style="width: 3%"> {{NUM}} </td>
 	        <td class="riderslist" style="width: 10%"> {{NAME}} </td>
@@ -25,16 +26,17 @@
 	        <td class="riderslist" style="width: 3%"> {{AGE}} </td>
 	        <td class="riderslist" style="width: 3%"> {{GENDER}} </td>
 	        <td class="riderslist" style="width: 10%"> {{TEAM}} </td>
-	        <td class="riderslist" style="width: 10%"> {{BRAND}} </td>
+	        <td class="riderslist" style="width: 8%"> {{BRAND}} </td>
 	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
-	        <td class="riderslist" style="width: 10%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 6%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 8%"> {{YEARS}} </td>
 	        <td class="riderslist" style="width: 5%"> {{BIKENO}} </td>
         </tr>
         	{%endfor%}
 	</table>
 	<br>
 	<div style="float:left; width:32%;">
-		<form id="adddefault" action="{{ url_for('riders') }}" method="post">
+	<form id="adddefault" action="{{ url_for('riders') }}" method="post">
        	<table class="ridersadd">
        		<tr class="ridersadd">
 				<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
@@ -61,6 +63,9 @@
 				<th class="ridersadd">Nation:</th><td><input type="text" name="nation"/></td>
 			</tr>
 			<tr class="ridersadd">
+				<th class="ridersadd">Years in MOTOGP:</th><td><input type="text" name="years"/></td>
+			</tr>
+			<tr class="ridersadd">
 				<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
 			</tr>
 			</table>
@@ -73,41 +78,44 @@
 	</div>
 	<div style="float:left; width:32%;">
 		<form id="updatebynum" action="{{ url_for('riders') }}" method="post">
-       	<table class="ridersadd">
-       		<tr class="ridersadd">
-				<th class="ridersadd">Current Index:</th><td><input type="text" name="num"/></td>
-			</tr>
-       		<tr class="ridersadd">
-				<th class="ridersadd">New Name:</th><td><input type="text" name="name"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Surname:</th><td><input type="text" name="surname"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Age:</th><td><input type="text" name="age"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Gender:</th><td><input type="text" name="gender"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Team: </th><td><input type="text" name="team"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Brand:</th><td><input type="text" name="brand"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Model:</th><td><input type="text" name="model"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Nation:</th><td><input type="text" name="nation"/></td>
-			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">New Bike No:</th><td><input type="text" name="bikeno"/></td>
-			</tr>
-			</table>
-			<br>
-		<input class="riders" value="Update Rider" name="updatebynum" type="submit"/>
-	</form>
+	       	<table class="ridersadd"">
+	       		<tr class="ridersadd">
+					<th class="ridersadd">Current Index:</th><td><input type="text" name="num"/></td>
+				</tr>
+	       		<tr class="ridersadd">
+					<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Surname:</th><td><input type="text" name="surname"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Age:</th><td><input type="text" name="age"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Gender:</th><td><input type="text" name="gender"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Team: </th><td><input type="text" name="team"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Brand:</th><td><input type="text" name="brand"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Model:</th><td><input type="text" name="model"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Nation:</th><td><input type="text" name="nation"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Years in MOTOGP:</th><td><input type="text" name="years"/></td>
+				</tr>
+				<tr class="ridersadd">
+					<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
+				</tr>
+				</table>
+				<br>
+			<input class="riders" value="Update Rider" name="updatebynum" type="submit"/>
+		</form>
 	</div>
 	<div style="float:left; width:2%;">
 	<br>

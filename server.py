@@ -11,7 +11,7 @@ from flask.helpers import url_for
 from flask import redirect
 
 from riders import ridersClass
-from stats import statsClass
+from stats import yearstatsClass
 from teams import Teams
 from countries import Countries
 from circuits import Circuit
@@ -99,12 +99,10 @@ def rreset():
             query = """DROP TABLE IF EXISTS RIDERS"""
             cursor.execute(query)
             cursor = connection.cursor()
-            query = """DROP TABLE IF EXISTS STATS"""
+            query = """DROP TABLE IF EXISTS YEARSTATS"""
             cursor.execute(query)
     riders = ridersClass(dsn = app.config['dsn'])
     riders.fill()
-    stats = statsClass(dsn = app.config['dsn'])
-    stats.fill()
     return redirect(url_for('home_page'))
 
 @app.route('/riders', methods=['GET','POST'])
@@ -120,8 +118,9 @@ def riders():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
+        YEARS = request.form['years']
         BIKENO = request.form['bikeno']
-        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
     elif 'updatebynum' in request.form:
         NUM = request.form['num']
         NAME = request.form['name']
@@ -132,8 +131,9 @@ def riders():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
+        YEARS = request.form['years']
         BIKENO = request.form['bikeno']
-        result.update_rider_by_num(NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+        result.update_rider_by_num(NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
     elif 'deldefault' in request.form:
         NAME = request.form['name']
         SURNAME = request.form['surname']
@@ -162,8 +162,9 @@ def radd():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
+        YEARS = request.form['years']
         BIKENO = request.form['bikeno']
-        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+        result.add_rider_default(NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
     return render_template('/riders/add.html', result=result.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/search', methods=['GET','POST'])
@@ -185,8 +186,9 @@ def rupdate():
         BRAND = request.form['brand']
         MODEL = request.form['model']
         NATION = request.form['nation']
+        YEARS = request.form['years']
         BIKENO = request.form['bikeno']
-        result.update_rider_by_num(NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+        result.update_rider_by_num(NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
     return render_template('/riders/update.html', result=result.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/delete', methods=['GET','POST'])
@@ -204,30 +206,36 @@ def rdelete():
 
 @app.route('/riders/stats', methods=['GET','POST'])
 def stats():
-    result = statsClass(dsn = app.config['dsn'])
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
-        YEARS = request.form['years']
-        WINS = request.form['wins']
+        YEAR = request.form['year']
+        RACES = request.form['races']
+        VICTORY = request.form['victory']
+        SECOND = request.form['second']
+        THIRD = request.form['third']
         PODIUM = request.form['podium']
         POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP= request.form['totalp']
-        BIKENO = request.form['bikeno']
-        result.add_stats_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+        POINTS = request.form['points']
+        POSITION= request.form['position']
+        STATID = request.form['statid']
+        result.add_stats_default(YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
     elif 'updatebynum' in request.form:
         NUM = request.form['num']
-        YEARS = request.form['years']
-        WINS = request.form['wins']
+        YEAR = request.form['year']
+        RACES = request.form['races']
+        VICTORY = request.form['victory']
+        SECOND = request.form['second']
+        THIRD = request.form['third']
         PODIUM = request.form['podium']
         POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP = request.form['totalp']
-        BIKENO = request.form['bikeno']
-        result.update_stats_by_num(NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
-    elif 'deldefault' in request.form:
-        BIKENO = request.form['bikeno']
-        result.del_stats_default(BIKENO)
+        POINTS = request.form['points']
+        POSITION= request.form['position']
+        STATID = request.form['statid']
+        result.update_stats_by_num(NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
+    elif 'delbyrider' in request.form:
+        STATID = request.form['statid']
+        result.del_stats_by_rider(STATID)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_stats_by_num(NUM)
@@ -235,23 +243,26 @@ def stats():
 
 @app.route('/riders/stats/list', methods=['GET','POST'])
 def slist():
-    result = statsClass(dsn = app.config['dsn'])
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     return render_template('/riders/stats/list.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/add', methods=['GET','POST'])
 def sadd():
-    result = statsClass(dsn = app.config['dsn'])
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
-        YEARS = request.form['years']
-        WINS = request.form['wins']
+        YEAR = request.form['year']
+        RACES = request.form['races']
+        VICTORY = request.form['victory']
+        SECOND = request.form['second']
+        THIRD = request.form['third']
         PODIUM = request.form['podium']
         POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP= request.form['totalp']
-        BIKENO = request.form['bikeno']
-        result.add_stats_default(YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+        POINTS = request.form['points']
+        POSITION= request.form['position']
+        STATID = request.form['statid']
+        result.add_stats_default(YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
     return render_template('/riders/stats/add.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/search', methods=['GET','POST'])
@@ -261,27 +272,30 @@ def ssearch():
 
 @app.route('/riders/stats/update', methods=['GET','POST'])
 def supdate():
-    result = statsClass(dsn = app.config['dsn'])
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'updatebynum' in request.form:
         NUM = request.form['num']
-        YEARS = request.form['years']
-        WINS = request.form['wins']
+        YEAR = request.form['year']
+        RACES = request.form['races']
+        VICTORY = request.form['victory']
+        SECOND = request.form['second']
+        THIRD = request.form['third']
         PODIUM = request.form['podium']
         POLE = request.form['pole']
-        CHAMP = request.form['champ']
-        TOTALP = request.form['totalp']
-        BIKENO = request.form['bikeno']
-        result.update_stats_by_num(NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO)
+        POINTS = request.form['points']
+        POSITION= request.form['position']
+        STATID = request.form['statid']
+        result.update_stats_by_num(NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
     return render_template('/riders/stats/update.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/delete', methods=['GET','POST'])
 def sdelete():
-    result = statsClass(dsn = app.config['dsn'])
+    result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    if 'deldefault' in request.form:
-        BIKENO = request.form['bikeno']
-        result.del_stats_default(BIKENO)
+    if 'delbyrider' in request.form:
+        STATID = request.form['statid']
+        result.del_stats_by_rider(STATID)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_stats_by_num(NUM)

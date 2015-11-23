@@ -22,6 +22,7 @@ class ridersClass:
                         BRAND text NOT NULL,
                         MODEL text NOT NULL,
                         NATION text NOT NULL,
+                        YEARS integer NOT NULL,
                         BIKENO integer UNIQUE
                         )"""    #NUM is index
             cursor.execute(query)
@@ -29,26 +30,26 @@ class ridersClass:
     def fill(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)
+            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
                         VALUES
-                        ('Valentino', 'Rossi', 36, 'Male', 'Movistar Yamaha MotoGP', 'Yamaha', 'Urbino', 'Italy', 46) ,
-                        ('Dani', 'Pedrosa', 30, 'Male','Repsol Honda Team', 'Honda', 'Sabadel', 'Spain', 26)"""
+                        ('Valentino', 'Rossi', 36, 'Male', 'Movistar Yamaha MotoGP', 'Yamaha', 'Urbino', 'Italy', 15, 46) ,
+                        ('Dani', 'Pedrosa', 30, 'Male','Repsol Honda Team', 'Honda', 'Sabadel', 'Spain', 9, 26)"""
             cursor.execute(query)
         return
 
     def load_riders(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = "SELECT * FROM RIDERS"
+            query = "SELECT * FROM RIDERS ORDER BY NUM ASC"
             cursor.execute(query)
             riders = cursor.fetchall()
         return (riders)
 
-    def add_rider_default(self, name, surname, age, gender, team, brand, model, nation, bikeno):
+    def add_rider_default(self, name, surname, age, gender, team, brand, model, nation, years, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, BIKENO)    VALUES
-                        ('%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', %s )""" % (name, surname, age, gender, team, brand, model, nation, bikeno)
+            query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)    VALUES
+                        ('%s', '%s', %s, '%s', '%s', '%s', '%s', '%s', %s, %s )""" % (name, surname, age, gender, team, brand, model, nation, years, bikeno)
             cursor.execute(query)
             connection.commit()
         return
@@ -70,12 +71,17 @@ class ridersClass:
             connection.commit()
         return
 
-    def update_rider_by_num(self, num, name, surname, age, gender, team, brand, model, nation, bikeno):
+    def update_rider_by_num(self, num, name, surname, age, gender, team, brand, model, nation, years, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """UPDATE  RIDERS
-                        SET NAME = '%s', SURNAME = '%s', AGE = %s, GENDER = '%s', TEAM = '%s', BRAND = '%s', MODEL = '%s', NATION = '%s', BIKENO = %s
-                        WHERE NUM = '%s' """ % (name, surname, age, gender, team, brand, model, nation, bikeno, num)
+                        SET NAME = '%s', SURNAME = '%s', AGE = %s, GENDER = '%s', TEAM = '%s', BRAND = '%s', MODEL = '%s', NATION = '%s', YEARS = %s, BIKENO = %s
+                        WHERE NUM = '%s' """ % (name, surname, age, gender, team, brand, model, nation, years, bikeno, num)
             cursor.execute(query)
             connection.commit()
+        return
+    
+    def search_rider_by_namesurname(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
         return

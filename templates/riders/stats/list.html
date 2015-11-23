@@ -5,25 +5,31 @@
 {% block content %}
 	<table class="riderslist">
 		<tr>
-        	<th class="riderslist" style="width: 12%"> Index </th>
-        	<th class="riderslist" style="width: 12%"> Years in </th>
-        	<th class="riderslist" style="width: 12%"> Wins </th>
-        	<th class="riderslist" style="width: 12%"> Podiums Count </th>
-        	<th class="riderslist" style="width: 12%"> Pole Positions </th>
-        	<th class="riderslist" style="width: 12%"> Championship Wins </th>
-        	<th class="riderslist" style="width: 12%"> Total Points </th>
-        	<th class="riderslist" style="width: 12%"> Bike No</th>
+        	<th class="riderslist" style="width: 9%"> Stat Index </th>
+        	<th class="riderslist" style="width: 9%"> Year </th>
+        	<th class="riderslist" style="width: 9%"> Completed Races </th>
+        	<th class="riderslist" style="width: 9%"> Victory </th>
+        	<th class="riderslist" style="width: 9%"> Second Position </th>
+        	<th class="riderslist" style="width: 9%"> Third Position </th>
+        	<th class="riderslist" style="width: 9%"> Podium </th>
+        	<th class="riderslist" style="width: 9%"> Pole Position </th>
+        	<th class="riderslist" style="width: 9%"> Points </th>
+        	<th class="riderslist" style="width: 9%"> Season Position </th>
+        	<th class="riderslist" style="width: 9%"> Rider Index</th>
 		</tr>
-		{% for NUM, YEARS, WINS, PODIUM, POLE, CHAMP, TOTALP, BIKENO in result %}
+		{% for NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID in result %}
         <tr>
-	        <td class="riderslist" style="width: 12%"> {{NUM}} </td>
-	        <td class="riderslist" style="width: 12%"> {{YEARS}} </td>
-	        <td class="riderslist" style="width: 12%"> {{WINS}} </td>
-	        <td class="riderslist" style="width: 12%"> {{PODIUM}} </td>
-	        <td class="riderslist" style="width: 12%"> {{POLE}} </td>
-	        <td class="riderslist" style="width: 12%"> {{CHAMP}} </td>
-	        <td class="riderslist" style="width: 12%"> {{TOTALP}} </td>
-	        <td class="riderslist" style="width: 12%"> {{BIKENO}} </td>
+	        <td class="riderslist" style="width: 9%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{YEAR}} </td>
+	        <td class="riderslist" style="width: 9%"> {{RACES}} </td>
+	        <td class="riderslist" style="width: 9%"> {{VICTORY}} </td>
+	        <td class="riderslist" style="width: 9%"> {{SECOND}} </td>
+	        <td class="riderslist" style="width: 9%"> {{THIRD}} </td>
+	        <td class="riderslist" style="width: 9%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POINTS}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POSITION}} </td>
+	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
         </tr>
         	{%endfor%}
 	</table>
