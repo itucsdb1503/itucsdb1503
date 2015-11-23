@@ -11,6 +11,7 @@ from flask.helpers import url_for
 from flask import redirect
 
 from riders import ridersClass
+from stats import statsClass
 from teams import Teams
 
 app = Flask(__name__)
@@ -63,7 +64,7 @@ def teamsPage():
     elif 'listFullTable' in request.form:
         return page.listFullTable()
 
-@app.route('/ridersreset', methods=['GET','POST'])
+@app.route('/rsreset', methods=['GET','POST'])
 def rreset():
     with dbapi2.connect(app.config['dsn']) as connection:
             cursor = connection.cursor()
@@ -72,7 +73,11 @@ def rreset():
             cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS STATS"""
             cursor.execute(query)
-    return redirect(url_for('riders'))
+    riders = ridersClass(dsn = app.config['dsn'])
+    riders.fill()
+    stats = statsClass(dsn = app.config['dsn'])
+    stats.fill()
+    return redirect(url_for('home_page'))
 
 @app.route('/riders', methods=['GET','POST'])
 def riders():
@@ -171,7 +176,7 @@ def rdelete():
 
 @app.route('/riders/stats', methods=['GET','POST'])
 def stats():
-    result = ridersClass(dsn = app.config['dsn'])
+    result = statsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
         YEARS = request.form['years']
@@ -202,13 +207,13 @@ def stats():
 
 @app.route('/riders/stats/list', methods=['GET','POST'])
 def slist():
-    result = ridersClass(dsn = app.config['dsn'])
+    result = statsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     return render_template('/riders/stats/list.html', result=result.load_stats(), current_time=now.ctime())
 
 @app.route('/riders/stats/add', methods=['GET','POST'])
 def sadd():
-    result = ridersClass(dsn = app.config['dsn'])
+    result = statsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
         YEARS = request.form['years']
@@ -228,7 +233,7 @@ def ssearch():
 
 @app.route('/riders/stats/update', methods=['GET','POST'])
 def supdate():
-    result = ridersClass(dsn = app.config['dsn'])
+    result = statsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'updatebynum' in request.form:
         NUM = request.form['num']
@@ -244,7 +249,7 @@ def supdate():
 
 @app.route('/riders/stats/delete', methods=['GET','POST'])
 def sdelete():
-    result = ridersClass(dsn = app.config['dsn'])
+    result = statsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'deldefault' in request.form:
         BIKENO = request.form['bikeno']
