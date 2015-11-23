@@ -17,10 +17,6 @@ class Race:
     def list_page(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query2 = query = """DROP TABLE IF EXISTS circuits"""
-            cursor.execute(query2)
-            query3 = """DROP TABLE IF EXISTS races"""
-            cursor.execute(query3)
             query = """CREATE TABLE IF NOT EXISTS races (
                         id serial PRIMARY KEY,
                         name text NOT NULL,
