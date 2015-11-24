@@ -6,12 +6,12 @@
 	<div style="float:left; width:30%;">
 	<form id="deldefault" action="{{ url_for('rdelete') }}" method="post">
 		<table class="ridersdel" style="height:200px;">
-			<tr class="ridersdel">
-				<th class="ridersdel">Name: </th>
+			<tr class="riders">
+				<th class="riders">Name: </th>
 				<td><input type="text" name="name"/></td>
 			</tr>
-			<tr class="ridersdel">
-				<th class="ridersdel">Surname: </th>
+			<tr class="riders">
+				<th class="riders">Surname: </th>
 				<td><input type="text" name="surname"/></td>
 			</tr>
 		</table>
@@ -21,8 +21,8 @@
 	<br>
 	<form id="delbynum" action="{{ url_for('rdelete') }}" method="post">
 		<table class="ridersdel">
-			<tr class="ridersadd">
-				<th class="ridersadd">Index:</th><td>
+			<tr class="riders">
+				<th class="riders">Index:</th><td>
 					<select name="num" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
 					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>

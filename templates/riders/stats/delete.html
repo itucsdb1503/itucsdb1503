@@ -6,8 +6,8 @@
 	<div style="float:left; width:30%;">
 	<form id="delbyrider" action="{{ url_for('sdelete') }}" method="post">
 		<table class="ridersdel">
-			<tr class="ridersadd">
-				<th class="ridersadd">Rider Index:</th><td>
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
 					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
 					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
@@ -22,8 +22,8 @@
 	<br>
 	<form id="delbynum" action="{{ url_for('sdelete') }}" method="post">
 		<table class="ridersdel">
-			<tr class="ridersdel">
-				<th class="ridersdel">Stat Index: </th>
+			<tr class="riders">
+				<th class="riders">Stat Index: </th>
 				<td><input type="text" name="num"/></td>
 			</tr>
 		</table>
