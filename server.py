@@ -469,10 +469,6 @@ def modelsPage():
         name = request.form['name']
         constructor = request.form['constructor']
         return page.update(ID,name, constructor)
-    elif 'deleteAllModels':
-        return page.deleteAll()
-    elif 'AutoFill':
-        return page.autoFill()
     else:
         return redirect(url_for('home_page'))
     

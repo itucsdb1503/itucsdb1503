@@ -17,7 +17,7 @@ class Model:
             query = """CREATE TABLE IF NOT EXISTS models (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
-                        constructor text REFERENCES brands(name))"""
+                        constructor text REFERENCES brands(name) )"""
             cursor.execute(query)
             
             
@@ -70,27 +70,3 @@ class Model:
             connection.commit()
         return redirect(url_for('modelsPage'))
     
-    def deleteAll(self):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-
-            query = """DROP TABLE IF EXISTS models"""
-            cursor.execute(query)
-            connection.commit()
-        return redirect(url_for('modelsPage'))
-    
-    def autoFill(self):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()   
-                 
-            query = """INSERT INTO models (name, constructor)
-                        VALUES
-                        ('Honda', 1),
-                        ('Yamaha', 2),
-                        ('MV Agusta', 3),
-                        ('Aprilia', 4),
-                        ('BMW', 5),
-                        ('Suzuki', 6)"""
-
-            connection.commit()
-        return redirect(url_for('modelsPage'))
