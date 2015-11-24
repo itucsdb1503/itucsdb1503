@@ -231,6 +231,7 @@ def rdelete():
 
 @app.route('/riders/stats', methods=['GET','POST'])
 def stats():
+    riders = ridersClass(dsn = app.config['dsn'])
     result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
@@ -261,14 +262,17 @@ def stats():
     elif 'searchdefault' in request.form:
         YEAR = request.form['year']
         POSITION = request.form['position']
-        return render_template('/riders/stats.html', result=result.search_stats_default(YEAR, POSITION), current_time=now.ctime())
+        return render_template('/riders/stats.html', result=result.search_stats_default(YEAR, POSITION), riders=riders.load_riders(), current_time=now.ctime())
+    elif 'searchbyrider' in request.form:
+        STATID = request.form['statid']
+        return render_template('/riders/stats.html', result=result.search_stats_by_rider(STATID),riders=riders.load_riders(), current_time=now.ctime())
     elif 'delbyrider' in request.form:
         STATID = request.form['statid']
         result.del_stats_by_rider(STATID)
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_stats_by_num(NUM)
-    return render_template('/riders/stats.html', result=result.load_stats(), current_time=now.ctime())
+    return render_template('/riders/stats.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/stats/list', methods=['GET','POST'])
 def slist():
@@ -278,6 +282,7 @@ def slist():
 
 @app.route('/riders/stats/add', methods=['GET','POST'])
 def sadd():
+    riders = ridersClass(dsn = app.config['dsn'])
     result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
@@ -292,22 +297,25 @@ def sadd():
         POSITION= request.form['position']
         STATID = request.form['statid']
         result.add_stats_default(YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
-    return render_template('/riders/stats/add.html', result=result.load_stats(), current_time=now.ctime())
+    return render_template('/riders/stats/add.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/stats/search', methods=['GET','POST'])
 def ssearch():
+    riders = ridersClass(dsn = app.config['dsn'])
     result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'searchdefault' in request.form:
         YEAR = request.form['year']
         POSITION = request.form['position']
-        return render_template('/riders/stats/search.html', result=result.search_stats_default(YEAR, POSITION), current_time=now.ctime())
-    elif request.method == 'GET':
-        return render_template('/riders/stats/search.html', result=result.load_stats(), current_time=now.ctime())
-    return render_template('/riders/stats/search.html', result=result.load_stats(), current_time=now.ctime())
+        return render_template('/riders/stats/search.html', result=result.search_stats_default(YEAR, POSITION),riders=riders.load_riders(), current_time=now.ctime())
+    elif 'searchbyrider' in request.form:
+        STATID = request.form['statid']
+        return render_template('/riders/stats/search.html', result=result.search_stats_by_rider(STATID),riders=riders.load_riders(), current_time=now.ctime())
+    return render_template('/riders/stats/search.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/stats/update', methods=['GET','POST'])
 def supdate():
+    riders = ridersClass(dsn = app.config['dsn'])
     result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'updatebynum' in request.form:
@@ -323,10 +331,11 @@ def supdate():
         POSITION= request.form['position']
         STATID = request.form['statid']
         result.update_stats_by_num(NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID)
-    return render_template('/riders/stats/update.html', result=result.load_stats(), current_time=now.ctime())
+    return render_template('/riders/stats/update.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/stats/delete', methods=['GET','POST'])
 def sdelete():
+    riders = ridersClass(dsn = app.config['dsn'])
     result = yearstatsClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'delbyrider' in request.form:
@@ -335,7 +344,7 @@ def sdelete():
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_stats_by_num(NUM)
-    return render_template('/riders/stats/delete.html', result=result.load_stats(), current_time=now.ctime())
+    return render_template('/riders/stats/delete.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/circuits', methods=['GET', 'POST'])
 def circuits_page():

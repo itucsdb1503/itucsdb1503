@@ -9,9 +9,19 @@
 	       		<tr class="ridersadd">
 					<th class="ridersadd">Current Stat Index:</th><td><input type="text" name="num"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Rider Index:</th><td><input type="text" name="statid"/></td>
-				</tr>
+			<tr class="ridersadd">
+				<th class="ridersadd">Rider:</th><td>
+					<div style="float:left; width:20%"><br></div>
+					<div style="float:left; width:60%;">
+					<select name="statid" class="form-control">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				    </div>
+					<div style="float:left; width:20%"><br></div>
+				</td>
+			</tr>
 				<tr class="ridersadd">
 					<th class="ridersadd">Year:</th><td><input type="text" name="year"/></td>
 				</tr>

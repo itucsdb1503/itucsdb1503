@@ -16,6 +16,26 @@
 			<br>
 		<input class="riders" value="Search Stats" name="searchdefault" type="submit"/>
 	</form>
+	<br>
+	<form id="searchbyrider" action="{{ url_for('ssearch') }}" method="post">
+       	<table class="ridersdel" style="height:100px">
+	       		<tr class="ridersadd">
+				<th class="ridersadd">Rider:</th><td>
+					<div style="float:left; width:20%"><br></div>
+					<div style="float:left; width:60%;">
+					<select name="statid" class="form-control">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				    </div>
+					<div style="float:left; width:20%"><br></div>
+				</td>
+			</tr>
+			</table>
+			<br>
+		<input class="riders" value="Search Stats" name="searchbyrider" type="submit"/>
+	</form>
 	</div>
 	<div style="float:left; width:2%;">
 	<br>
