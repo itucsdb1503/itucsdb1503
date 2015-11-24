@@ -74,7 +74,7 @@ class Brand:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """DROP TABLE IF EXISTS models"""
+            query = """DROP TABLE IF EXISTS brands"""
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))

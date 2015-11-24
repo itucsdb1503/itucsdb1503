@@ -17,7 +17,7 @@ class Model:
             query = """CREATE TABLE IF NOT EXISTS models (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
-                        constructorID serial REFERENCES brands(ID))"""
+                        constructor text REFERENCES brands(name))"""
             cursor.execute(query)
             
             
@@ -30,13 +30,13 @@ class Model:
         return render_template('models.html', models = modelsdb)
 
 
-    def addModel(self, name, constructorID):
+    def addModel(self, name, constructor):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """INSERT INTO models (name, constructorID)
+            query = """INSERT INTO models (name, constructor)
                         VALUES
-                        ('%s', '%s')""" % (name, constructorID)
+                        ('%s', '%s')""" % (name, constructor)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('modelsPage'))
@@ -61,11 +61,11 @@ class Model:
             connection.commit()
         return redirect(url_for('modelsPage'))
     
-    def update(self, ID, name, constructorID):
+    def update(self, ID, name, constructor):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  models SET name = '%s', constructorID = %s WHERE ID = '%s' """ % (name, constructorID, ID)
+            query = """UPDATE  models SET name = '%s', constructor = '%s' WHERE ID = '%s' """ % (name, constructor, ID)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('modelsPage'))
@@ -83,7 +83,7 @@ class Model:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
                  
-            query = """INSERT INTO models (name, constructorID)
+            query = """INSERT INTO models (name, constructor)
                         VALUES
                         ('Honda', 1),
                         ('Yamaha', 2),
