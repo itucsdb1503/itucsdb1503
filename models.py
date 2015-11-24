@@ -17,7 +17,7 @@ class Model:
             query = """CREATE TABLE IF NOT EXISTS models (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
-                        constructor text NOT NULL)"""
+                        constructorID serial REFERENCES brands(ID))"""
             cursor.execute(query)
             
             
@@ -30,13 +30,13 @@ class Model:
         return render_template('models.html', models = modelsdb)
 
 
-    def addModel(self, name, constructor):
+    def addModel(self, name, constructorID):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """INSERT INTO models (name, constructor)
+            query = """INSERT INTO models (name, constructorID)
                         VALUES
-                        ('%s', '%s')""" % (name, constructor)
+                        ('%s', '%s')""" % (name, constructorID)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('modelsPage'))
@@ -61,11 +61,11 @@ class Model:
             connection.commit()
         return redirect(url_for('modelsPage'))
     
-    def update(self, ID, name, constructor):
+    def update(self, ID, name, constructorID):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  models SET name = '%s', constructor = '%s' WHERE ID = '%s' """ % (name, constructor, ID)
+            query = """UPDATE  models SET name = '%s', constructorID = %s WHERE ID = '%s' """ % (name, constructorID, ID)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('modelsPage'))
@@ -83,7 +83,7 @@ class Model:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
                  
-            query = """INSERT INTO models (name, constructor)
+            query = """INSERT INTO models (name, constructorID)
                         VALUES
                         ('Honda', 'Japan'),
                         ('Yamaha', 'Japan'),
