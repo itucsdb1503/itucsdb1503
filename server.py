@@ -341,9 +341,9 @@ def sdelete():
 def circuits_page():
     page = Circuit(dsn = app.config['dsn'])
     with dbapi2.connect(app.config['dsn']) as connection:
--        cursor = connection.cursor()
--        query = """DROP TABLE IF EXISTS circuits"""
--        cursor.execute(query)
+        cursor = connection.cursor()
+        query = """DROP TABLE IF EXISTS circuits"""
+        cursor.execute(query)
     if request.method == 'GET':
         return page.list_page()
     elif 'deletecircuitwithid' in request.form:
@@ -379,6 +379,10 @@ def circuits_page():
 @app.route('/races', methods=['GET', 'POST'])
 def races_page():
     page = Race(dsn = app.config['dsn'])
+    with dbapi2.connect(app.config['dsn']) as connection:
+        cursor = connection.cursor()
+        query = """DROP TABLE IF EXISTS races"""
+        cursor.execute(query)
     if request.method == 'GET':
         return page.list_page()
     elif 'deleteracewithid' in request.form:
