@@ -17,6 +17,7 @@ from countries import Countries
 from circuits import Circuit
 from races import Race
 from brands import Brand
+from models import Model
 app = Flask(__name__)
 
 
@@ -441,6 +442,34 @@ def brandsPage():
         country = request.form['country']
         return page.update(ID,name, country)
     elif 'deleteAllBrands':
+        return page.deleteAll()
+    elif 'AutoFill':
+        return page.autoFill()
+    else:
+        return redirect(url_for('home_page'))
+    
+@app.route('/brands/models', methods=['GET', 'POST'])
+def modelsPage():
+    page = Model(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.list()
+    
+    elif 'addModel' in request.form:
+        name = request.form['name']
+        country = request.form['country']
+        return page.addModel(name, country)
+    elif 'dbynameModel' in request.form:
+        name = request.form['name']
+        return page.deletebyName(name)
+    elif 'dbyidModel' in request.form:
+        ID = request.form['ID']
+        return page.deletebyId(ID)
+    elif 'updateModel' in request.form:
+        ID = request.form['ID']
+        name = request.form['name']
+        country = request.form['country']
+        return page.update(ID,name, country)
+    elif 'deleteAllModels':
         return page.deleteAll()
     elif 'AutoFill':
         return page.autoFill()
