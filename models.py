@@ -85,12 +85,12 @@ class Model:
                  
             query = """INSERT INTO models (name, constructorID)
                         VALUES
-                        ('Honda', 'Japan'),
-                        ('Yamaha', 'Japan'),
-                        ('MV Agusta', 'Italy'),
-                        ('Aprilia', 'Italy'),
-                        ('BMW', 'Germany'),
-                        ('Suzuki', 'Japan')"""
+                        ('Honda', 1),
+                        ('Yamaha', 2),
+                        ('MV Agusta', 3),
+                        ('Aprilia', 4),
+                        ('BMW', 5),
+                        ('Suzuki', 6)"""
 
             connection.commit()
         return redirect(url_for('modelsPage'))
