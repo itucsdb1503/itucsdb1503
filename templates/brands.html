@@ -1,13 +1,88 @@
 {% extends "template.html" %}
-{% block title %}Circuits{% endblock %}
+{% block title %}Brands{% endblock %}
 {% block brands %}active{% endblock %}
 {% block content %}
-	<style>
-		th.brands{
-			background-color: #6d6d6d; width: 10%; border-radius: 2px;
-		}
-	</style>
+<h1>Brands</h1>
 
-
-
+        <table class="brands">
+        <tr>
+        	<td class="brands"> ID </td>
+        	<td class="brands"> Name </td>
+        	<td class="brands"> Country </td>
+        </tr>
+        	{% for ID, name, country in brands %}
+        	<tr>
+        		<td class="brands"> {{ID}} </td>
+        		<td class="brands"> {{name}} </td>
+        		<td class="brands"> {{country}} </td>
+        	</tr>
+        	{%endfor%}
+        	
+        	
+        </table>
+        
+        <form id="addBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+        	<table>
+        	<tr>
+				<th class= "klas">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+				<th class= "klas">Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			<tr>
+				<input value="Add Brand" name="addBrand" type="submit"/>
+			</tr>
+			</table>
+		</form>
+		
+        <table>
+        	<tr>
+        		<form id="dbynameBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+				<th class= "klas">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+			</tr>
+			<input value="Delete Brand by Name" name="dbynameBrand" type="submit"/>
+		</table>
+		</form>
+		<table>
+			<tr>
+				<form id="dbyidBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+				<th class= "klas">ID: </th>
+				<td>
+					<input type="text" name="ID"/>
+				</td>
+			</tr>
+			<input value="Delete Brand by ID" name="dbyidBrand" type="submit"/>
+		</table>	
+		</form>
+		
+		</table>
+        
+        <form id="updateBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+        	<table>
+        	<tr>
+        		<th class= "klas">ID: </th>
+				
+				<td>
+					<input type="text" placeholder=" Enter ID of the tupple to update" name="ID"/>
+				</td>
+				<th class= "klas">Name: </th>
+				
+				<td>
+					<input type="text" name="name"/>
+				</td>
+				<th class= "klas">Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			<tr>
+				<input value="Update Brand" name="updateBrand" type="submit"/>
+			</tr>
+			</table>
+		</form>
 {% endblock %}
