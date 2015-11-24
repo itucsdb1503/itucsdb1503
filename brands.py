@@ -17,7 +17,9 @@ class Brand:
             query = """CREATE TABLE IF NOT EXISTS brands (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
-                        country text NOT NULL)"""
+                        country text NOT NULL,
+                        year integer DEFAULT 0,
+                        champion integer DEFAULT 0)"""
             cursor.execute(query)
             
             
@@ -30,13 +32,13 @@ class Brand:
         return render_template('brands.html', brands = brandsdb)
 
 
-    def addBrand(self, name, country):
+    def addBrand(self, name, country, year, champion):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """INSERT INTO brands (name, country)
+            query = """INSERT INTO brands (name, country, year, champion)
                         VALUES
-                        ('%s', '%s')""" % (name, country)
+                        ('%s', '%s', '%s', '%s')""" % (name, country, year, champion)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))
@@ -61,11 +63,11 @@ class Brand:
             connection.commit()
         return redirect(url_for('brandsPage'))
     
-    def update(self, ID, name, country):
+    def update(self, ID, name, country, year, champion):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  brands SET name = '%s', country = '%s' WHERE ID = '%s' """ % (name, country, ID)
+            query = """UPDATE  brands SET name = '%s', country = '%s', year = '%s', champion = '%s'  WHERE ID = '%s' """ % (name, country, year, champion, ID)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))
@@ -82,7 +84,7 @@ class Brand:
     def autoFill(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
-                 
+                   
             query = """INSERT INTO brands (name, country)
                         VALUES
                         ('Honda', 'Japan'),
@@ -91,6 +93,6 @@ class Brand:
                         ('Aprilia', 'Italy'),
                         ('BMW', 'Germany'),
                         ('Suzuki', 'Japan')"""
-
+            cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))

@@ -430,11 +430,13 @@ def brandsPage():
     page = Brand(dsn = app.config['dsn'])
     if request.method == 'GET':
         return page.list()
-
+    
     elif 'addBrand' in request.form:
         name = request.form['name']
         country = request.form['country']
-        return page.addBrand(name, country)
+        year = request.form['year']
+        champion = request.form['champion']
+        return page.addBrand(name, country, year, champion)
     elif 'dbynameBrand' in request.form:
         name = request.form['name']
         return page.deletebyName(name)
@@ -445,7 +447,9 @@ def brandsPage():
         ID = request.form['ID']
         name = request.form['name']
         country = request.form['country']
-        return page.update(ID,name, country)
+        year = request.form['year']
+        champion = request.form['champion']
+        return page.update(ID, name, country, year, champion)
     elif 'deleteAllBrands':
         return page.deleteAll()
     elif 'AutoFill':

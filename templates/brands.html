@@ -12,12 +12,16 @@
         	<td class="brands"> ID </td>
         	<td class="brands"> Name </td>
         	<td class="brands"> Country </td>
+        	<td class="brands"> Foundation Year </td>
+        	<td class="brands"> #Constructor Championship </td>
         </tr>
-        	{% for ID, name, country in brands %}
+        	{% for ID, name, country, year, champion in brands %}
         	<tr>
         		<td class="brands"> {{ID}} </td>
         		<td class="brands"> {{name}} </td>
         		<td class="brands"> {{country}} </td>
+        		<td class="brands"> {{year}} </td>
+        		<td class="brands"> {{champion}} </td>
         	</tr>
         	{%endfor%}
         </table>
@@ -35,6 +39,14 @@
 				<th class= "klas">Country:</th>
 				<td>
 					<input type="text" name="country"/>
+				</td>
+				<th class= "klas">Foundation Year: </th>
+				<td>
+					<input type="text" name="year"/>
+				</td>
+				<th class= "klas">#Constructor Championship: </th>
+				<td>
+					<input type="text" name="champion"/>
 				</td>
 			</tr>
 			</table>
@@ -89,6 +101,13 @@
 				<td>
 					<input type="text" name="country"/>
 				</td>
+				<th class= "klas">Foundation Year: </th>
+				<td>
+					<input type="text" name="year"/>
+				</td>
+				<th class= "klas">#Constructor Championship: </th>
+				<td>
+					<input type="text" name="champion"/>
 			</table>
 		</form>
 		
