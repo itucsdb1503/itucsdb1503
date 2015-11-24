@@ -4,7 +4,7 @@
 {% block content %}
 <h1>Brands</h1>
 
-        <table class="brands">
+        <table style="width:80%", align="center", class="brands">
         <tr>
         	<td class="brands"> ID </td>
         	<td class="brands"> Name </td>
@@ -17,13 +17,14 @@
         		<td class="brands"> {{country}} </td>
         	</tr>
         	{%endfor%}
-        	
-        	
         </table>
         
         <form id="addBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
-        	<table>
+        	<table style="width:80%", align="center">
         	<tr>
+        		<td>
+					<input value="Add Brand" name="addBrand" type="submit"/>
+				</td>
 				<th class= "klas">Name: </th>
 				<td>
 					<input type="text" name="name"/>
@@ -32,47 +33,52 @@
 				<td>
 					<input type="text" name="country"/>
 				</td>
-			<tr>
-				<input value="Add Brand" name="addBrand" type="submit"/>
 			</tr>
 			</table>
 		</form>
 		
-        <table>
-        	<tr>
-        		<form id="dbynameBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		
+		<table style="width:50%", align="center">
+		<td>
+		<form id="dbynameBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+        <table style="width:25%">
 				<th class= "klas">Name: </th>
-				<td>
-					<input type="text" name="name"/>
+        		<td>
+        			<input type="text" name="name"/>
 				</td>
-			</tr>
-			<input value="Delete Brand by Name" name="dbynameBrand" type="submit"/>
+				<td>
+        			<input value="Delete Brand by Name" name="dbynameBrand" type="submit"/>
+				</td>
 		</table>
 		</form>
-		<table>
-			<tr>
-				<form id="dbyidBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		</td>
+		<td>
+		
+		<form id="dbyidBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		<table align="center" ,style="width:25%">
 				<th class= "klas">ID: </th>
-				<td>
-					<input type="text" name="ID"/>
+        		<td>
+        			<input type="text" name="ID"/>
 				</td>
-			</tr>
-			<input value="Delete Brand by ID" name="dbyidBrand" type="submit"/>
+				<td>
+        			<input value="Delete Brand by ID" name="dbyidBrand" type="submit"/>
+				</td>	
 		</table>	
 		</form>
-		
+		</td>
 		</table>
         
         <form id="updateBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
-        	<table>
+        	<table style="width:80%", align="center">
         	<tr>
+        		<td>
+					<input value="Update Brand" name="updateBrand" type="submit"/>
+				</td>
         		<th class= "klas">ID: </th>
-				
 				<td>
 					<input type="text" placeholder=" Enter ID of the tupple to update" name="ID"/>
 				</td>
 				<th class= "klas">Name: </th>
-				
 				<td>
 					<input type="text" name="name"/>
 				</td>
@@ -80,23 +86,19 @@
 				<td>
 					<input type="text" name="country"/>
 				</td>
-			<tr>
-				<input value="Update Brand" name="updateBrand" type="submit"/>
-			</tr>
 			</table>
 		</form>
-		 <table>
-        	<tr>
-        		<form id="deleteAllBrands" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
-			</tr>
+		
+		<form id="deleteAllBrands" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		 <div align="center">
 			<input value="Delete All Brands" name="deleteAllBrands" type="submit"/>
-		</table>
+		</div>
 		</form>
-		 <table>
-        	<tr>
-        		<form id="AutoFill" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
-			</tr>
+		
+		<form id="AutoFill" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		 <div align="center">
 			<input value="Auto-fill" name="AutoFill" type="submit"/>
-		</table>
+		</div>
 		</form>
+		
 {% endblock %}
