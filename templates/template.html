@@ -21,7 +21,7 @@
       				<ul class="nav navbar-nav">
         			<li class="{% block home %}{% endblock %}"><a href="/">Home</a></li>
        				<li class="{% block riders %}{% endblock %}">
-          				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Riders and Stats
+          				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Riders & Stats
           				<span class="caret"></span></a>
           				<ul class="dropdown-menu">
             				<li><a href="/riders">Riders Dashboard</a></li>
@@ -55,7 +55,14 @@
             				<li><a href="/races">Races</a></li>
           				</ul>
         			</li>
-        			<li class="{% block brands %}{% endblock %}"><a href="/brands">Brands</a></li>
+        			<li class="{% block brands %}{% endblock %}">
+        				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Brands & Models
+          					<span class="caret"></span></a>
+          					<ul class="dropdown-menu">
+            					<li><a href="/brands">Brands</a></li>
+            					<li><a href="/brand/models">Models</a></li>
+          					</ul>
+        			</li>
         			<li class="{% block seasons %}{% endblock %}"><a href="/seasons">Seasons</a></li>
       				</ul>
       				<ul class="nav navbar-nav navbar-right">

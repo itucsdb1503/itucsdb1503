@@ -4,6 +4,11 @@ html {
 	height: 100%;
 }
 
+li{
+	width:220px;
+	text-align: center;
+}
+
 body {
   background-color: #e3e3e3;
   background-image: url("motogp-logo.png");
