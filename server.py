@@ -64,9 +64,12 @@ def teamsPage():
     elif 'deleteTeam' in request.form:
         id = request.form['id']
         return page.deleteTeamId(id)
-    elif 'searchTeamName' in request.form:
+    elif 'searchTeam' in request.form:
         name = request.form['name']
-        return page.searchTeamName(name)
+        country = request.form['country']
+        constructor = request.form['constructor']
+        motorcycle = request.form['motorcycle']
+        return page.searchTeam(name, country, constructor, motorcycle)
 
 @app.route('/countries', methods=['GET', 'POST'])
 def countriesPage():
@@ -91,9 +94,11 @@ def countriesPage():
     elif 'deleteCountry' in request.form:
         name = request.form['name']
         return page.deleteCountryName(name)
-    elif 'searchCountryName' in request.form:
+    elif 'searchCountry' in request.form:
         name = request.form['name']
-        return page.searchCountryName(name)
+        abbreviation = request.form['abbreviation']
+        continent = request.form['continent']
+        return page.searchCountry(name, abbreviation, continent)
 
 @app.route('/rsreset', methods=['GET','POST'])
 def rsreset():
@@ -417,7 +422,7 @@ def races_page():
         return page.search_race(page.search_name)
     else:
         return redirect(url_for('home_page'))
-    
+
 
 
 @app.route('/brands', methods=['GET', 'POST'])
@@ -425,7 +430,7 @@ def brandsPage():
     page = Brand(dsn = app.config['dsn'])
     if request.method == 'GET':
         return page.list()
-    
+
     elif 'addBrand' in request.form:
         name = request.form['name']
         country = request.form['country']
@@ -447,13 +452,13 @@ def brandsPage():
         return page.autoFill()
     else:
         return redirect(url_for('home_page'))
-    
+
 @app.route('/brands/models', methods=['GET', 'POST'])
 def modelsPage():
     page = Model(dsn = app.config['dsn'])
     if request.method == 'GET':
         return page.list()
-    
+
     elif 'addModel' in request.form:
         name = request.form['name']
         constructor = request.form['constructor']
@@ -471,7 +476,7 @@ def modelsPage():
         return page.update(ID,name, constructor)
     else:
         return redirect(url_for('home_page'))
-    
+
 
 @app.route('/seasons')
 def seasons():

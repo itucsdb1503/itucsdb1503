@@ -5,9 +5,13 @@ from flask import Flask
 from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
+from _overlapped import NULL
 
 class Teams:
     searchName = ''
+    searchCountry = ''
+    searchConstructor = ''
+    searchMotorcycle = ''
 
     def __init__(self, dsn):
         self.dsn = dsn
@@ -32,8 +36,16 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """SELECT * FROM teams WHERE name LIKE '%s' ORDER BY id ASC""" % (('%' + Teams.searchName + '%'))
+            query = """SELECT * FROM teams WHERE name LIKE '%s'
+            AND country LIKE '%s' AND constructor LIKE '%s'
+            AND motorcycle LIKE '%s' ORDER BY id ASC""" % (('%' + Teams.searchName + '%'),
+            ('%' + Teams.searchCountry + '%'),('%' + Teams.searchConstructor + '%'),
+            ('%' + Teams.searchMotorcycle + '%'))
+
             Teams.searchName = ''
+            Teams.searchCountry = ''
+            Teams.searchConstructor = ''
+            Teams.searchMotorcycle = ''
 
             cursor.execute(query)
 
@@ -50,12 +62,12 @@ class Teams:
 
             query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
                         VALUES
-                        ('DUCATI TEAM', 'ITA', 'DUCATI', 'DUCATI DESMOSEDICI GP15', 3),
-                        ('REPSOL HONDA TEAM', 'JPN', 'HONDA', 'HONDA RC213V', 3),
-                        ('AB MOTORACING', 'CZE', 'HONDA', 'HONDA RC213V-RS', 5),
+                        ('REPSOL HONDA TEAM', 'JPN', 'HONDA', 'RC213V', 3),
+                        ('DUCATI TEAM', 'ITA', 'DUCATI', 'DESMOSEDICI GP15', 3),
+                        ('AB MOTORACING', 'CZE', 'HONDA', 'RC213V-RS', 5),
+                        ('MOVISTAR YAMAHA MOTOGP', 'JPN', 'YAMAHA', 'YZR-M1', 2),
                         ('E-MOTION IODARACING TEAM', 'ITA', 'ART', 'ART', 3),
-                        ('MOVISTAR YAMAHA MOTOGP', 'JPN', 'YAMAHA', 'YAMAHA YZR-M1', 2),
-                        ('MONSTER YAMAHA TECH 3', 'FRA', 'YAMAHA', 'YAMAHA YZR-M1', 2)"""
+                        ('MONSTER YAMAHA TECH 3', 'FRA', 'YAMAHA', 'YZR-M1', 2)"""
             cursor.execute(query)
 
             connection.commit()
@@ -102,7 +114,10 @@ class Teams:
             connection.commit()
         return redirect(url_for('teamsPage'))
 
-    def searchTeamName(self, name):
+    def searchTeam(self, name, country, constructor, motorcycle):
         Teams.searchName = name.upper()
+        Teams.searchCountry = country.upper()
+        Teams.searchConstructor = constructor.upper()
+        Teams.searchMotorcycle = motorcycle.upper()
         return redirect(url_for('teamsPage'))
 

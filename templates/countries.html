@@ -20,8 +20,13 @@
 		<input class="modifyTeam" value="Add Country" name="addCountry" type="submit"/>
 	</form>
 	<br>
-	<form id="initTable" action="{{ url_for('countriesPage') }}" method="post">
-		<input class="modifyTeam" value="Reset Table" name="initTable" type="submit"/>
+	<form id="deleteCountry" action="{{ url_for('countriesPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Delete Country" name="deleteCountry" type="submit"/>
 	</form>
 	</div>
 	<div style="float:left; width:2.5%;">
@@ -45,30 +50,31 @@
 			</table>
 		<input class="modifyTeam" value="Update Country" name="updateCountry" type="submit"/>
 	</form>
+	<br>
+	<form id="initTable" action="{{ url_for('countriesPage') }}" method="post">
+		<input class="modifyTeam" value="Reset Table" name="initTable" type="submit"/>
+	</form>
 	</div>
 	<div style="float:left; width:2.5%;">
 	<br>
 	</div>
-    <div style="float:left; width:18%;">
-	<form id="deleteCountry" action="{{ url_for('countriesPage') }}" method="post">
-       	<table class="modifyTeam">
-       		<tr class="modifyTeam">
-				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
-			</tr>
-			</table>
-		<input class="modifyTeam" value="Delete Country" name="deleteCountry" type="submit"/>
-	</form>
-	<br>
+    <div style="float:left; width:20%;">
 	<form id="searchCountryName" action="{{ url_for('countriesPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
 				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
 			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Abbreviation:</th><td><input type="text" name="abbreviation"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Continent:</th><td><input type="text" name="continent"/></td>
+			</tr>
 			</table>
-		<input class="modifyTeam" value="Search Country" name="searchCountryName" type="submit"/>
+		<input class="modifyTeam" value="Search Country" name="searchCountry" type="submit"/>
 	</form>
 	</div>
-	<table class=listTeams style="width: 40%; margin-top: 250px;">
+	<table class=listTeams style="width: 40%; margin-top: 300px;">
     <tr class=listTeams>
        	<th class=listTeams style="width: 20%"> Name </th>
        	<th class=listTeams style="width: 5%"> Abbreviation </th>

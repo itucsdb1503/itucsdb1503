@@ -8,6 +8,8 @@ from flask.helpers import url_for
 
 class Countries:
     searchName = ''
+    searchAbbreviation = ''
+    searchContinent = ''
 
     def __init__(self, dsn):
         self.dsn = dsn
@@ -29,8 +31,14 @@ class Countries:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """SELECT * FROM countries WHERE name LIKE '%s' ORDER BY name ASC""" % (('%' + Countries.searchName + '%'))
+            query = """SELECT * FROM countries WHERE name LIKE '%s'
+            AND abbreviation LIKE '%s' AND continent LIKE '%s'
+            ORDER BY name ASC""" % (('%' + Countries.searchName + '%'),
+            ('%' + Countries.searchAbbreviation + '%'),('%' + Countries.searchContinent + '%'))
+
             Countries.searchName = ''
+            Countries.searchAbbreviation = ''
+            Countries.searchContinent = ''
 
             cursor.execute(query)
 
@@ -101,7 +109,9 @@ class Countries:
             connection.commit()
         return redirect(url_for('countriesPage'))
 
-    def searchCountryName(self, name):
+    def searchCountry(self, name, abbreviation, continent):
         Countries.searchName = name.upper()
+        Countries.searchAbbreviation = abbreviation.upper()
+        Countries.searchContinent = continent.upper()
         return redirect(url_for('countriesPage'))
 
