@@ -1,0 +1,105 @@
+{% extends "template.html" %}
+{% block title %}Models{% endblock %}
+{% block css %}brands.css{% endblock %}
+{% block models %}active{% endblock %}
+{% block content %}
+<h1>Models</h1>
+
+        <table class="models">
+        <tr>
+        	<td class="models"> ID </td>
+        	<td class="models"> Name </td>
+        	<td class="models"> Country </td>
+        </tr>
+        	{% for ID, name, country in models %}
+        	<tr>
+        		<td class="models"> {{ID}} </td>
+        		<td class="models"> {{name}} </td>
+        		<td class="models"> {{country}} </td>
+        	</tr>
+        	{%endfor%}
+        </table>
+        
+        <form id="addModel" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+        	<table style="width:80%", align="center">
+        	<tr>
+        		<td>
+					<input value="Add Model" name="addModel" type="submit"/>
+				</td>
+				<th class= "klas">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+				<th class= "klas">Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			</tr>
+			</table>
+		</form>
+		
+		
+		<table style="width:50%", align="center">
+		<td>
+		<form id="dbynameModel" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+        <table style="width:25%">
+				<th class= "klas">Name: </th>
+        		<td>
+        			<input type="text" name="name"/>
+				</td>
+				<td>
+        			<input value="Delete Model by Name" name="dbynameModel" type="submit"/>
+				</td>
+		</table>
+		</form>
+		</td>
+		<td>
+		
+		<form id="dbyidModel" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		<table align="center" ,style="width:25%">
+				<th class= "klas">ID: </th>
+        		<td>
+        			<input type="text" name="ID"/>
+				</td>
+				<td>
+        			<input value="Delete Model by ID" name="dbyidModel" type="submit"/>
+				</td>	
+		</table>	
+		</form>
+		</td>
+		</table>
+        
+        <form id="updateModel" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+        	<table style="width:80%", align="center">
+        	<tr>
+        		<td>
+					<input value="Update Model" name="updateModel" type="submit"/>
+				</td>
+        		<th class= "klas">ID: </th>
+				<td>
+					<input type="text" placeholder=" Enter ID of the tupple to update" name="ID"/>
+				</td>
+				<th class= "klas">Name: </th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+				<th class= "klas">Country:</th>
+				<td>
+					<input type="text" name="country"/>
+				</td>
+			</table>
+		</form>
+		
+		<form id="deleteAllModels" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		 <div align="center">
+			<input value="Delete All Models" name="deleteAllModels" type="submit"/>
+		</div>
+		</form>
+		
+		<form id="AutoFill" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		 <div align="center">
+			<input value="Auto-fill" name="AutoFill" type="submit"/>
+		</div>
+		</form>
+		
+{% endblock %}
