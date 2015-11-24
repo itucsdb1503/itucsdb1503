@@ -38,16 +38,12 @@
 	<form id="adddefault" action="{{ url_for('stats') }}" method="post">
        	<table class="ridersadd">
 			<tr class="ridersadd">
-				<th class="ridersadd">Rider:</th><td>
-					<div style="float:left; width:20%"><br></div>
-					<div style="float:left; width:60%;">
-					<select name="statid" class="form-control">
+				<th class="ridersadd">Rider Index:</th><td>
+					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
 						{% endfor %}
 				    </select>
-				    </div>
-					<div style="float:left; width:20%"><br></div>
 				</td>
 			</tr>
 			<tr class="ridersadd">
@@ -92,16 +88,12 @@
 					<th class="ridersadd">Current Stat Index:</th><td><input type="text" name="num"/></td>
 				</tr>
 			<tr class="ridersadd">
-				<th class="ridersadd">Rider:</th><td>
-					<div style="float:left; width:20%"><br></div>
-					<div style="float:left; width:60%;">
-					<select name="statid" class="form-control">
+				<th class="ridersadd">Rider Index:</th><td>
+					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
 						{% endfor %}
 				    </select>
-				    </div>
-					<div style="float:left; width:20%"><br></div>
 				</td>
 			</tr>
 				<tr class="ridersadd">
@@ -155,16 +147,13 @@
 	<br>
 	<form id="searchbyrider" action="{{ url_for('stats') }}" method="post">
        	<table class="ridersadd" style="height:100px">
-	       	<tr class="ridersadd">
-				<th class="ridersadd" style="text-align:center;">Rider:</th><td>
-					<div style="float:left; width:80%;">
-					<select name="statid" class="form-control">
+			<tr class="ridersadd">
+				<th class="ridersadd">Rider Index:</th><td>
+					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
 						{% endfor %}
 				    </select>
-				    </div>
-					<div style="float:left; width:20%"><br></div>
 				</td>
 			</tr>
 			</table>
@@ -174,16 +163,13 @@
 	<br>
 	<form id="delbyrider" action="{{ url_for('stats') }}" method="post">
 		<table class="ridersdel" style="height:79px">
-			<tr class="ridersdel">
-				<th class="ridersdel" style="text-align:center;">Rider:</th><td>
-					<div style="float:left; width:80%;">
-					<select name="statid" class="form-control">
+			<tr class="ridersadd">
+				<th class="ridersadd">Rider Index:</th><td>
+					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{ NAME }} {{SURNAME}}</option>
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
 						{% endfor %}
 				    </select>
-				    </div>
-					<div style="float:left; width:20%"><br></div>
 				</td>
 			</tr>
 		</table>

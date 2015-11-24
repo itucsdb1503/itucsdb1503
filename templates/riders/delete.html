@@ -21,9 +21,14 @@
 	<br>
 	<form id="delbynum" action="{{ url_for('rdelete') }}" method="post">
 		<table class="ridersdel">
-			<tr class="ridersdel">
-				<th class="ridersdel">Index: </th>
-				<td><input type="text" name="num"/></td>
+			<tr class="ridersadd">
+				<th class="ridersadd">Index:</th><td>
+					<select name="num" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
 			</tr>
 		</table>
 		<br>

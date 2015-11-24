@@ -5,10 +5,16 @@
 {% block content %}
 	<div style="float:left; width:30%;">
 		<form id="updatebynum" action="{{ url_for('rupdate') }}" method="post">
-	       	<table class="ridersadd"">
-	       		<tr class="ridersadd">
-					<th class="ridersadd">Current Index:</th><td><input type="text" name="num"/></td>
-				</tr>
+	       	<table class="ridersadd">
+			<tr class="ridersadd">
+				<th class="ridersadd">Current Index:</th><td>
+					<select name="num" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
 	       		<tr class="ridersadd">
 					<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
 				</tr>

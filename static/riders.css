@@ -1,3 +1,8 @@
+select.drop{
+	width:55%;
+	height:30px;
+}
+
 input.riders {
 	height: 50px;
 	width: 100%;
