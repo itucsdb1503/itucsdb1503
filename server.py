@@ -34,12 +34,21 @@ def get_elephantsql_dsn(vcap_services):
 
 @app.route('/')
 def home_page():
+    with dbapi2.connect(app.config['dsn']) as connection:
+        cursor = connection.cursor()
+        query = """DROP TABLE IF EXISTS teams"""
+        cursor.execute(query)
+        cursor = connection.cursor()
+        query = """DROP TABLE IF EXISTS countries"""
+        cursor.execute(query)
+
     now = datetime.datetime.now()
     return render_template('home.html', current_time=now.ctime())
 
 @app.route('/teams', methods=['GET', 'POST'])
 def teamsPage():
     page = Teams(dsn = app.config['dsn'])
+    page.dropTable()
     if request.method == 'GET':
         page.createTable();
         #page.insertTestTuples();
@@ -74,6 +83,7 @@ def teamsPage():
 @app.route('/countries', methods=['GET', 'POST'])
 def countriesPage():
     page = Countries(dsn = app.config['dsn'])
+    page.dropTable()
     if request.method == 'GET':
         page.createTable();
         #page.insertTestTuples();
