@@ -5,7 +5,6 @@ from flask import Flask
 from flask import redirect
 from flask import render_template
 from flask.helpers import url_for
-from _overlapped import NULL
 
 class Teams:
     searchName = ''
