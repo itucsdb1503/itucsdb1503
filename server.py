@@ -242,7 +242,7 @@ def stats():
         VICTORY = request.form['victory']
         SECOND = request.form['second']
         THIRD = request.form['third']
-        PODIUM = request.form['podium']
+        PODIUM = str(int(VICTORY)+int(SECOND)+int(THIRD))
         POLE = request.form['pole']
         POINTS = request.form['points']
         POSITION= request.form['position']
@@ -255,7 +255,7 @@ def stats():
         VICTORY = request.form['victory']
         SECOND = request.form['second']
         THIRD = request.form['third']
-        PODIUM = request.form['podium']
+        PODIUM = str(int(VICTORY)+int(SECOND)+int(THIRD))
         POLE = request.form['pole']
         POINTS = request.form['points']
         POSITION= request.form['position']
@@ -293,7 +293,7 @@ def sadd():
         VICTORY = request.form['victory']
         SECOND = request.form['second']
         THIRD = request.form['third']
-        PODIUM = request.form['podium']
+        PODIUM = str(int(VICTORY)+int(SECOND)+int(THIRD))
         POLE = request.form['pole']
         POINTS = request.form['points']
         POSITION= request.form['position']
@@ -327,7 +327,7 @@ def supdate():
         VICTORY = request.form['victory']
         SECOND = request.form['second']
         THIRD = request.form['third']
-        PODIUM = request.form['podium']
+        PODIUM = str(int(VICTORY)+int(SECOND)+int(THIRD))
         POLE = request.form['pole']
         POINTS = request.form['points']
         POSITION= request.form['position']
