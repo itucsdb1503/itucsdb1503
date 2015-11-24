@@ -18,13 +18,13 @@ class Race:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """CREATE TABLE IF NOT EXISTS races (
-                        id serial PRIMARY KEY,
+                         id serial PRIMARY KEY,
                         name text NOT NULL,
                         fastest_lap_time integer DEFAULT 0,
                         winners_average_lap_time integer DEFAULT 0,
                         average_lap_time integer DEFAULT 0,
-                        first_position serial REFERENCES circuits(id),
-                        track_circuit_id text NOT NULL,
+                        first_position text NOT NULL ,
+                        track_circuit_id serial REFERENCES circuits(id),
                         number_of_laps integer DEFAULT 0,
                         total_accidents integer DEFAULT 0)"""
             cursor.execute(query)
