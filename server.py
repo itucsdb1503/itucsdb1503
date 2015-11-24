@@ -456,8 +456,8 @@ def modelsPage():
     
     elif 'addModel' in request.form:
         name = request.form['name']
-        country = request.form['country']
-        return page.addModel(name, country)
+        constructor = request.form['constructor']
+        return page.addModel(name, constructor)
     elif 'dbynameModel' in request.form:
         name = request.form['name']
         return page.deletebyName(name)
@@ -467,8 +467,8 @@ def modelsPage():
     elif 'updateModel' in request.form:
         ID = request.form['ID']
         name = request.form['name']
-        country = request.form['country']
-        return page.update(ID,name, country)
+        constructor = request.form['constructor']
+        return page.update(ID,name, constructor)
     elif 'deleteAllModels':
         return page.deleteAll()
     elif 'AutoFill':

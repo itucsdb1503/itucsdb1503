@@ -9,13 +9,13 @@
         <tr>
         	<td class="models"> ID </td>
         	<td class="models"> Name </td>
-        	<td class="models"> Country </td>
+        	<td class="models"> Constructor </td>
         </tr>
-        	{% for ID, name, country in models %}
+        	{% for ID, name, constructor in models %}
         	<tr>
         		<td class="models"> {{ID}} </td>
         		<td class="models"> {{name}} </td>
-        		<td class="models"> {{country}} </td>
+        		<td class="models"> {{constructor}} </td>
         	</tr>
         	{%endfor%}
         </table>
@@ -30,9 +30,9 @@
 				<td>
 					<input type="text" name="name"/>
 				</td>
-				<th class= "klas">Country:</th>
+				<th class= "klas">Constructor:</th>
 				<td>
-					<input type="text" name="country"/>
+					<input type="text" name="constructor"/>
 				</td>
 			</tr>
 			</table>
@@ -83,9 +83,9 @@
 				<td>
 					<input type="text" name="name"/>
 				</td>
-				<th class= "klas">Country:</th>
+				<th class= "klas">Constructor:</th>
 				<td>
-					<input type="text" name="country"/>
+					<input type="text" name="constructor"/>
 				</td>
 			</table>
 		</form>
