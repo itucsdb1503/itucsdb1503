@@ -85,14 +85,14 @@ class Brand:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
                    
-            query = """INSERT INTO brands (name, country)
+            query = """INSERT INTO brands (name, country, year, champion)
                         VALUES
-                        ('Honda', 'Japan'),
-                        ('Yamaha', 'Japan'),
-                        ('MV Agusta', 'Italy'),
-                        ('Aprilia', 'Italy'),
-                        ('BMW', 'Germany'),
-                        ('Suzuki', 'Japan')"""
+                        ('Honda', 'Japan', 1948, 21),
+                        ('Yamaha', 'Japan', 1955, 14),
+                        ('MV Agusta', 'Italy', 1945, 16),
+                        ('Aprilia', 'Italy', 1945, 0),
+                        ('BMW', 'Germany', 1916, 0),
+                        ('Suzuki', 'Japan', 1909, 7)"""
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))
