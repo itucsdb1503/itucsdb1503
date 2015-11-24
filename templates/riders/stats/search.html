@@ -6,11 +6,11 @@
 	<div style="float:left; width:30%;">
 	<form id="searchdefault" action="{{ url_for('ssearch') }}" method="post">
        	<table class="ridersdel" style="height:200px">
-       		<tr class="ridersadd">
-				<th class="ridersadd">Year:</th><td><input type="text" name="year"/></td>
+       		<tr class="riders">
+				<th class="riders">Year:</th><td><input type="text" name="year"/></td>
 			</tr>
-       		<tr class="ridersadd">
-				<th class="ridersadd">Position:</th><td><input type="text" name="position"/></td>
+       		<tr class="riders">
+				<th class="riders">Position:</th><td><input type="text" name="position"/></td>
 			</tr>
 			</table>
 			<br>
@@ -19,8 +19,8 @@
 	<br>
 	<form id="searchbyrider" action="{{ url_for('ssearch') }}" method="post">
        	<table class="ridersdel" style="height:100px">
-			<tr class="ridersadd">
-				<th class="ridersadd">Rider Index:</th><td>
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
 					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
 					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>

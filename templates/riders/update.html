@@ -5,9 +5,9 @@
 {% block content %}
 	<div style="float:left; width:30%;">
 		<form id="updatebynum" action="{{ url_for('rupdate') }}" method="post">
-	       	<table class="ridersadd">
-			<tr class="ridersadd">
-				<th class="ridersadd">Current Index:</th><td>
+	       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Current Index:</th><td>
 					<select name="num" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
 					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
@@ -15,35 +15,35 @@
 				    </select>
 				</td>
 			</tr>
-	       		<tr class="ridersadd">
-					<th class="ridersadd">Name:</th><td><input type="text" name="name"/></td>
+	       		<tr class="riders">
+					<th class="riders">Name:</th><td><input type="text" name="name"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Surname:</th><td><input type="text" name="surname"/></td>
+				<tr class="riders">
+					<th class="riders">Surname:</th><td><input type="text" name="surname"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Age:</th><td><input type="text" name="age"/></td>
+				<tr class="riders">
+					<th class="riders">Age:</th><td><input type="text" name="age"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Gender:</th><td><input type="text" name="gender"/></td>
+				<tr class="riders">
+					<th class="riders">Gender:</th><td><input type="text" name="gender"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Team: </th><td><input type="text" name="team"/></td>
+				<tr class="riders">
+					<th class="riders">Team: </th><td><input type="text" name="team"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Brand:</th><td><input type="text" name="brand"/></td>
+				<tr class="riders">
+					<th class="riders">Brand:</th><td><input type="text" name="brand"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Model:</th><td><input type="text" name="model"/></td>
+				<tr class="riders">
+					<th class="riders">Model:</th><td><input type="text" name="model"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Nation:</th><td><input type="text" name="nation"/></td>
+				<tr class="riders">
+					<th class="riders">Nation:</th><td><input type="text" name="nation"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Years in MOTOGP:</th><td><input type="text" name="years"/></td>
+				<tr class="riders">
+					<th class="riders">Years in MOTOGP:</th><td><input type="text" name="years"/></td>
 				</tr>
-				<tr class="ridersadd">
-					<th class="ridersadd">Bike No:</th><td><input type="text" name="bikeno"/></td>
+				<tr class="riders">
+					<th class="riders">Bike No:</th><td><input type="text" name="bikeno"/></td>
 				</tr>
 				</table>
 				<br>

@@ -5,9 +5,9 @@
 {% block content %}
 	<div style="float:left; width:30%;">
 	<form id="adddefault" action="{{ url_for('sadd') }}" method="post">
-       	<table class="ridersadd">
-			<tr class="ridersadd">
-				<th class="ridersadd">Rider Index:</th><td>
+       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
 					<select name="statid" class="drop">
 						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
 					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
@@ -15,29 +15,29 @@
 				    </select>
 				</td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Stat Year:</th><td><input type="text" name="year"/></td>
+			<tr class="riders">
+				<th class="riders">Stat Year:</th><td><input type="text" name="year"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Completed Races:</th><td><input type="text" name="races"/></td>
+			<tr class="riders">
+				<th class="riders">Completed Races:</th><td><input type="text" name="races"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Victory:</th><td><input type="text" name="victory"/></td>
+			<tr class="riders">
+				<th class="riders">Victory:</th><td><input type="text" name="victory"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Second Place:</th><td><input type="text" name="second"/></td>
+			<tr class="riders">
+				<th class="riders">Second Place:</th><td><input type="text" name="second"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Third Place:</th><td><input type="text" name="third"/></td>
+			<tr class="riders">
+				<th class="riders">Third Place:</th><td><input type="text" name="third"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Pole Positions:</th><td><input type="text" name="pole"/></td>
+			<tr class="riders">
+				<th class="riders">Pole Positions:</th><td><input type="text" name="pole"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Points:</th><td><input type="text" name="points"/></td>
+			<tr class="riders">
+				<th class="riders">Points:</th><td><input type="text" name="points"/></td>
 			</tr>
-			<tr class="ridersadd">
-				<th class="ridersadd">Season Position:</th><td><input type="text" name="position"/></td>
+			<tr class="riders">
+				<th class="riders">Season Position:</th><td><input type="text" name="position"/></td>
 			</tr>
 			</table>
 		<br>
