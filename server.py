@@ -16,6 +16,7 @@ from teams import Teams
 from countries import Countries
 from circuits import Circuit
 from races import Race
+from brands import Brand
 app = Flask(__name__)
 
 
@@ -415,13 +416,33 @@ def races_page():
         return page.search_race(page.search_name)
     else:
         return redirect(url_for('home_page'))
+    
 
 
-
-@app.route('/brands')
-def brands():
-    now = datetime.datetime.now()
-    return render_template('brands.html', current_time=now.ctime())
+@app.route('/brands', methods=['GET', 'POST'])
+def brandsPage():
+    page = Brand(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.list()
+    
+    elif 'addBrand' in request.form:
+        name = request.form['name']
+        country = request.form['country']
+        return page.addBrand(name, country)
+    elif 'dbynameBrand' in request.form:
+        name = request.form['name']
+        return page.deletebyName(name)
+    elif 'dbyidBrand' in request.form:
+        ID = request.form['ID']
+        return page.deletebyId(ID)
+    elif 'updateBrand' in request.form:
+        ID = request.form['ID']
+        name = request.form['name']
+        country = request.form['country']
+        return page.update(ID,name, country)
+    else:
+        return redirect(url_for('home_page'))
+    
 
 @app.route('/seasons')
 def seasons():
@@ -434,14 +455,12 @@ def initialize_database():
     with dbapi2.connect(app.config['dsn']) as connection:
         cursor = connection.cursor()
 
-        query = """DROP TABLE IF EXISTS COUNTER"""
+        query = """DROP TABLE IF EXISTS brands"""
+        cursor.execute(query)
+        
+        query = """DROP TABLE IF EXISTS countries"""
         cursor.execute(query)
 
-        query = """CREATE TABLE COUNTER (N INTEGER)"""
-        cursor.execute(query)
-
-        query = """INSERT INTO COUNTER (N) VALUES (0)"""
-        cursor.execute(query)
 
         connection.commit()
     return redirect(url_for('home_page'))
