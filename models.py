@@ -17,7 +17,7 @@ class Model:
             query = """CREATE TABLE IF NOT EXISTS models (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
-                        constructor text  )"""
+                        constructor text REFERENCES brands(name))"""
             cursor.execute(query)
             
             
