@@ -21,7 +21,6 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            self.dropTable()
             query = """CREATE TABLE IF NOT EXISTS teams (
                         id serial PRIMARY KEY,
                         name text NOT NULL,

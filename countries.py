@@ -19,7 +19,6 @@ class Countries:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            self.dropTable()
             query = """CREATE TABLE IF NOT EXISTS countries (
                         name text NOT NULL,
                         abbreviation text NOT NULL PRIMARY KEY,
