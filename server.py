@@ -440,6 +440,10 @@ def brandsPage():
         name = request.form['name']
         country = request.form['country']
         return page.update(ID,name, country)
+    elif 'deleteAllBrands':
+        return page.deleteAll()
+    elif 'AutoFill':
+        return page.autoFill()
     else:
         return redirect(url_for('home_page'))
     
@@ -449,37 +453,6 @@ def seasons():
     now = datetime.datetime.now()
     return render_template('seasons.html', current_time=now.ctime())
 
-
-@app.route('/initdb')
-def initialize_database():
-    with dbapi2.connect(app.config['dsn']) as connection:
-        cursor = connection.cursor()
-
-        query = """DROP TABLE IF EXISTS brands"""
-        cursor.execute(query)
-        
-        query = """DROP TABLE IF EXISTS countries"""
-        cursor.execute(query)
-
-
-        connection.commit()
-    return redirect(url_for('home_page'))
-
-
-@app.route('/count')
-def counter_page():
-    now = datetime.datetime.now()
-    with dbapi2.connect(app.config['dsn']) as connection:
-        cursor = connection.cursor()
-
-        query = "UPDATE COUNTER SET N = N + 1"
-        cursor.execute(query)
-        connection.commit()
-
-        query = "SELECT N FROM COUNTER"
-        cursor.execute(query)
-        count = cursor.fetchone()[0]
-    return render_template('count.html', count = count, current_time=now.ctime())
 
 
 if __name__ == '__main__':
