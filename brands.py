@@ -16,7 +16,7 @@ class Brand:
             
             query = """CREATE TABLE IF NOT EXISTS brands (
                         ID serial PRIMARY KEY,
-                        name text NOT NULL,
+                        name text NOT NULL UNIQUE,
                         country text NOT NULL,
                         year integer DEFAULT 0,
                         champion integer DEFAULT 0)"""
