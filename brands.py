@@ -81,14 +81,8 @@ class Brand:
     
     def autoFill(self):
         with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            
-            query = """CREATE TABLE IF NOT EXISTS brands (
-                        ID serial PRIMARY KEY,
-                        name text NOT NULL,
-                        country text NOT NULL)"""
-            cursor.execute(query)
-            
+            cursor = connection.cursor()   
+                 
             query = """INSERT INTO brands (name, country)
                         VALUES
                         ('Honda', 'Japan'),
@@ -97,7 +91,6 @@ class Brand:
                         ('Aprilia', 'Italy'),
                         ('BMW', 'Germany'),
                         ('Suzuki', 'Japan')"""
-            cursor.execute(query)
 
             connection.commit()
         return redirect(url_for('brandsPage'))
