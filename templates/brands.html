@@ -85,4 +85,18 @@
 			</tr>
 			</table>
 		</form>
+		 <table>
+        	<tr>
+        		<form id="deleteAllBrands" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+			</tr>
+			<input value="Delete All Brands" name="deleteAllBrands" type="submit"/>
+		</table>
+		</form>
+		 <table>
+        	<tr>
+        		<form id="AutoFill" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+			</tr>
+			<input value="Auto-fill" name="AutoFill" type="submit"/>
+		</table>
+		</form>
 {% endblock %}

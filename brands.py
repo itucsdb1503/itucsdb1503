@@ -10,18 +10,6 @@ class Brand:
         self.dsn = dsn
         return
 
-    def create(self):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-
-            query = """CREATE TABLE IF NOT EXISTS brands (
-                        ID serial PRIMARY KEY,
-                        name text NOT NULL,
-                        country text NOT NULL)"""
-            cursor.execute(query)
-
-        return render_template('brands.html')
-
     def list(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -79,5 +67,37 @@ class Brand:
 
             query = """UPDATE  brands SET name = '%s', country = '%s' WHERE ID = '%s' """ % (name, country, ID)
             cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('brandsPage'))
+    
+    def deleteAll(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """DROP TABLE IF EXISTS brands"""
+            cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('brandsPage'))
+    
+    def autoFill(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            
+            query = """CREATE TABLE IF NOT EXISTS brands (
+                        ID serial PRIMARY KEY,
+                        name text NOT NULL,
+                        country text NOT NULL)"""
+            cursor.execute(query)
+            
+            query = """INSERT INTO brands (name, country)
+                        VALUES
+                        ('Honda', 'Japan'),
+                        ('Yamaha', 'Japan'),
+                        ('MV Agusta', 'Italy'),
+                        ('Aprilia', 'Italy'),
+                        ('BMW', 'Germany'),
+                        ('Suzuki', 'Japan')"""
+            cursor.execute(query)
+
             connection.commit()
         return redirect(url_for('brandsPage'))
