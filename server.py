@@ -450,9 +450,9 @@ def brandsPage():
         year = request.form['year']
         champion = request.form['champion']
         return page.update(ID, name, country, year, champion)
-    elif 'deleteAllBrands':
+    elif 'deleteAllBrands' in request.form:
         return page.deleteAll()
-    elif 'AutoFill':
+    elif 'AutoFill' in request.form:
         return page.autoFill()
     else:
         return redirect(url_for('home_page'))
