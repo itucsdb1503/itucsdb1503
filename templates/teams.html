@@ -20,7 +20,7 @@
 				<th class="modifyTeam">Motorcycle:</th><td><input type="text" name="motorcycle"/></td>
 			</tr>
 			<tr class="modifyTeam">
-				<th class="modifyTeam">Rider No: </th><td><input type="text" name="riderNo"/></td>
+				<th class="modifyTeam">Number Of Riders: </th><td><input type="text" name="riderNo"/></td>
 			</tr>
 			</table>
 		<input class="modifyTeam" value="Add Team" name="addTeam" type="submit"/>
@@ -57,7 +57,7 @@
 				<th class="modifyTeam">Motorcycle:</th><td><input type="text" name="motorcycle"/></td>
 			</tr>
 			<tr class="modifyTeam">
-				<th class="modifyTeam">Rider No:</th><td><input type="text" name="riderNo"/></td>
+				<th class="modifyTeam">Number Of Riders:</th><td><input type="text" name="riderNo"/></td>
 			</tr>
 			</table>
 		<input class="modifyTeam" value="Update Team" name="updateTeam" type="submit"/>
@@ -93,10 +93,10 @@
     <tr class=listTeams>
     	<th class=listTeams style="width: 5%"> ID </th>
        	<th class=listTeams style="width: 18%"> Name </th>
-       	<th class=listTeams style="width: 12%"> Country </th>
+       	<th class=listTeams style="width: 5%"> Country </th>
        	<th class=listTeams style="width: 10%"> Constructor </th>
        	<th class=listTeams style="width: 18%"> Motorcycle </th>
-       	<th class=listTeams style="width: 5%"> Rider No </th>
+       	<th class=listTeams style="width: 12%"> Number Of Riders </th>
     </tr>
        	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
        	<tr class=listTeams>
