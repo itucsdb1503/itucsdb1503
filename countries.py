@@ -58,7 +58,7 @@ class Countries:
                         ('ITALY', 'ITA', 'EUROPE'),
                         ('JAPAN', 'JPN', 'ASIA'),
                         ('CZECH REPUBLIC', 'CZE', 'EUROPE'),
-                        ('AUSTRALIA', 'AUS', 'NORTH AMERICA'),
+                        ('AUSTRALIA', 'AUS', 'AUSTRALIA'),
                         ('FRANCE', 'FRA', 'EUROPE'),
                         ('UNITED STATES OF AMERICA', 'USA', 'NORTH AMERICA'),
                         ('SPAIN', 'ESP', 'EUROPE'),
