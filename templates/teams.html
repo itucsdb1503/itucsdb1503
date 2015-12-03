@@ -95,17 +95,17 @@
        	<th class=listTeams style="width: 18%"> Name </th>
        	<th class=listTeams style="width: 5%"> Country </th>
        	<th class=listTeams style="width: 10%"> Constructor </th>
-       	<th class=listTeams style="width: 18%"> Motorcycle </th>
+       	<th class=listTeams style="width: 15%"> Motorcycle </th>
        	<th class=listTeams style="width: 12%"> Number Of Riders </th>
     </tr>
        	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
        	<tr class=listTeams>
        		<td class=listTeams style="width: 5%">{{id}} </td>
        		<td class=listTeams style="width: 18%">{{name}} </td>
-       		<td class=listTeams style="width: 12%"> {{country}} </td>
+       		<td class=listTeams style="width: 5%"> {{country}} </td>
        		<td class=listTeams style="width: 10%"> {{constructor}} </td>
-       		<td class=listTeams style="width: 18%"> {{motorcycle}} </td>
-       		<td class=listTeams style="width: 5%"> {{riderNo}}</td>
+       		<td class=listTeams style="width: 15%"> {{motorcycle}} </td>
+       		<td class=listTeams style="width: 12%"> {{riderNo}}</td>
        	</tr class=listTeams>
        	{%endfor%}
     </table>
