@@ -97,13 +97,13 @@ class yearstatsClass:
             else:
                 query = """SELECT * FROM YEARSTATS WHERE YEAR = %s AND POSITION = %s ORDER BY NUM ASC""" % (year,position)
             cursor.execute(query)
-            riders = cursor.fetchall()
-        return (riders)
+            stats = cursor.fetchall()
+        return (stats)
 
     def search_stats_by_rider(self, statid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """SELECT * FROM YEARSTATS WHERE STATID = '%s' ORDER BY NUM ASC""" % (statid)
             cursor.execute(query)
-            riders = cursor.fetchall()
-        return (riders)
+            stats = cursor.fetchall()
+        return (stats)

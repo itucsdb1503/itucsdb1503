@@ -1,0 +1,195 @@
+{% extends "template.html" %}
+{% block title %}Rider Details{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+
+	<script type="text/javascript">
+ 		function show(id) {
+    		var e = document.getElementById(id);
+   			e.style.display = 'block';
+ 		}
+ 		function hide(id) {
+    		var e = document.getElementById(id);
+    		e.style.display = 'none';
+ 		}
+	</script>
+
+	<div style="float:left; width:30%;">
+	<table class="riderssel">
+	<tr>
+	<th class="riderssel"><a href="javascript:show('adddefault'); javascript:hide('updatebyrider'); javascript:hide('searchdefault'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+        Add
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('adddefault'); javascript:show('updatebyrider'); javascript:hide('searchdefault'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+        Update
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebyrider'); javascript:show('searchdefault'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+        Search
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebyrider'); javascript:hide('searchdefault'); javascript:show('delbynum'); javascript:show('delbyrider')">
+        Delete
+    </a></th>
+    </tr>
+    </table>
+    <br>
+		<form id="adddefault" action="{{ url_for('personal') }}" method="post">
+       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
+					<select name="persid" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Birthday:</th><td><input type="text" placeholder="YYYY-MM-DD" name="birth"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Weight:</th><td><input type="text" placeholder="Enter Number..." name="height"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Height:</th><td><input type="text" placeholder="Enter Number..." name="weight"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Favorite Circuit:</th><td><input type="text" placeholder="Enter Text..." name="favcir"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Website Link:</th><td><input type="text" placeholder="Enter Link..." name="website"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Facebook Page:</th><td><input type="text" placeholder="Enter Username..." name="faceb"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Twitter:</th><td><input type="text" placeholder="Enter Username..." name="twit"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Instagram:</th><td><input type="text" placeholder="Enter Username..." name="insta"/></td>
+			</tr>
+			</table>
+		<br>
+		<input class="riders" value="Add Detail" name="adddefault" type="submit"/>
+	</form>
+	<form id="updatebyrider" action="{{ url_for('personal') }}" method="post">
+	       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
+					<select name="persid" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Birthday:</th><td><input type="text" placeholder="YYYY-MM-DD" name="birth"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Weight:</th><td><input type="text" placeholder="Enter Number..." name="height"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Height:</th><td><input type="text" placeholder="Enter Number..." name="weight"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Favorite Circuit:</th><td><input type="text" placeholder="Enter Text..." name="favcir"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Website Link:</th><td><input type="text" placeholder="Enter Link..." name="website"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Facebook Page:</th><td><input type="text" placeholder="Enter Username..." name="faceb"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Twitter:</th><td><input type="text" placeholder="Enter Username..." name="twit"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Instagram:</th><td><input type="text" placeholder="Enter Username..." name="insta"/></td>
+			</tr>
+			</table>
+		<br>
+		<input class="riders" value="Update Detail" name="updatebyrider" type="submit"/>
+	</form>
+	<form id="searchdefault" action="{{ url_for('personal') }}" method="post">
+       	<table class="ridersdel" style="height:200px">
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
+					<select name="persid" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Search Detail" name="searchdefault" type="submit"/>
+	</form>
+	<form id="delbyrider" action="{{ url_for('personal') }}" method="post">
+		<table class="ridersdel">
+			<tr class="riders">
+				<th class="riders">Rider Index:</th><td>
+					<select name="persid" class="drop">
+						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
+					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Detail" name="delbyrider" type="submit"/>
+	</form>
+	<br>
+	<form id="delbynum" action="{{ url_for('personal') }}" method="post">
+		<table class="ridersdel">
+			<tr class="riders">
+				<th class="riders">Info Index: </th>
+				<td><input type="text" placeholder="Enter Number..." name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Detail" name="delbynum" type="submit"/>
+	</form>
+		<!-- TODO: All operation forms here (div by div) -->
+	</div>
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 5%"> Info Index </th>
+        	<th class="riderslist" style="width: 5%"> Rider Index</th>
+        	<th class="riderslist" style="width: 9%"> Birthday </th>
+        	<th class="riderslist" style="width: 9%"> Weight </th>
+        	<th class="riderslist" style="width: 9%"> Height </th>
+        	<th class="riderslist" style="width: 9%"> Favorite Circuit </th>
+        	<th class="riderslist" style="width: 9%"> Website </th>
+        	<th class="riderslist" style="width: 9%"> Facebook </th>
+        	<th class="riderslist" style="width: 9%"> Twitter </th>
+        	<th class="riderslist" style="width: 9%"> Instagram </th>
+        	<th class="riderslist" style="width: 9%"> Number of Fans </th>
+        	<th class="riderslist" style="width: 9%">  </th>
+		</tr>
+		{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in result %}
+        <tr>
+	        <td class="riderslist" style="width: 5%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 5%"> {{PERSID}} </td>
+	        <td class="riderslist" style="width: 9%"> {{BIRTH}} </td>
+	        <td class="riderslist" style="width: 9%"> {{WEIGHT}} </td>
+	        <td class="riderslist" style="width: 9%"> {{HEIGHT}} </td>
+	        <td class="riderslist" style="width: 9%"> {{FAVCIR}} </td>
+	        <td class="riderslist" style="width: 9%"><a href="http://{{WEBSITE}}">Official Website</a></td>
+	        <td class="riderslist" style="width: 9%"><a href="https://www.facebook.com/{{FACEB}}">Facebook</a></td>
+	        <td class="riderslist" style="width: 9%"><a href="https://twitter.com/{{TWIT}}">Twitter</td>
+	        <td class="riderslist" style="width: 9%"><a href="https://www.instagram.com/{{INSTA}}">Instagram</td>
+	        <td class="riderslist" style="width: 9%"> {{FANS}} </td>
+        	<td class="riderslist" style="width: 9%"> Become a Fan </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	</div>
+
+{% endblock %}

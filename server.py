@@ -12,6 +12,7 @@ from flask import redirect
 
 from riders import ridersClass
 from stats import yearstatsClass
+from personal import personalClass
 from teams import Teams
 from countries import Countries
 from circuits import Circuit
@@ -100,22 +101,24 @@ def countriesPage():
         continent = request.form['continent']
         return page.searchCountry(name, abbreviation, continent)
 
-@app.route('/rsreset', methods=['GET','POST'])
-def rsreset():
+@app.route('/reset', methods=['GET','POST'])
+def reset():
     with dbapi2.connect(app.config['dsn']) as connection:
+            cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS PERSONAL"""
+            cursor.execute(query)
             cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS YEARSTATS"""
             cursor.execute(query)
             cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS RIDERS"""
             cursor.execute(query)
-            cursor = connection.cursor()
-            query = """DROP TABLE IF EXISTS STATS"""
-            cursor.execute(query)
     riders = ridersClass(dsn = app.config['dsn'])
     riders.fill()
     stats = yearstatsClass(dsn = app.config['dsn'])
     stats.fill()
+    personal = personalClass(dsn = app.config['dsn'])
+    personal.fill()
     return redirect(url_for('home_page'))
 
 @app.route('/riders', methods=['GET','POST'])
@@ -353,6 +356,47 @@ def sdelete():
         result.del_stats_by_num(NUM)
     return render_template('/riders/stats/delete.html', result=result.load_stats(),riders=riders.load_riders(), current_time=now.ctime())
 
+@app.route('/riders/personal', methods=['GET','POST'])
+def personal():
+    riders = ridersClass(dsn = app.config['dsn'])
+    result = personalClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'adddefault' in request.form:
+        BIRTH = request.form['name']
+        WEIGHT = request.form['weight']
+        HEIGHT = request.form['height']
+        FAVCIR = request.form['favcir']
+        WEBSITE = request.form['website']
+        FACEB = request.form['faceb']
+        TWIT = request.form['twit']
+        INSTA = request.form['insta']
+        PERSID = request.form['persid']
+        result.add_personal_default(BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, PERSID)
+    elif 'updatebyrider' in request.form:
+        BIRTH = request.form['name']
+        WEIGHT = request.form['weight']
+        HEIGHT = request.form['height']
+        FAVCIR = request.form['favcir']
+        WEBSITE = request.form['website']
+        FACEB = request.form['faceb']
+        TWIT = request.form['twit']
+        INSTA = request.form['insta']
+        PERSID = request.form['persid']
+        result.update_personal_by_rider(BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID)
+    elif 'searchdefault' in request.form:
+        PERSID = request.form['persid']
+        return render_template('/riders/personal.html', result=result.search_personal_default(PERSID), current_time=now.ctime())
+    elif 'delbyrider' in request.form:
+        PERSID = request.form['persid']
+        result.del_personal_by_rider(PERSID)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_personal_by_num(NUM)
+    elif 'incfans' in request.form:
+        NUM = request.form['num']
+        result.inc_fans(NUM)
+    return render_template('/riders/personal.html', result=result.load_personal(),riders=riders.load_riders(), current_time=now.ctime())
+
 @app.route('/circuits', methods=['GET', 'POST'])
 def circuits_page():
     page = Circuit(dsn = app.config['dsn'])
@@ -430,7 +474,7 @@ def brandsPage():
     page = Brand(dsn = app.config['dsn'])
     if request.method == 'GET':
         return page.list()
-    
+
     elif 'addBrand' in request.form:
         name = request.form['name']
         country = request.form['country']
