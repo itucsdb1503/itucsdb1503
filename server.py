@@ -398,9 +398,6 @@ def personal():
     elif 'delbynum' in request.form:
         NUM = request.form['num']
         result.del_personal_by_num(NUM)
-    elif 'incfans' in request.form:
-        NUM = request.form['num']
-        return render_template('/riders/addfan.html', riders=riders.load_riders(), personal=personal.search_personal_by_num(NUM), current_time=now.ctime())
     return render_template('/riders/personal.html', result=result.load_personal(),riders=riders.load_riders(), current_time=now.ctime())
 
 @app.route('/riders/fans', methods=['GET','POST'])
@@ -409,7 +406,14 @@ def fans():
     personal = personalClass(dsn = app.config['dsn'])
     result = fansClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
-    if 'updatebymail' in request.form:
+    if 'adddefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        MAIL = request.form['mail']
+        BIRTH = request.form['birth']
+        FANSID = request.form['fansid']
+        result.add_fans_default(NAME, SURNAME, MAIL, BIRTH, FANSID)
+    elif 'updatebymail' in request.form:
         CMAIL = request.form['cmail']
         NAME = request.form['name']
         SURNAME = request.form['surname']

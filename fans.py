@@ -18,7 +18,7 @@ class fansClass:
                         SURNAME TEXT NOT NULL,
                         MAIL TEXT NOT NULL,
                         BIRTH DATE NULL,
-                        FANSID serial UNIQUE REFERENCES PERSONAL(NUM)
+                        FANSID integer UNIQUE REFERENCES PERSONAL(NUM)
                         )"""    #NUM is index
             cursor.execute(query)
         return
@@ -38,6 +38,7 @@ class fansClass:
             query = """INSERT INTO FANS (NAME, SURNAME, MAIL, BIRTH, FANSID)    VALUES
                         ( '%s', '%s', '%s', '%s', '%s')""" % (name, surname, mail, birth, fansid)
             cursor.execute(query)
+            connection.commit()
             cursor = connection.cursor()
             query = "UPDATE PERSONAL SET FANS = FANS + 1 WHERE NUM = '%s'" % (fansid)
             cursor.execute(query)
@@ -49,7 +50,7 @@ class fansClass:
             cursor = connection.cursor()
             query = """UPDATE  FANS
                         SET NAME = '%s', SURNAME = '%s', MAIL = '%s', BIRTH = '%s'
-                        WHERE MAIL = '%s' """ % (name, surname, mail, birth, cmail)
+                        WHERE MAIL LIKE '%s' """ % (name, surname, mail, birth, ('%'+cmail+'%'))
             cursor.execute(query)
             connection.commit()
         return
@@ -67,8 +68,12 @@ class fansClass:
     def search_fans_default(self, name, surname, mail, fansid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
-            query = """SELECT * FROM FANS WHERE NAME LIKE '%s' AND SURNAME LIKE '%s' AND MAIL LIKE '%s' AND FANSID LIKE '%s'
-            ORDER BY NUM ASC""" % (('%'+name+'%'),('%'+surname+'%'),('%'+mail+'%'),('%'+fansid+'%'))
+            if not fansid :
+                query = """SELECT * FROM FANS WHERE NAME LIKE '%s' AND SURNAME LIKE '%s' AND MAIL LIKE '%s'
+                ORDER BY NUM ASC""" % (('%'+name+'%'),('%'+surname+'%'),('%'+mail+'%'))
+            else:
+                query = """SELECT * FROM FANS WHERE NAME LIKE '%s' AND SURNAME LIKE '%s' AND MAIL LIKE '%s' AND FANSID = '%s'
+                ORDER BY NUM ASC""" % (('%'+name+'%'),('%'+surname+'%'),('%'+mail+'%'),fansid)
             cursor.execute(query)
             fans = cursor.fetchall()
         return (fans)

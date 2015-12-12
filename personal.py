@@ -74,16 +74,6 @@ class personalClass:
             detail = cursor.fetchall()
         return (detail)
     
-    
-    def search_personal_by_num(self, num):
-        with dbapi2.connect(self.dsn) as connection:
-            cursor = connection.cursor()
-            query = """SELECT * FROM PERSONAL WHERE NUM = '%s' ORDER BY FANS DESC""" % (num)
-            cursor.execute(query)
-            detail = cursor.fetchall()
-        return (detail)
-
-
     def del_personal_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
