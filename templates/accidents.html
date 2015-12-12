@@ -1,0 +1,114 @@
+{% extends "template.html" %}
+{% block title %}Accidents{% endblock %}
+{% block css %}accidents.css{% endblock %}
+{% block content %}
+<h1>Accidents</h1>
+
+        <table class="Accidents">
+        <tr>
+        	<th class="Accidents"> ID </th>
+        	<th class="Accidents"> RIDER'S NAME </th>
+        	<th class="Accidents"> RIDER'S SURNAME </th>
+        	<th class="Accidents"> RACE ID </th>
+        	<th class="Accidents"> IS IT FATAL </th>
+        </tr>
+        	{% for id, rider_name, rider_surname, race_id, is_fatal in Accident %}
+        	<tr>
+        		<td class="Accidents"> {{id}} </td>
+        		<td class="Accidents"> {{rider_name}} </td>
+        		<td class="Accidents"> {{rider_surname}} </td>
+        		<td class="Accidents"> {{race_id}} </td>
+        		<td class="Accidents"> {{is_fatal}} </td>
+        		</tr>
+        	{%endfor%}
+        </table>
+ <form id="updateAccident" class= "ope" action="{{ url_for('Accidents_page') }}" method="post">
+        	<table>
+        	<tr>
+				<th class= "ope">ID of the Accident you want to update: </th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+			</tr>
+        	<tr>
+				<th class= "ope">Rider's Name: </th>
+				<td>
+					<input type="text" name="rider_name"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Rider's Surname:</th>
+				<td>
+					<input type="text" name="rider_surname"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Race ID (please enter already existing race id (foreign key):</th>
+				<td>
+					<input type="text" name="race_id"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Is It Fatal:</th>
+				<td>
+					<input type="text" name="is_fatal"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Update Accident" name="updateAccident" type="submit"/>
+	</form>
+        <form id="addAccident" class= "ope" action="{{ url_for('Accidents_page') }}" method="post">
+        	<table>
+        	<tr>
+				<th class= "ope">Rider's Name: </th>
+				<td>
+					<input type="text" name="rider_name"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Rider's Surname:</th>
+				<td>
+					<input type="text" name="rider_surname"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Race ID (please enter already existing race id (foreign key):</th>
+				<td>
+					<input type="text" name="race_id"/>
+				</td>
+			</tr>
+			<tr>
+				<th class= "ope">Is It Fatal:</th>
+				<td>
+					<input type="text" name="is_fatal"/>
+				</td>
+			</tr>
+			</table>
+		<input value="Add Accident" name="addAccident" type="submit"/>
+	</form>
+	<form id="searchAccident" class= "ope" action="{{ url_for('Accidents_page') }}" method="post">
+	<table>
+		<tr>
+				<th class= "ope">Rider Name to Search Accidents (Please just press 'Search Accident' without typing for listing all...'):</th>
+				<td>
+					<input type="text" name="name"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Search Accident" name="searchAccident" type="submit"/>
+	</form>
+
+	<form id="deleteAccident" class= "ope" action="{{ url_for('Accidents_page') }}" method="post">
+	<table>
+		<tr>
+				<th class= "ope">ID:</th>
+				<td>
+					<input type="text" name="id"/>
+				</td>
+		</tr>
+	</table>
+		<input value="Delete Accident" name="deleteAccidentwithid" type="submit"/>
+	</form>
+
+
+{% endblock %}
