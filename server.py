@@ -13,6 +13,7 @@ from flask import redirect
 from riders import ridersClass
 from stats import yearstatsClass
 from personal import personalClass
+from fans import fansClass
 from teams import Teams
 from countries import Countries
 from circuits import Circuit
@@ -105,6 +106,9 @@ def countriesPage():
 def reset():
     with dbapi2.connect(app.config['dsn']) as connection:
             cursor = connection.cursor()
+            query = """DROP TABLE IF EXISTS FANS"""
+            cursor.execute(query)
+            cursor = connection.cursor()
             query = """DROP TABLE IF EXISTS PERSONAL"""
             cursor.execute(query)
             cursor = connection.cursor()
@@ -119,6 +123,7 @@ def reset():
     stats.fill()
     personal = personalClass(dsn = app.config['dsn'])
     personal.fill()
+    fans = fansClass(dsn = app.config['dsn'])
     return redirect(url_for('home_page'))
 
 @app.route('/riders', methods=['GET','POST'])
@@ -362,7 +367,7 @@ def personal():
     result = personalClass(dsn = app.config['dsn'])
     now = datetime.datetime.now()
     if 'adddefault' in request.form:
-        BIRTH = request.form['name']
+        BIRTH = request.form['birth']
         WEIGHT = request.form['weight']
         HEIGHT = request.form['height']
         FAVCIR = request.form['favcir']
@@ -373,7 +378,7 @@ def personal():
         PERSID = request.form['persid']
         result.add_personal_default(BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, PERSID)
     elif 'updatebyrider' in request.form:
-        BIRTH = request.form['name']
+        BIRTH = request.form['birth']
         WEIGHT = request.form['weight']
         HEIGHT = request.form['height']
         FAVCIR = request.form['favcir']
@@ -385,7 +390,7 @@ def personal():
         result.update_personal_by_rider(BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID)
     elif 'searchdefault' in request.form:
         PERSID = request.form['persid']
-        return render_template('/riders/personal.html', result=result.search_personal_default(PERSID), current_time=now.ctime())
+        return render_template('/riders/personal.html', result=result.search_personal_default(PERSID),riders=riders.load_riders(), current_time=now.ctime())
     elif 'delbyrider' in request.form:
         PERSID = request.form['persid']
         result.del_personal_by_rider(PERSID)
@@ -394,8 +399,58 @@ def personal():
         result.del_personal_by_num(NUM)
     elif 'incfans' in request.form:
         NUM = request.form['num']
-        result.inc_fans(NUM)
+        return render_template('/riders/addfan.html', riders=riders.load_riders(), personal=personal.search_personal_by_num(NUM), current_time=now.ctime())
     return render_template('/riders/personal.html', result=result.load_personal(),riders=riders.load_riders(), current_time=now.ctime())
+
+@app.route('/riders/fans', methods=['GET','POST'])
+def fans():
+    riders = ridersClass(dsn = app.config['dsn'])
+    personal = personalClass(dsn = app.config['dsn'])
+    result = fansClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'updatebymail' in request.form:
+        CMAIL = request.form['cmail']
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        MAIL = request.form['mail']
+        BIRTH = request.form['birth']
+        result.update_fans_by_mail(NAME, SURNAME, MAIL, BIRTH, CMAIL)
+    elif 'updatebynum' in request.form:
+        NUM = request.form['num']
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        MAIL = request.form['mail']
+        BIRTH = request.form['birth']
+        FANSID = request.form['fansid']
+        result.update_fans_by_rider(NUM, NAME, SURNAME, MAIL, BIRTH, FANSID)
+    elif 'searchdefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['name']
+        MAIL = request.form['mail']
+        FANSID = request.form['fansid']
+        return render_template('/riders/fans.html', result=result.search_fans_default(NAME, SURNAME, MAIL, FANSID),riders=riders.load_riders(), personal=personal.load_personal(), current_time=now.ctime())
+    elif 'delbymail' in request.form:
+        MAIL = request.form['mail']
+        result.del_fans_by_mail(MAIL)
+    elif 'delbynum' in request.form:
+        NUM = request.form['num']
+        result.del_fans_by_num(NUM)
+    return render_template('/riders/fans.html', result=result.load_fans(),riders=riders.load_riders(), personal=personal.load_personal(), current_time=now.ctime())
+
+@app.route('/riders/fans/add', methods=['GET','POST'])
+def fadd():
+    riders = ridersClass(dsn = app.config['dsn'])
+    personal = personalClass(dsn = app.config['dsn'])
+    result = fansClass(dsn = app.config['dsn'])
+    now = datetime.datetime.now()
+    if 'adddefault' in request.form:
+        NAME = request.form['name']
+        SURNAME = request.form['surname']
+        MAIL = request.form['mail']
+        BIRTH = request.form['birth']
+        FANSID = request.form['fansid']
+        result.add_fans_default(NAME, SURNAME, MAIL, BIRTH, FANSID)
+    return render_template('/riders/addfan.html', riders=riders.load_riders(), personal=personal.load_personal(), current_time=now.ctime())
 
 @app.route('/circuits', methods=['GET', 'POST'])
 def circuits_page():

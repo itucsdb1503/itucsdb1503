@@ -1,0 +1,179 @@
+{% extends "template.html" %}
+{% block title %}Rider Fans{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+
+	<script type="text/javascript">
+ 		function show(id) {
+    		var e = document.getElementById(id);
+   			e.style.display = 'block';
+ 		}
+ 		function hide(id) {
+    		var e = document.getElementById(id);
+    		e.style.display = 'none';
+ 		}
+	</script>
+
+	<div style="float:left; width:30%;">
+	<table class="riderssel">
+	<tr>
+    <th class="riderssel"><a href="javascript:show('updatebymail');javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:hide('delbymail'); javascript:hide('delbynum')">
+        Update Mail
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('updatebymail');javascript:show('updatebynum'); javascript:hide('searchdefault'); javascript:hide('delbymail'); javascript:hide('delbynum')">
+        Update Entry
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('updatebymail');javascript:hide('updatebynum'); javascript:show('searchdefault'); javascript:hide('delbymail'); javascript:hide('delbynum')">
+        Search
+    </a></th>
+    <th class="riderssel"><a href="javascript:hide('updatebymail');javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:show('delbymail'); javascript:show('delbynum')">
+        Delete
+    </a></th>
+    </tr>
+    </table>
+    <br>
+		
+	<form id="updatebymail" action="{{ url_for('fans') }}" method="post">
+	       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Current Mail: </th>
+				<td><input type="text" placeholder="Enter Text..." name="cmail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Name: </th>
+				<td><input type="text" placeholder="Enter Text..." name="name"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Surname: </th>
+				<td><input type="text" placeholder="Enter Text..." name="surname"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Birthday: </th>
+				<td><input type="text" placeholder="YYYY-MM-DD" name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">New Mail: </th>
+				<td><input type="text" placeholder="Enter Text..." name="mail"/></td>
+			</tr>
+			</table>
+		<br>
+		<input class="riders" value="Update Fan" name="updatebymail" type="submit"/>
+	</form>
+		<form id="updatebynum" action="{{ url_for('fans') }}" method="post">
+	       	<table class="riders">
+			<tr class="riders">
+				<th class="riders">Fan Index:</th><td>
+					<select name="num" class="drop">
+						{% for NUM, NAME, SURNAME, MAIL, BIRTH, FANSID in result %}
+					        <option value="{{NUM}}">{{NUM}}-{{NAME}} {{SURNAME}} {{FANSID}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Name: </th>
+				<td><input type="text" placeholder="Enter Text..." name="name"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Surname: </th>
+				<td><input type="text" placeholder="Enter Text..." name="surname"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Birthday: </th>
+				<td><input type="text" placeholder="YYYY-MM-DD" name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Mail Address: </th>
+				<td><input type="text" placeholder="Enter Text..." name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Detail Index:</th><td>
+					<select name="fansid" class="drop">
+						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in personal %}
+					        <option value="{{NUM}}">{{NUM}} - @{{TWIT}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+			</table>
+		<br>
+		<input class="riders" value="Update Fan" name="updatebynum" type="submit"/>
+	</form>
+	<form id="searchdefault" action="{{ url_for('fans') }}" method="post">
+       	<table class="ridersdel" style="height:400px">
+			<tr class="riders">
+				<th class="riders">Name: </th>
+				<td><input type="text" placeholder="Enter Text..." name="name"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Surname: </th>
+				<td><input type="text" placeholder="Enter Text..." name="surname"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Mail Address: </th>
+				<td><input type="text" placeholder="Enter Text..." name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Detail Index:</th><td>
+					<select name="fansid" class="drop">
+							<option value=""></option>
+						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in personal %}
+					        <option value="{{NUM}}">{{NUM}} - @{{TWIT}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Search Detail" name="searchdefault" type="submit"/>
+	</form>
+	<form id="delbymail" action="{{ url_for('fans') }}" method="post">
+		<table class="ridersdel">
+			<tr class="riders">
+				<th class="riders">Mail Address: </th>
+				<td><input type="text" placeholder="Enter Number..." name="mail"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Fan" name="delbymail" type="submit"/>
+	</form>
+	<br>
+	<form id="delbynum" action="{{ url_for('fans') }}" method="post">
+		<table class="ridersdel">
+			<tr class="riders">
+				<th class="riders">Fan Index: </th>
+				<td><input type="text" placeholder="Enter Number..." name="num"/></td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Delete Fan" name="delbynum" type="submit"/>
+	</form>
+	</div>
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 5%"> Fan Index </th>
+        	<th class="riderslist" style="width: 5%"> Detail Index</th>
+        	<th class="riderslist" style="width: 20%"> Name </th>
+        	<th class="riderslist" style="width: 20%"> Surname </th>
+        	<th class="riderslist" style="width: 20%"> Birthday </th>
+        	<th class="riderslist" style="width: 30%"> Mail Adress </th>
+		</tr>
+		{% for NUM, NAME, SURNAME, MAIL, BIRTH, FANSID in result %}
+        <tr>
+	        <td class="riderslist" style="width: 5%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 5%"> {{FANSID}} </td>
+	        <td class="riderslist" style="width: 20%"> {{NAME}} </td>
+	        <td class="riderslist" style="width: 20%"> {{SURNAME}} </td>
+	        <td class="riderslist" style="width: 20%"> {{BIRTH}} </td>
+	        <td class="riderslist" style="width: 30%"> {{MAIL}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	</div>
+
+{% endblock %}

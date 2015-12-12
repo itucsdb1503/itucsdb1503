@@ -1,0 +1,41 @@
+{% extends "template.html" %}
+{% block title %}Add Fan{% endblock %}
+{% block css %}riders.css{% endblock %}
+{% block riders %}active{% endblock %}
+{% block content %}
+
+<div style="width:30%; margin: 0 auto;">
+	<form id="adddefault" action="{{ url_for('fans') }}" method="post">
+		<table class="riders" style="height: 400px;">
+			<tr class="riders">
+				<th class="riders">Name: </th>
+				<td><input type="text" placeholder="Enter Text..." name="name"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Surname: </th>
+				<td><input type="text" placeholder="Enter Text..." name="surname"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Birthday: </th>
+				<td><input type="text" placeholder="YYYY-MM-DD" name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Mail Address: </th>
+				<td><input type="text" placeholder="Enter Text..." name="mail"/></td>
+			</tr>
+			<tr class="riders">
+				<th class="riders">Detail Index:</th><td>
+					<select name="fansid" class="drop">
+						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in personal %}
+					        <option value="{{NUM}}">{{NUM}} - @{{TWIT}}</option>
+						{% endfor %}
+				    </select>
+				</td>
+			</tr>
+		</table>
+		<br>
+		<input class="riders" value="Add Fan" name="adddefault" type="submit"/>
+	</form>
+</div>
+
+{% endblock %}

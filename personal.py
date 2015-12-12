@@ -10,7 +10,7 @@ class personalClass:
         return
 
     def init(self):
-        with dbapi2.connect(self.dsn) as connection:    #####TODO: Prevent same STATID tuples to have same YEAR!!!!!!!!!!!!!!
+        with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
             query = """CREATE TABLE IF NOT EXISTS PERSONAL (
                         NUM serial PRIMARY KEY,
@@ -73,6 +73,16 @@ class personalClass:
             cursor.execute(query)
             detail = cursor.fetchall()
         return (detail)
+    
+    
+    def search_personal_by_num(self, num):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            query = """SELECT * FROM PERSONAL WHERE NUM = '%s' ORDER BY FANS DESC""" % (num)
+            cursor.execute(query)
+            detail = cursor.fetchall()
+        return (detail)
+
 
     def del_personal_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
