@@ -41,13 +41,17 @@ th.blank {
 td{
 	width: 10%;
 }
+h1 {
+	color: #000000;
+}
 
-h1, h3, h4 {
- color: #4E69A2;
+h3, h4 {
+    font-size: 1em;
+ 	color: #8c8c8c;
 }
 
 h2{
- color: #AD12B6;
+ 	color: #5a5b5c;
 }
 
 a:link {
