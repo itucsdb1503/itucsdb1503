@@ -20,6 +20,7 @@ from circuits import Circuit
 from races import Race
 from brands import Brand
 from models import Model
+from accidents import Accidents
 app = Flask(__name__)
 
 
@@ -519,6 +520,32 @@ def races_page():
     elif 'searchrace' in request.form:
         page.search_name = request.form['name']
         return page.search_race(page.search_name)
+    else:
+        return redirect(url_for('home_page'))
+@app.route('/accidents', methods=['GET', 'POST'])
+def Accidents_page():
+    page = Accidents(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.list_page()
+    elif 'deleteAccidentwithid' in request.form:
+        id = request.form['id']
+        return page.delete_Accident_with_id(id)
+    elif 'updateAccident' in request.form:
+        id = request.form['id']
+        rider_name = request.form['rider_name']
+        rider_surname = request.form['rider_surname']
+        race_id  = request.form['race_id']
+        is_fatal = request.form['is_fatal']
+        return page.update_Accident(rider_name, rider_surname, race_id, is_fatal, id)
+    elif 'addAccident' in request.form:
+        rider_name = request.form['rider_name']
+        rider_surname = request.form['rider_surname']
+        race_id  = request.form['race_id']
+        is_fatal = request.form['is_fatal']
+        return page.add_Accident(rider_name, rider_surname, race_id, is_fatal)
+    elif 'searchAccident' in request.form:
+        page.search_rider_name = request.form['name']
+        return page.search_Accident(page.search_rider_name)
     else:
         return redirect(url_for('home_page'))
 
