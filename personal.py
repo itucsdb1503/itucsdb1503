@@ -33,8 +33,8 @@ class personalClass:
             cursor = connection.cursor()
             query = """INSERT INTO PERSONAL (BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID)
                         VALUES
-                        ('1979-02-16', 65, 182, 'FRA', 'www.valentinorossi.com', 'ValentinoRossiVR46Official', 'ValeYellow46', 'valeyellow46', 304043, 1),
-                        ('1985-09-29', 51, 160, 'ITA', 'www.danipedrosa.com', 'DaniPedrosaOfficial', '26_DaniPedrosa', '26_danipedrosa', 134788, 2)"""
+                        ('1979-02-16', 65, 182, 'FRA', 'www.valentinorossi.com', 'ValentinoRossiVR46Official', 'ValeYellow46', 'valeyellow46', 0, 1),
+                        ('1985-09-29', 51, 160, 'ITA', 'www.danipedrosa.com', 'DaniPedrosaOfficial', '26_DaniPedrosa', '26_danipedrosa', 0, 2)"""
             cursor.execute(query)
         return
 
