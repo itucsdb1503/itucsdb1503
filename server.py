@@ -587,7 +587,7 @@ def brandsPage():
     else:
         return redirect(url_for('home_page'))
 
-@app.route('/brands/models', methods=['GET', 'POST'])
+@app.route('/models', methods=['GET', 'POST'])
 def modelsPage():
     page = Model(dsn = app.config['dsn'])
     if request.method == 'GET':
