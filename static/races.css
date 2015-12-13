@@ -1,7 +1,7 @@
 table.races{
 	text-align: center;
 	vertical-align: center;
-	width: 75%;
+	width: 90%;
 	border: 3px solid #015873;
 	border-radius:3px;
 	background-color: #b2b2b2
@@ -12,13 +12,13 @@ th.races {
 	vertical-align: center;
 	background-color: #015873;
 	color: black;
-	width: 75%;
+	width: 65%;
 }
 th.ope{
 	text-align: center;
 	vertical-align: center;
 	color: #b2b2b2;
-	width: 75%;
+	width: 65%;
 
 }
 form.ope{
@@ -26,5 +26,5 @@ form.ope{
 	vertical-align: center;
 	color: black;
 	background-color: #b2b2b2;
-	width: 75%;
+	width: 65%;
 }
