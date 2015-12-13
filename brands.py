@@ -76,7 +76,7 @@ class Brand:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """DROP TABLE IF EXISTS brands"""
+            query = """DROP TABLE IF EXISTS brands CASCADE"""
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('brandsPage'))
@@ -85,7 +85,7 @@ class Brand:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
              
-            query = """DROP TABLE IF EXISTS brands"""
+            query = """DROP TABLE IF EXISTS brands CASCADE"""
             cursor.execute(query)
             
             query1 = """CREATE TABLE IF NOT EXISTS brands (
@@ -99,11 +99,15 @@ class Brand:
             query2 = """INSERT INTO brands (name, country, year, champion)
                         VALUES
                         ('Honda', 'Japan', 1948, 21),
-                        ('Yamaha', 'Japan', 1955, 14),
                         ('MV Agusta', 'Italy', 1945, 16),
+                        ('Yamaha', 'Japan', 1955, 14),
+                        ('Suzuki', 'Japan', 1909, 7),
+                        ('Gilera', 'Italy', 1909, 4),
+                        ('Norton', 'United Kingdom', 1898, 2),
+                        ('Ducati', 'Italy', 1926, 1),
+                        ('AJS', 'United Kingdom', 1909, 1),
                         ('Aprilia', 'Italy', 1945, 0),
-                        ('BMW', 'Germany', 1916, 0),
-                        ('Suzuki', 'Japan', 1909, 7)"""
+                        ('BMW', 'Germany', 1916, 0)"""
             cursor.execute(query2)
             connection.commit()
         return redirect(url_for('brandsPage'))

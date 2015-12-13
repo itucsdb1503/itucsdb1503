@@ -582,12 +582,12 @@ def brandsPage():
         return page.update(ID, name, country, year, champion)
     elif 'deleteAllBrands' in request.form:
         return page.deleteAll()
-    elif 'AutoFill' in request.form:
+    elif 'AutoFillBrands' in request.form:
         return page.autoFill()
     else:
         return redirect(url_for('home_page'))
 
-@app.route('/brands/models', methods=['GET', 'POST'])
+@app.route('/models', methods=['GET', 'POST'])
 def modelsPage():
     page = Model(dsn = app.config['dsn'])
     if request.method == 'GET':
@@ -595,8 +595,9 @@ def modelsPage():
 
     elif 'addModel' in request.form:
         name = request.form['name']
+        rider = request.form['rider']
         constructor = request.form['constructor']
-        return page.addModel(name, constructor)
+        return page.addModel(name, rider, constructor)
     elif 'dbynameModel' in request.form:
         name = request.form['name']
         return page.deletebyName(name)
@@ -606,8 +607,13 @@ def modelsPage():
     elif 'updateModel' in request.form:
         ID = request.form['ID']
         name = request.form['name']
+        rider = request.form['rider']
         constructor = request.form['constructor']
-        return page.update(ID,name, constructor)
+        return page.update(ID,name, rider, constructor)
+    elif 'deleteAllModels' in request.form:
+        return page.deleteAll()
+    elif 'AutoFillModels' in request.form:
+        return page.autoFill()
     else:
         return redirect(url_for('home_page'))
 

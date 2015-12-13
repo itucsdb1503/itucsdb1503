@@ -9,12 +9,14 @@
         <tr>
         	<td class="models"> ID </td>
         	<td class="models"> Name </td>
+        	<td class="models"> Rider </td>
         	<td class="models"> Constructor </td>
         </tr>
-        	{% for ID, name, constructor in models %}
+        	{% for ID, name, rider, constructor in models %}
         	<tr>
         		<td class="models"> {{ID}} </td>
         		<td class="models"> {{name}} </td>
+        		<td class="models"> {{rider}} </td>
         		<td class="models"> {{constructor}} </td>
         	</tr>
         	{%endfor%}
@@ -29,6 +31,10 @@
 				<th class= "klas">Name: </th>
 				<td>
 					<input type="text" name="name"/>
+				</td>
+				<th class= "klas">Rider: </th>
+				<td>
+					<input type="text" name="rider"/>
 				</td>
 				<th class= "klas">Constructor :</th>
 				<td>
@@ -83,11 +89,27 @@
 				<td>
 					<input type="text" name="name"/>
 				</td>
+				<th class= "klas">Rider: </th>
+				<td>
+					<input type="text" name="rider"/>
+				</td>
 				<th class= "klas">Constructor :</th>
 				<td>
 					<input type="text" name="constructor"/>
 				</td>
 			</table>
+		</form>
+		
+		<form id="deleteAllModels" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		 <div align="center">
+			<input value="Delete All Models" name="deleteAllModels" type="submit"/>
+		</div>
+		</form>
+		
+		<form id="AutoFillModels" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		 <div align="center">
+			<input value="Auto-fill" name="AutoFillModels" type="submit"/>
+		</div>
 		</form>
 		
 {% endblock %}
