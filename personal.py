@@ -23,7 +23,7 @@ class personalClass:
                         TWIT TEXT,
                         INSTA TEXT,
                         FANS INTEGER DEFAULT 0,
-                        PERSID serial UNIQUE REFERENCES RIDERS(NUM)
+                        PERSID serial UNIQUE REFERENCES RIDERS(NUM) ON DELETE CASCADE ON UPDATE CASCADE
                         )"""    #NUM is index
             cursor.execute(query)
         return

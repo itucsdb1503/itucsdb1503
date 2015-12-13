@@ -23,7 +23,7 @@ class yearstatsClass:
                         POLE integer DEFAULT 0,
                         POINTS integer DEFAULT 0,
                         POSITION integer DEFAULT 0,
-                        STATID serial REFERENCES RIDERS(NUM)
+                        STATID serial REFERENCES RIDERS(NUM) ON DELETE CASCADE ON UPDATE CASCADE
                         )"""    #NUM is index
             cursor.execute(query)
         return

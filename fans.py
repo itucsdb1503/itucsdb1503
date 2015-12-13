@@ -18,7 +18,7 @@ class fansClass:
                         SURNAME TEXT NOT NULL,
                         MAIL TEXT NOT NULL,
                         BIRTH DATE NULL,
-                        FANSID integer UNIQUE REFERENCES PERSONAL(NUM)
+                        FANSID integer UNIQUE REFERENCES PERSONAL(NUM) ON DELETE CASCADE ON UPDATE CASCADE
                         )"""    #NUM is index
             cursor.execute(query)
         return
