@@ -32,8 +32,8 @@ class ridersClass:
             cursor = connection.cursor()
             query = """INSERT INTO RIDERS (NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO)
                         VALUES
-                        ('Valentino', 'Rossi', 36, 'Male', 'Movistar Yamaha MotoGP', 'Yamaha', 'Urbino', 'Italy', 15, 46) ,
-                        ('Dani', 'Pedrosa', 30, 'Male','Repsol Honda Team', 'Honda', 'Sabadel', 'Spain', 9, 26)"""
+                        ('Valentino', 'Rossi', 36, 'Male', 'Movistar Yamaha MotoGP', 'Yamaha', 'YZR-M1', 'Italy', 15, 46) ,
+                        ('Dani', 'Pedrosa', 30, 'Male','Repsol Honda Team', 'Honda', 'RC213V', 'Spain', 9, 26)"""
             cursor.execute(query)
         return
 
