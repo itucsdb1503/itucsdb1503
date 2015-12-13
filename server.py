@@ -20,6 +20,7 @@ from circuits import Circuit
 from races import Race
 from brands import Brand
 from models import Model
+from specifications import Specification
 from accidents import Accidents
 app = Flask(__name__)
 
@@ -613,6 +614,42 @@ def modelsPage():
     elif 'deleteAllModels' in request.form:
         return page.deleteAll()
     elif 'AutoFillModels' in request.form:
+        return page.autoFill()
+    else:
+        return redirect(url_for('home_page'))
+
+@app.route('/models/specifications', methods=['GET', 'POST'])
+def specificationsPage():
+    page = Specification(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        return page.list()
+
+    elif 'addSpecification' in request.form:
+        model = request.form['model']
+        engine = request.form['engine']
+        fuel = request.form['fuel']
+        power = request.form['power']
+        speed = request.form['speed']
+        weight = request.form['weight']
+        return page.addSpecification(model, engine, fuel, power, speed, weight)
+    elif 'dbymodelSpecification' in request.form:
+        model = request.form['model']
+        return page.deletebyModel(model)
+    elif 'dbyidSpecification' in request.form:
+        ID = request.form['ID']
+        return page.deletebyId(ID)
+    elif 'updateSpecification' in request.form:
+        ID = request.form['ID']
+        model = request.form['model']
+        engine = request.form['engine']
+        fuel = request.form['fuel']
+        power = request.form['power']
+        speed = request.form['speed']
+        weight = request.form['weight']
+        return page.update(ID, model, engine, fuel, power, speed, weight)
+    elif 'deleteAllSpecifications' in request.form:
+        return page.deleteAll()
+    elif 'AutoFillSpecifications' in request.form:
         return page.autoFill()
     else:
         return redirect(url_for('home_page'))
