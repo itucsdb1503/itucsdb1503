@@ -12,16 +12,18 @@ th.circuits {
 	vertical-align: center;
 	background-color: #015873;
 	color: black;
+	width: 65%;
 }
 th.op{
 	text-align: center;
 	vertical-align: center;
 	color: #b2b2b2;
-
+	width: 65%;
 }
 form.op{
 	text-align: center;
 	vertical-align: center;
 	color: black;
-	background-color: #b2b2b2
+	background-color: #b2b2b2;
+	width: 65%;
 }
