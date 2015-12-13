@@ -60,10 +60,10 @@
 		<br>
 		<input class="riders" value="Update Fan" name="updatebymail" type="submit"/>
 	</form>
-		<form id="updatebynum" action="{{ url_for('fans') }}" method="post">
+		<form id="updatebynum" action="{{ url_for('fans') }}" method="post" style="display:none;">
 	       	<table class="riders">
 			<tr class="riders">
-				<th class="riders">Fan Index:</th><td>
+				<th class="riders">Current Fan Index:</th><td>
 					<select name="num" class="drop">
 						{% for NUM, NAME, SURNAME, MAIL, BIRTH, FANSID in result %}
 					        <option value="{{NUM}}">{{NUM}}-{{NAME}} {{SURNAME}} {{FANSID}}</option>
@@ -100,24 +100,24 @@
 		<br>
 		<input class="riders" value="Update Fan" name="updatebynum" type="submit"/>
 	</form>
-	<form id="searchdefault" action="{{ url_for('fans') }}" method="post">
+	<form id="searchdefault" action="{{ url_for('fans') }}" method="post" style="display:none;">
        	<table class="ridersdel" style="height:400px">
 			<tr class="riders">
 				<th class="riders">Name: </th>
-				<td><input type="text" placeholder="Enter Text..." name="name"/></td>
+				<td><input type="text" placeholder="Leave blank for any..." name="name"/></td>
 			</tr>
 			<tr class="riders">
 				<th class="riders">Surname: </th>
-				<td><input type="text" placeholder="Enter Text..." name="surname"/></td>
+				<td><input type="text" placeholder="Leave blank for any..." name="surname"/></td>
 			</tr>
 			<tr class="riders">
 				<th class="riders">Mail Address: </th>
-				<td><input type="text" placeholder="Enter Text..." name="mail"/></td>
+				<td><input type="text" placeholder="Leave blank for any..." name="mail"/></td>
 			</tr>
 			<tr class="riders">
 				<th class="riders">Detail Index:</th><td>
 					<select name="fansid" class="drop">
-							<option value=""></option>
+							<option value="">Choose this for any...</option>
 						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in personal %}
 					        <option value="{{NUM}}">{{NUM}} - @{{TWIT}}</option>
 						{% endfor %}
@@ -128,7 +128,7 @@
 		<br>
 		<input class="riders" value="Search Detail" name="searchdefault" type="submit"/>
 	</form>
-	<form id="delbymail" action="{{ url_for('fans') }}" method="post">
+	<form id="delbymail" action="{{ url_for('fans') }}" method="post" style="display:none;">
 		<table class="ridersdel">
 			<tr class="riders">
 				<th class="riders">Mail Address: </th>
@@ -139,7 +139,7 @@
 		<input class="riders" value="Delete Fan" name="delbymail" type="submit"/>
 	</form>
 	<br>
-	<form id="delbynum" action="{{ url_for('fans') }}" method="post">
+	<form id="delbynum" action="{{ url_for('fans') }}" method="post" style="display:none;">
 		<table class="ridersdel">
 			<tr class="riders">
 				<th class="riders">Fan Index: </th>

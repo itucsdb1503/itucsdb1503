@@ -3,38 +3,35 @@
 {% block css %}riders.css{% endblock %}
 {% block riders %}active{% endblock %}
 {% block content %}
-	<table class="riderslist">
+
+	<script type="text/javascript">
+ 		function show(id) {
+    		var e = document.getElementById(id);
+   			e.style.display = 'block';
+ 		}
+ 		function hide(id) {
+    		var e = document.getElementById(id);
+    		e.style.display = 'none';
+ 		}
+	</script>
+	<div style="float:left; width:30%;">
+	<table class="riderssel">
 		<tr>
-        	<th class="riderslist" style="width: 9%"> Stat Index </th>
-        	<th class="riderslist" style="width: 9%"> Rider Index</th>
-        	<th class="riderslist" style="width: 9%"> Year </th>
-        	<th class="riderslist" style="width: 9%"> Completed Races </th>
-        	<th class="riderslist" style="width: 9%"> Victory </th>
-        	<th class="riderslist" style="width: 9%"> Second Position </th>
-        	<th class="riderslist" style="width: 9%"> Third Position </th>
-        	<th class="riderslist" style="width: 9%"> Podium </th>
-        	<th class="riderslist" style="width: 9%"> Pole Position </th>
-        	<th class="riderslist" style="width: 9%"> Points </th>
-        	<th class="riderslist" style="width: 9%"> Season Position </th>
-		</tr>
-		{% for NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID in result %}
-        <tr>
-	        <td class="riderslist" style="width: 9%"> {{NUM}} </td>
-	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
-	        <td class="riderslist" style="width: 9%"> {{YEAR}} </td>
-	        <td class="riderslist" style="width: 9%"> {{RACES}} </td>
-	        <td class="riderslist" style="width: 9%"> {{VICTORY}} </td>
-	        <td class="riderslist" style="width: 9%"> {{SECOND}} </td>
-	        <td class="riderslist" style="width: 9%"> {{THIRD}} </td>
-	        <td class="riderslist" style="width: 9%"> {{PODIUM}} </td>
-	        <td class="riderslist" style="width: 9%"> {{POLE}} </td>
-	        <td class="riderslist" style="width: 9%"> {{POINTS}} </td>
-	        <td class="riderslist" style="width: 9%"> {{POSITION}} </td>
-        </tr>
-        	{%endfor%}
-	</table>
+			<th class="riderssel"><a href="javascript:show('adddefault'); javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:hide('searchbyrider'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+        	Add
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:show('updatebynum'); javascript:hide('searchdefault'); javascript:hide('searchbyrider'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+        	Update
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebynum'); javascript:show('searchdefault'); javascript:show('searchbyrider'); javascript:hide('delbynum'); javascript:hide('delbyrider')">
+      	  	Search
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:hide('searchbyrider'); javascript:show('delbynum'); javascript:show('delbyrider')">
+        	Delete
+    		</a></th>
+    	</tr>
+    </table>
 	<br>
-	<div style="float:left; width:32%;">
 	<form id="adddefault" action="{{ url_for('stats') }}" method="post">
        	<table class="riders">
 			<tr class="riders">
@@ -74,12 +71,7 @@
 		<br>
 		<input class="riders" value="Add Stats" name="adddefault" type="submit"/>
 	</form>
-	</div>
-	<div style="float:left; width:2%;">
-	<br>
-	</div>
-	<div style="float:left; width:32%;">
-		<form id="updatebynum" action="{{ url_for('stats') }}" method="post">
+	<form id="updatebynum" action="{{ url_for('stats') }}" method="post" style="display:none;">
 	       	<table class="riders">
 	       		<tr class="riders">
 					<th class="riders">Current Stat Index:</th><td><input type="text" placeholder="Enter Number..." name="num"/></td>
@@ -118,15 +110,10 @@
 					<th class="riders">Position:</th><td><input type="text" placeholder="Enter Number..." name="position"/></td>
 				</tr>
 				</table>
-			<br>
-			<input class="riders" value="Update Stats" name="updatebynum" type="submit"/>
-		</form>
-	</div>
-	<div style="float:left; width:2%;">
-	<br>
-	</div>
-	<div style="float:left; width:32%;">
-	<form id="searchdefault" action="{{ url_for('stats') }}" method="post">
+		<br>
+		<input class="riders" value="Update Stats" name="updatebynum" type="submit"/>
+	</form>
+	<form id="searchdefault" action="{{ url_for('stats') }}" method="post" style="display:none;">
        	<table class="ridersdel" style="height:160px">
        		<tr class="riders">
 				<th class="riders">Year:</th><td><input type="text" placeholder="Leave blank for any..." name="year"/></td>
@@ -139,7 +126,7 @@
 		<input class="riders" value="Search Stats" name="searchdefault" type="submit"/>
 	</form>
 	<br>
-	<form id="searchbyrider" action="{{ url_for('stats') }}" method="post">
+	<form id="searchbyrider" action="{{ url_for('stats') }}" method="post" style="display:none;">
        	<table class="riders" style="height:100px">
 			<tr class="riders">
 				<th class="riders">Rider Index:</th><td>
@@ -154,8 +141,7 @@
 			<br>
 		<input class="riders" value="Search Stats" name="searchbyrider" type="submit"/>
 	</form>
-	<br>
-	<form id="delbyrider" action="{{ url_for('stats') }}" method="post">
+	<form id="delbyrider" action="{{ url_for('stats') }}" method="post" style="display:none;">
 		<table class="ridersdel" style="height:79px">
 			<tr class="riders">
 				<th class="riders">Rider Index:</th><td>
@@ -171,7 +157,7 @@
 		<input class="riders" value="Delete Stats" name="delbyrider" type="submit"/>
 	</form>
 	<br>
-	<form id="delbynum" action="{{ url_for('stats') }}" method="post">
+	<form id="delbynum" action="{{ url_for('stats') }}" method="post" style="display:none;">
 		<table class="ridersdel" style="height:79px">
 			<tr class="riders">
 				<th class="riders">Stat Index: </th>
@@ -181,6 +167,42 @@
 		<br>
 		<input class="riders" value="Delete Stats" name="delbynum" type="submit"/>
 	</form>
+	
 	</div>
-
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 9%"> Stat Index </th>
+        	<th class="riderslist" style="width: 9%"> Rider Index</th>
+        	<th class="riderslist" style="width: 9%"> Year </th>
+        	<th class="riderslist" style="width: 9%"> Completed Races </th>
+        	<th class="riderslist" style="width: 9%"> Victory </th>
+        	<th class="riderslist" style="width: 9%"> Second Position </th>
+        	<th class="riderslist" style="width: 9%"> Third Position </th>
+        	<th class="riderslist" style="width: 9%"> Podium </th>
+        	<th class="riderslist" style="width: 9%"> Pole Position </th>
+        	<th class="riderslist" style="width: 9%"> Points </th>
+        	<th class="riderslist" style="width: 9%"> Season Position </th>
+		</tr>
+		{% for NUM, YEAR, RACES, VICTORY, SECOND, THIRD, PODIUM, POLE, POINTS, POSITION, STATID in result %}
+        <tr>
+	        <td class="riderslist" style="width: 9%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{STATID}} </td>
+	        <td class="riderslist" style="width: 9%"> {{YEAR}} </td>
+	        <td class="riderslist" style="width: 9%"> {{RACES}} </td>
+	        <td class="riderslist" style="width: 9%"> {{VICTORY}} </td>
+	        <td class="riderslist" style="width: 9%"> {{SECOND}} </td>
+	        <td class="riderslist" style="width: 9%"> {{THIRD}} </td>
+	        <td class="riderslist" style="width: 9%"> {{PODIUM}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POLE}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POINTS}} </td>
+	        <td class="riderslist" style="width: 9%"> {{POSITION}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
+	</div>
+	
 {% endblock %}

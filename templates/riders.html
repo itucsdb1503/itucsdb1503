@@ -4,39 +4,35 @@
 {% block riders %}active{% endblock %}
 {% block content %}
 
-	<table class="riderslist">
+	<script type="text/javascript">
+ 		function show(id) {
+    		var e = document.getElementById(id);
+   			e.style.display = 'block';
+ 		}
+ 		function hide(id) {
+    		var e = document.getElementById(id);
+    		e.style.display = 'none';
+ 		}
+	</script>
+	<div style="float:left; width:30%;">
+		<table class="riderssel">
 		<tr>
-        	<th class="riderslist" style="width: 5%"> Index </th>
-        	<th class="riderslist" style="width: 15%"> Name </th>
-        	<th class="riderslist" style="width: 15%"> Surname </th>
-        	<th class="riderslist" style="width: 5%"> Age </th>
-        	<th class="riderslist" style="width: 6%"> Gender </th>
-        	<th class="riderslist" style="width: 20%"> Team </th>
-        	<th class="riderslist" style="width: 8%"> Brand </th>
-        	<th class="riderslist" style="width: 6%"> Model </th>
-        	<th class="riderslist" style="width: 6%"> Nation </th>
-        	<th class="riderslist" style="width: 8%"> Years in MOTOGP </th>
-        	<th class="riderslist" style="width: 6%"> Bike No </th>
-		</tr>
-		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
-        <tr>
-	        <td class="riderslist" style="width: 5%"> {{NUM}} </td>
-	        <td class="riderslist" style="width: 15%"> {{NAME}} </td>
-	        <td class="riderslist" style="width: 15%"> {{SURNAME}} </td>
-	        <td class="riderslist" style="width: 5%"> {{AGE}} </td>
-	        <td class="riderslist" style="width: 6%"> {{GENDER}} </td>
-	        <td class="riderslist" style="width: 20%"> {{TEAM}} </td>
-	        <td class="riderslist" style="width: 8%"> {{BRAND}} </td>
-	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
-	        <td class="riderslist" style="width: 6%"> {{NATION}} </td>
-	        <td class="riderslist" style="width: 8%"> {{YEARS}} </td>
-	        <td class="riderslist" style="width: 6%"> {{BIKENO}} </td>
-        </tr>
-        	{%endfor%}
-	</table>
-	<br>
-	<div style="float:left; width:32%;">
-	<form id="adddefault" action="{{ url_for('riders') }}" method="post">
+			<th class="riderssel"><a href="javascript:show('adddefault'); javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:hide('delbynum'); javascript:hide('deldefault')">
+        	Add
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:show('updatebynum'); javascript:hide('searchdefault'); javascript:hide('delbynum'); javascript:hide('deldefault')">
+        	Update
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebynum'); javascript:show('searchdefault'); javascript:hide('delbynum'); javascript:hide('deldefault')">
+      	  	Search
+    		</a></th>
+    		<th class="riderssel"><a href="javascript:hide('adddefault'); javascript:hide('updatebynum'); javascript:hide('searchdefault'); javascript:show('delbynum'); javascript:show('deldefault')">
+        	Delete
+    		</a></th>
+    	</tr>
+    </table>
+    <br>
+    <form id="adddefault" action="{{ url_for('riders') }}" method="post">
        	<table class="riders">
        		<tr class="riders">
 				<th class="riders">Name:</th><td><input type="text" name="name" placeholder=" Enter Text... "/></td>
@@ -72,12 +68,7 @@
 			<br>
 		<input class="riders" value="Add Rider" name="adddefault" type="submit"/>
 	</form>
-	</div>
-	<div style="float:left; width:2%;">
-	<br>
-	</div>
-	<div style="float:left; width:32%;">
-		<form id="updatebynum" action="{{ url_for('riders') }}" method="post">
+    <form id="updatebynum" action="{{ url_for('riders') }}" method="post" style="display:none;">
 	       	<table class="riders">
 			<tr class="riders">
 				<th class="riders">Current Index:</th><td>
@@ -122,12 +113,7 @@
 				<br>
 			<input class="riders" value="Update Rider" name="updatebynum" type="submit"/>
 		</form>
-	</div>
-	<div style="float:left; width:2%;">
-	<br>
-	</div>
-	<div style="float:left; width:32%;">
-		<form id="searchdefault" action="{{ url_for('riders') }}" method="post">
+	<form id="searchdefault" action="{{ url_for('riders') }}" method="post" style="display:none;">
        	<table class="ridersdel" style="height:350px">
        		<tr class="riders">
 				<th class="riders">Name:</th><td><input type="text" name="name" placeholder="Leave blank for any..." /></td>
@@ -151,8 +137,7 @@
 			<br>
 		<input class="riders" value="Search Rider" name="searchdefault" type="submit"/>
 	</form>
-	<br>
-	<form id="deldefault" action="{{ url_for('riders') }}" method="post">
+	<form id="deldefault" action="{{ url_for('riders') }}" method="post" style="display:none;">
 		<table class="ridersdel">
 			<tr class="riders">
 				<th class="riders">Name: </th>
@@ -167,7 +152,7 @@
 		<input class="riders" value="Delete Player" name="deldefault" type="submit"/>
 	</form>
 	<br>
-	<form id="delbynum" action="{{ url_for('riders') }}" method="post">
+	<form id="delbynum" action="{{ url_for('riders') }}" method="post" style="display:none;">
 		<table class="ridersdel" style="height:60px">
 			<tr class="riders">
 				<th class="riders">Index:</th><td>
@@ -182,5 +167,41 @@
 		<br>
 		<input class="riders" value="Delete Player" name="delbynum" type="submit"/>
 	</form>
+		
+	</div>
+	<div style="float:left; width:2%;">
+	<br>
+	</div>
+	<div style="float:left; width:68%;">
+	<table class="riderslist">
+		<tr>
+        	<th class="riderslist" style="width: 5%"> Index </th>
+        	<th class="riderslist" style="width: 15%"> Name </th>
+        	<th class="riderslist" style="width: 15%"> Surname </th>
+        	<th class="riderslist" style="width: 5%"> Age </th>
+        	<th class="riderslist" style="width: 6%"> Gender </th>
+        	<th class="riderslist" style="width: 20%"> Team </th>
+        	<th class="riderslist" style="width: 8%"> Brand </th>
+        	<th class="riderslist" style="width: 6%"> Model </th>
+        	<th class="riderslist" style="width: 6%"> Nation </th>
+        	<th class="riderslist" style="width: 8%"> Years in MOTOGP </th>
+        	<th class="riderslist" style="width: 6%"> Bike No </th>
+		</tr>
+		{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in result %}
+        <tr>
+	        <td class="riderslist" style="width: 5%"> {{NUM}} </td>
+	        <td class="riderslist" style="width: 15%"> {{NAME}} </td>
+	        <td class="riderslist" style="width: 15%"> {{SURNAME}} </td>
+	        <td class="riderslist" style="width: 5%"> {{AGE}} </td>
+	        <td class="riderslist" style="width: 6%"> {{GENDER}} </td>
+	        <td class="riderslist" style="width: 20%"> {{TEAM}} </td>
+	        <td class="riderslist" style="width: 8%"> {{BRAND}} </td>
+	        <td class="riderslist" style="width: 6%"> {{MODEL}} </td>
+	        <td class="riderslist" style="width: 6%"> {{NATION}} </td>
+	        <td class="riderslist" style="width: 8%"> {{YEARS}} </td>
+	        <td class="riderslist" style="width: 6%"> {{BIKENO}} </td>
+        </tr>
+        	{%endfor%}
+	</table>
 	</div>
 {% endblock %}
