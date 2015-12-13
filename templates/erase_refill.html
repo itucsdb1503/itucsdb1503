@@ -1,0 +1,15 @@
+{% extends "template.html" %}
+{% block title %}Circuits{% endblock %}
+{% block css %}circuits.css{% endblock %}
+{% block content %}
+<h1>Erase Refill</h1>
+
+
+<form id="reset_memmi" class= "op" action="{{ url_for('resetmemmi') }}" method="post">
+
+		<input value="Reset Memmi" name="reset_memmi" type="submit"/>
+	</form>
+
+
+
+{% endblock %}
