@@ -12,16 +12,18 @@ th.Accidents {
 	vertical-align: center;
 	background-color: #015873;
 	color: black;
+	width: 65%;
 }
 th.ope{
 	text-align: center;
 	vertical-align: center;
 	color: #b2b2b2;
-
+	width: 65%;
 }
 form.ope{
 	text-align: center;
 	vertical-align: center;
 	color: black;
-	background-color: #b2b2b2
+	background-color: #b2b2b2;
+	width: 65%;
 }
