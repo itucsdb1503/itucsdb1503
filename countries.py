@@ -59,6 +59,7 @@ class Countries:
                         ('JAPAN', 'JPN', 'ASIA'),
                         ('CZECH REPUBLIC', 'CZE', 'EUROPE'),
                         ('AUSTRALIA', 'AUS', 'AUSTRALIA'),
+                        ('SWITZERLAND', 'CHE', 'EUROPE'),
                         ('FRANCE', 'FRA', 'EUROPE'),
                         ('UNITED STATES OF AMERICA', 'USA', 'NORTH AMERICA'),
                         ('SPAIN', 'ESP', 'EUROPE'),
@@ -92,7 +93,7 @@ class Countries:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  countries
+            query = """UPDATE countries
                         SET name = '%s', abbreviation = '%s', continent = '%s'
                         WHERE name = '%s' """ % (newName.upper(), abbreviation.upper(), continent.upper(), name.upper())
             cursor.execute(query)

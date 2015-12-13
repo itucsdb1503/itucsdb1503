@@ -15,6 +15,7 @@ from stats import yearstatsClass
 from personal import personalClass
 from fans import fansClass
 from teams import Teams
+from standings import standings
 from countries import Countries
 from circuits import Circuit
 from races import Race
@@ -46,7 +47,6 @@ def teamsPage():
     page = Teams(dsn = app.config['dsn'])
     if request.method == 'GET':
         page.createTable();
-        #page.insertTestTuples();
         return page.loadPage()
     elif 'addTeam' in request.form:
         name = request.form['name']
@@ -80,7 +80,6 @@ def countriesPage():
     page = Countries(dsn = app.config['dsn'])
     if request.method == 'GET':
         page.createTable();
-        #page.insertTestTuples();
         return page.loadPage()
     elif 'addCountry' in request.form:
         name = request.form['name']
@@ -103,6 +102,32 @@ def countriesPage():
         abbreviation = request.form['abbreviation']
         continent = request.form['continent']
         return page.searchCountry(name, abbreviation, continent)
+
+@app.route('/standings', methods=['GET', 'POST'])
+def standingsPage():
+    page = standings(dsn = app.config['dsn'])
+    if request.method == 'GET':
+        page.createTable();
+        return page.loadPage()
+    elif 'addstanding' in request.form:
+        position = request.form['position']
+        name = request.form['name']
+        points = request.form['points']
+        return page.addstanding(position, name, points)
+    elif 'initTable' in request.form:
+        return page.initTable()
+    elif 'updatestanding' in request.form:
+        position = request.form['position']
+        name = request.form['name']
+        points = request.form['points']
+        return page.updatestanding(position, name, points)
+    elif 'deletestanding' in request.form:
+        position = request.form['position']
+        return page.deletestanding(position)
+    elif 'searchstanding' in request.form:
+        name = request.form['name']
+        points = request.form['points']
+        return page.searchstanding(name, points)
 
 @app.route('/reset', methods=['GET','POST'])
 def reset():

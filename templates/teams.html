@@ -71,7 +71,7 @@
 	<br>
 	</div>
     <div style="float:left; width:25%;">
-	<form id="searchTeamName" action="{{ url_for('teamsPage') }}" method="post">
+	<form id="searchTeam" action="{{ url_for('teamsPage') }}" method="post">
        	<table class="modifyTeam">
        		<tr class="modifyTeam">
 				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
@@ -89,14 +89,14 @@
 		<input class="modifyTeam" value="Search Team" name="searchTeam" type="submit"/>
 	</form>
 	</div>
-	<table class=listTeams>
+	<table class=listTeams style="width: 60%;">
     <tr class=listTeams>
     	<th class=listTeams style="width: 5%"> ID </th>
-       	<th class=listTeams style="width: 18%"> Name </th>
-       	<th class=listTeams style="width: 5%"> Country </th>
+       	<th class=listTeams style="width: 25%"> Name </th>
+       	<th class=listTeams style="width: 8%"> Country </th>
        	<th class=listTeams style="width: 10%"> Constructor </th>
-       	<th class=listTeams style="width: 15%"> Motorcycle </th>
-       	<th class=listTeams style="width: 12%"> Number Of Riders </th>
+       	<th class=listTeams style="width: 12%"> Motorcycle </th>
+       	<th class=listTeams style="width: 10%"> Number Of Riders </th>
     </tr>
        	{% for id, name, country, constructor, motorcycle, riderNo in teams %}
        	<tr class=listTeams>

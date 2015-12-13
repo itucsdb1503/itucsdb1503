@@ -1,0 +1,86 @@
+{% extends "template.html" %}
+{% block title %}Team Standings{% endblock %}
+{% block css %}teams.css{% endblock %}
+{% block teams %}active{% endblock %}
+{% block content %}
+
+    <div style="float:left; width:20%;">
+    <form id="addstanding" action="{{ url_for('standingsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Position: </th><td><input type="text" name="position"/></td>
+			</tr>
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Points: </th><td><input type="text" name="points"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Add Team Standing" name="addstanding" type="submit"/>
+	</form>
+	<br>
+	<form id="deletestanding" action="{{ url_for('standingsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Position:</th><td><input type="text" name="position"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Delete Team Standing" name="deletestanding" type="submit"/>
+	</form>
+	</div>
+	<div style="float:left; width:2.5%;">
+	<br>
+	</div>
+    <div style="float:left; width:20%;">
+    <form id="updatestanding" action="{{ url_for('standingsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Position:</th><td><input type="text" name="position"/></td>
+			</tr>
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Points:</th><td><input type="text" name="points"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Update Team Standing" name="updatestanding" type="submit"/>
+	</form>
+	<br>
+	<form id="initTable" action="{{ url_for('standingsPage') }}" method="post">
+		<input class="modifyTeam" value="Reset Table" name="initTable" type="submit"/>
+	</form>
+	</div>
+	<div style="float:left; width:2.5%;">
+	<br>
+	</div>
+    <div style="float:left; width:20%;">
+	<form id="searchstanding" action="{{ url_for('standingsPage') }}" method="post">
+       	<table class="modifyTeam">
+       		<tr class="modifyTeam">
+				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
+			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">Points:</th><td><input type="text" name="points"/></td>
+			</tr>
+			</table>
+		<input class="modifyTeam" value="Search Team Standing" name="searchstanding" type="submit"/>
+	</form>
+	</div>
+	<table class=listTeams style="width: 30%; margin-top: 300px;">
+    <tr class=listTeams>
+    	<th class=listTeams style="width: 10%"> Position </th>
+       	<th class=listTeams style="width: 70%"> Name </th>
+       	<th class=listTeams style="width: 20%"> Points </th>
+    </tr>
+       	{% for position, name, points in standings %}
+       	<tr class=listTeams>
+       		<td class=listTeams style="width: 15%">{{position}} </td>
+       		<td class=listTeams style="width: 60%">{{name}} </td>
+       		<td class=listTeams style="width: 25%"> {{points}}</td>
+       	</tr class=listTeams>
+       	{%endfor%}
+    </table>
+
+{% endblock %}

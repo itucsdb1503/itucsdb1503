@@ -22,7 +22,7 @@ class Teams:
 
             query = """CREATE TABLE IF NOT EXISTS teams (
                         id serial PRIMARY KEY,
-                        name text NOT NULL,
+                        name text UNIQUE,
                         country text REFERENCES countries(abbreviation) ON DELETE RESTRICT ON UPDATE CASCADE,
                         constructor text NOT NULL,
                         motorcycle text NOT NULL,
@@ -65,7 +65,8 @@ class Teams:
                         ('DUCATI TEAM', 'ITA', 'DUCATI', 'DESMOSEDICI GP15', 3),
                         ('AB MOTORACING', 'CZE', 'HONDA', 'RC213V-RS', 5),
                         ('MOVISTAR YAMAHA MOTOGP', 'JPN', 'YAMAHA', 'YZR-M1', 2),
-                        ('E-MOTION IODARACING TEAM', 'ITA', 'ART', 'ART', 3),
+                        ('ATHINA FORWARD RACING', 'CHE', 'YAMAHA', 'FORWARD', 4),
+                        ('APRILIA RACING TEAM GRESINI', 'ITA', 'APRILIA', 'RS-GP', 4),
                         ('MONSTER YAMAHA TECH 3', 'FRA', 'YAMAHA', 'YZR-M1', 2)"""
             cursor.execute(query)
 
@@ -76,7 +77,7 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """DROP TABLE IF EXISTS teams"""
+            query = """DROP TABLE IF EXISTS teams CASCADE"""
             cursor.execute(query)
 
             connection.commit()
@@ -87,7 +88,7 @@ class Teams:
 
             query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
                         VALUES
-                        ('%s', '%s', '%s', '%s', %s)""" % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo.upper())
+                        ('%s', '%s', '%s', '%s', %s)""" % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('teamsPage'))
@@ -96,9 +97,9 @@ class Teams:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  teams
+            query = """UPDATE teams
                         SET name = '%s', country = '%s', constructor = '%s', motorcycle = '%s', riderNo = %s
-                        WHERE id = '%s' """ % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo.upper(), id)
+                        WHERE id = '%s' """ % (name.upper(), country.upper(), constructor.upper(), motorcycle.upper(), riderNo, id)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('teamsPage'))
