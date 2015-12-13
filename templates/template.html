@@ -19,7 +19,7 @@
     			</div>
     			<div>
       				<ul class="nav navbar-nav">
-        			<li class="{% block home %}{% endblock %}"><a href="/">Home</a></li>
+        			<li class="{% block home %}{% endblock %}" style="width:180px"><a href="/">Home</a></li>
        				<li class="{% block riders %}{% endblock %}">
           				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Riders & Stats
           				<span class="caret"></span></a>
@@ -54,14 +54,14 @@
             				<li><a href="/countries">Countries</a></li>
           				</ul>
         			</li>
-        		<li class="{% block circuits %}{% endblock %}">
+        		<li class="{% block circuits %}{% endblock %}" style="width:260px">
           				<a class="dropdown-toggle" data-toggle="dropdown" href="#">Circuits & Races & Accidents
           				<span class="caret"></span></a>
-          				<ul class="dropdown-menu">
-            				<li><a href="/circuits">Circuits</a></li>
-            				<li><a href="/races">Races</a></li>
-            				<li><a href="/accidents">Accidents</a></li>
-            				<li><a href="/erase_refill">-Recreate Tables-</a></li>
+          				<ul class="dropdown-menu" style="width:260px">
+            				<li style="width:260px"><a href="/circuits">Circuits</a></li>
+            				<li style="width:260px"><a href="/races">Races</a></li>
+            				<li style="width:260px"><a href="/accidents">Accidents</a></li>
+            				<li style="width:260px"><a href="/erase_refill">-Recreate Tables-</a></li>
           				</ul>
         			</li>
         			<li class="{% block brands %}{% endblock %}">
@@ -76,7 +76,7 @@
         			<li class="{% block seasons %}{% endblock %}"><a href="/seasons">Seasons</a></li>
       				</ul>
       				<ul class="nav navbar-nav navbar-right">
-       					<li><a href="#">{{ current_time }}</a></li>
+       					<li style="width:230px"><a href="#">{{ current_time }}</a></li>
       				</ul>
     			</div>
   			</div>
