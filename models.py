@@ -18,7 +18,7 @@ class Model:
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
                         rider text NOT NULL,
-                        constructor text REFERENCES brands(name))"""
+                        constructor text REFERENCES brands(name) ON DELETE CASCADE ON UPDATE CASCADE)"""
             cursor.execute(query)
             
             
@@ -91,7 +91,7 @@ class Model:
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
                         rider text NOT NULL,
-                        constructor text REFERENCES brands(name))"""
+                        constructor text REFERENCES brands(name) ON DELETE CASCADE ON UPDATE CASCADE)"""
             cursor.execute(query1)            
                    
             query2 = """INSERT INTO models (name, rider, constructor)

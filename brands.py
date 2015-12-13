@@ -85,7 +85,7 @@ class Brand:
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()   
              
-            query = """DROP TABLE IF EXISTS brands"""
+            query = """DROP TABLE IF EXISTS brands CASCADE"""
             cursor.execute(query)
             
             query1 = """CREATE TABLE IF NOT EXISTS brands (
