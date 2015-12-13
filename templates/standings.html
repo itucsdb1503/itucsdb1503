@@ -38,6 +38,9 @@
        		<tr class="modifyTeam">
 				<th class="modifyTeam">Position:</th><td><input type="text" name="position"/></td>
 			</tr>
+			<tr class="modifyTeam">
+				<th class="modifyTeam">New Position:</th><td><input type="text" name="newPosition"/></td>
+			</tr>
        		<tr class="modifyTeam">
 				<th class="modifyTeam">Name:</th><td><input type="text" name="name"/></td>
 			</tr>
@@ -49,7 +52,7 @@
 	</form>
 	<br>
 	<form id="initTable" action="{{ url_for('standingsPage') }}" method="post">
-		<input class="modifyTeam" value="Reset Table" name="initTable" type="submit"/>
+		<input class="modifyTeam" value="Reset Tables" name="initTable" type="submit"/>
 	</form>
 	</div>
 	<div style="float:left; width:2.5%;">

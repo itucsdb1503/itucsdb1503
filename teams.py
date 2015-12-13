@@ -16,9 +16,15 @@ class Teams:
         self.dsn = dsn
         return
 
-    def createTable(self):
+    def createTable(self):      #this create all 3 tables
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
+
+            query = """CREATE TABLE IF NOT EXISTS countries (
+                        name text NOT NULL,
+                        abbreviation text NOT NULL PRIMARY KEY,
+                        continent text NOT NULL)"""
+            cursor.execute(query)
 
             query = """CREATE TABLE IF NOT EXISTS teams (
                         id serial PRIMARY KEY,
@@ -27,6 +33,12 @@ class Teams:
                         constructor text NOT NULL,
                         motorcycle text NOT NULL,
                         riderNo integer DEFAULT 0)"""
+            cursor.execute(query)
+
+            query = """CREATE TABLE IF NOT EXISTS standings (
+                        position integer PRIMARY KEY,
+                        name text UNIQUE REFERENCES teams(name) ON UPDATE CASCADE ON DELETE CASCADE,
+                        points integer DEFAULT 0)"""
             cursor.execute(query)
 
         return render_template('teams.html')
@@ -52,12 +64,25 @@ class Teams:
             now = datetime.datetime.now()
         return render_template('teams.html', teams = teamsdb, current_time=now.ctime())
 
-    def initTable(self):
+    def initTable(self):        #this initializes all 3 tables
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
             self.dropTable()
             self.createTable()
+
+            query = """INSERT INTO countries (name, abbreviation, continent)
+                        VALUES
+                        ('ITALY', 'ITA', 'EUROPE'),
+                        ('JAPAN', 'JPN', 'ASIA'),
+                        ('CZECH REPUBLIC', 'CZE', 'EUROPE'),
+                        ('AUSTRALIA', 'AUS', 'AUSTRALIA'),
+                        ('SWITZERLAND', 'CHE', 'EUROPE'),
+                        ('FRANCE', 'FRA', 'EUROPE'),
+                        ('UNITED STATES OF AMERICA', 'USA', 'NORTH AMERICA'),
+                        ('SPAIN', 'ESP', 'EUROPE'),
+                        ('COLOMBIA', 'COL', 'SOUTH AMERICA')"""
+            cursor.execute(query)
 
             query = """INSERT INTO teams (name, country, constructor, motorcycle, riderNo)
                         VALUES
@@ -70,14 +95,31 @@ class Teams:
                         ('MONSTER YAMAHA TECH 3', 'FRA', 'YAMAHA', 'YZR-M1', 2)"""
             cursor.execute(query)
 
+            query = """INSERT INTO standings (position, name, points)
+                        VALUES
+                        (2, 'REPSOL HONDA TEAM', 453),
+                        (3, 'DUCATI TEAM', 350),
+                        (14, 'AB MOTORACING', 0),
+                        (1, 'MOVISTAR YAMAHA MOTOGP', 655),
+                        (10, 'ATHINA FORWARD RACING', 39),
+                        (11, 'APRILIA RACING TEAM GRESINI', 39),
+                        (4, 'MONSTER YAMAHA TECH 3', 295)"""
+            cursor.execute(query)
+
             connection.commit()
         return redirect(url_for('teamsPage'))
 
-    def dropTable(self):
+    def dropTable(self):        #This drops all three tables
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
+            query = """DROP TABLE IF EXISTS countries CASCADE"""
+            cursor.execute(query)
+
             query = """DROP TABLE IF EXISTS teams CASCADE"""
+            cursor.execute(query)
+
+            query = """DROP TABLE IF EXISTS standings"""
             cursor.execute(query)
 
             connection.commit()
