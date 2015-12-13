@@ -1,7 +1,7 @@
 table.circuits{
 	text-align: center;
 	vertical-align: center;
-	width: 90%;
+	width: 100%;
 	border: 3px solid #015873;
 	border-radius:3px;
 	background-color: #b2b2b2
@@ -12,7 +12,6 @@ th.circuits {
 	vertical-align: center;
 	background-color: #015873;
 	color: black;
-	width: 65%;
 }
 th.op{
 	text-align: center;
