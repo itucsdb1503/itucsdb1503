@@ -17,6 +17,7 @@ class Model:
             query = """CREATE TABLE IF NOT EXISTS models (
                         ID serial PRIMARY KEY,
                         name text NOT NULL,
+                        rider text NOT NULL,
                         constructor text REFERENCES brands(name))"""
             cursor.execute(query)
             
@@ -30,13 +31,13 @@ class Model:
         return render_template('models.html', models = modelsdb)
 
 
-    def addModel(self, name, constructor):
+    def addModel(self, name, rider, constructor):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """INSERT INTO models (name, constructor)
+            query = """INSERT INTO models (name, rider, constructor)
                         VALUES
-                        ('%s', '%s')""" % (name, constructor)
+                        ('%s', '%s', '%s')""" % (name, rider, constructor)
             cursor.execute(query)
             connection.commit()
         return redirect(url_for('modelsPage'))
@@ -61,12 +62,53 @@ class Model:
             connection.commit()
         return redirect(url_for('modelsPage'))
     
-    def update(self, ID, name, constructor):
+    def update(self, ID, name, rider, constructor):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
 
-            query = """UPDATE  models SET name = '%s', constructor = '%s' WHERE ID = '%s' """ % (name, constructor, ID)
+            query = """UPDATE  models SET name = '%s', rider = '%s', constructor = '%s' WHERE ID = '%s' """ % (name, rider, constructor, ID)
             cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('modelsPage'))
+    
+    def deleteAll(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+
+            query = """DROP TABLE IF EXISTS models"""
+            cursor.execute(query)
+            connection.commit()
+        return redirect(url_for('modelsPage'))
+    
+    def autoFill(self):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()   
+             
+            query = """DROP TABLE IF EXISTS models"""
+            cursor.execute(query)
+            
+            query1 = """CREATE TABLE IF NOT EXISTS models (
+                        ID serial PRIMARY KEY,
+                        name text NOT NULL,
+                        rider text NOT NULL,
+                        constructor text REFERENCES brands(name))"""
+            cursor.execute(query1)            
+                   
+            query2 = """INSERT INTO models (name, rider, constructor)
+                        VALUES
+                        ('RC213V', 'Dani Pedrosa', 'Honda'),
+                        ('RC213V', 'Marc Marquez', 'Honda'),
+                        ('RCV1000R', 'Hiroshi Aoyama', 'Honda'),
+                        ('YZR-M1', 'Valentino Rossi', 'Yamaha'),
+                        ('YZR-M1', 'Jorge Lorenzo', 'Yamaha'),
+                        ('YZR-M1', 'Ben Spies', 'Yamaha'),
+                        ('RS-GP', 'Marco Melandri', 'Aprilia'),
+                        ('RS-GP', 'Alvaro Bautista', 'Aprilia'),
+                        ('GSX-RR', 'Aleix Espargaro', 'Suzuki'),
+                        ('GSX-RR', 'Maverick ViNales', 'Suzuki'),
+                        ('GP15', 'Andrea Dovizioso', 'Ducati'),
+                        ('GP15', 'Andrea Iannone', 'Ducati')"""
+            cursor.execute(query2)
             connection.commit()
         return redirect(url_for('modelsPage'))
     
