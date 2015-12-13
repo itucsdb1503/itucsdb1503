@@ -144,7 +144,7 @@
 		<input class="riders" value="Search Rider" name="searchdefault" type="submit"/>
 	</form>
 	<form id="deldefault" action="{{ url_for('riders') }}" method="post" style="display:none;">
-		<table class="ridersdel">
+		<table class="ridersdel" style="height:180px;">
 			<tr class="riders">
 				<th class="riders">Name: </th>
 				<td><input type="text" name="name" placeholder="Enter Text..."/></td>
@@ -159,7 +159,7 @@
 	</form>
 	<br>
 	<form id="delbynum" action="{{ url_for('riders') }}" method="post" style="display:none;">
-		<table class="ridersdel" style="height:60px">
+		<table class="ridersdel" style="height:80px">
 			<tr class="riders">
 				<th class="riders">Index:</th><td>
 					<select name="num" class="drop">

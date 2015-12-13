@@ -77,8 +77,8 @@
 			<tr class="riders">
 				<th class="riders">Current Rider Index:</th><td>
 					<select name="persid" class="drop">
-						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in result %}
+					        <option value="{{PERSID}}">{{PERSID}} - @{{TWIT}}</option>
 						{% endfor %}
 				    </select>
 				</td>
@@ -131,8 +131,8 @@
 			<tr class="riders">
 				<th class="riders">Rider Index:</th><td>
 					<select name="persid" class="drop">
-						{% for NUM, NAME, SURNAME, AGE, GENDER, TEAM, BRAND, MODEL, NATION, YEARS, BIKENO in riders %}
-					        <option value="{{NUM}}">{{NUM}} - {{ NAME }} {{SURNAME}}</option>
+						{% for NUM, BIRTH, WEIGHT, HEIGHT, FAVCIR, WEBSITE, FACEB, TWIT, INSTA, FANS, PERSID in result %}
+					        <option value="{{PERSID}}">{{PERSID}} - @{{TWIT}}</option>
 						{% endfor %}
 				    </select>
 				</td>
