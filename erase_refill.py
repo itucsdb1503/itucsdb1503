@@ -34,9 +34,9 @@ class reset_memmi:
             cursor = connection.cursor()
             query = """INSERT INTO circuits (name, length, width, left_corners, right_corners, longest_straight, country, constructed_year)
                         VALUES
-                        ('Losail International Circuit', 5400, 12, 6, 10, 1068, 'Qatar', 2004) ,
-                        ('Circuito de Jerez', 4400, 11, 5, 8, 607, 'Spain', 1985) ,
-                        ('Le Mans', 4200, 13, 5, 9, 674, 'France', 1923) """
+                        ('LOSAIL INTERNATIONAL CIRCUIT', 5400, 12, 6, 10, 1068, 'QATAR', 2004) ,
+                        ('CIRCUITO DE JEREZ', 4400, 11, 5, 8, 607, 'SPAIN', 1985) ,
+                        ('LE MANS', 4200, 13, 5, 9, 674, 'FRANCE', 1923) """
             cursor.execute(query)
             cursor = connection.cursor()
             query = """CREATE TABLE IF NOT EXISTS races (
@@ -53,9 +53,9 @@ class reset_memmi:
             cursor = connection.cursor()
             query = """INSERT INTO races (name, fastest_lap_time, winners_average_lap_time, average_lap_time, first_position, track_circuit_id , number_of_laps, total_accidents)
                         VALUES
-                        ('Grand Prix of Qatar', 114, 118, 121, 'Valentino Rossi', 1, 22, 0) ,
-                        ('Gran Premio de Espana', 98, 103, 105, 'Valentino Rossi', 2, 27, 1) ,
-                        ('Grand Prix de France', 92, 95, 98, 'Jorge Lorenzo', 3, 28, 1) """
+                        ('GRAND PRIX OF QATAR', 114, 118, 121, 'VALENTINO ROSSI', 1, 22, 0) ,
+                        ('GRAN PREMIO DE ESPANA', 98, 103, 105, 'VALENTINO ROSSI', 2, 27, 1) ,
+                        ('GRAND PRIX DE FRANCE', 92, 95, 98, 'JORGE LORENZO', 3, 28, 0) """
             cursor.execute(query)
             cursor = connection.cursor()
             query = """CREATE TABLE IF NOT EXISTS Accident (
@@ -69,7 +69,7 @@ class reset_memmi:
             cursor = connection.cursor()
             query = """INSERT INTO Accident (rider_name, rider_surname, race_id, is_fatal)
                         VALUES
-                        ('Valentino', 'Rossi', 2, 'No')"""
+                        ('VALENTINO', 'ROSSI', 2, 'No')"""
             cursor.execute(query)
             return
 
