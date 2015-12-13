@@ -23,6 +23,7 @@ from brands import Brand
 from models import Model
 from specifications import Specification
 from accidents import Accidents
+from erase_refill import reset_memmi
 app = Flask(__name__)
 
 
@@ -578,7 +579,11 @@ def Accidents_page():
         return page.search_Accident(page.search_rider_name)
     else:
         return redirect(url_for('home_page'))
-
+@app.route('/erase_refill', methods=['GET','POST'])
+def resetmemmi():
+    erasefill = reset_memmi(dsn = app.config['dsn'])
+    erasefill.list_page()
+    return redirect(url_for('home_page'))
 
 
 @app.route('/brands', methods=['GET', 'POST'])
