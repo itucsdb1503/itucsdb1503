@@ -68,7 +68,6 @@
 		</form>
 		</td>
 		<td>
-		
 		<form id="dbyidBrand" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
 		<table align="center" ,style="width:25%">
 				<th class= "klas">ID: </th>
@@ -77,6 +76,19 @@
 				</td>
 				<td>
         			<input value="Delete Brand by ID" name="dbyidBrand" type="submit"/>
+				</td>	
+		</table>	
+		</form>
+		</td>
+		<td>
+		<form id="searchbyName" class= "klas" action="{{ url_for('brandsPage') }}" method="post">
+		<table align="center" ,style="width:25%">
+				<th class= "klas">Name: </th>
+        		<td>
+        			<input type="text" name="name"/>
+				</td>
+				<td>
+        			<input value="Find Brand" name="searchbyName" type="submit"/>
 				</td>	
 		</table>	
 		</form>
@@ -132,5 +144,8 @@
 			<input value="Auto-fill" name="AutoFillBrands" type="submit"/>
 		</div>
 		</form>
+		
+		
+		
 		
 {% endblock %}

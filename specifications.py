@@ -5,7 +5,6 @@ from flask import render_template
 from flask.helpers import url_for
 
 class Specification:
-    searchModel = ''
     def __init__(self, dsn):
         self.dsn = dsn
         return
@@ -25,8 +24,7 @@ class Specification:
             cursor.execute(query)
             
             
-            query = """SELECT * FROM specifications WHERE model LIKE '%s' ORDER BY ID ASC""" % (('%' + Specification.searchModel + '%'))
-            Specification.searchModel = ''
+            query = """SELECT * FROM specifications WHERE model LIKE '%s' ORDER BY ID ASC""" % (('%' + '' + '%'))
 
             cursor.execute(query)
 
@@ -110,3 +108,13 @@ class Specification:
             cursor.execute(query2)
             connection.commit()
         return redirect(url_for('specificationsPage'))
+    
+    def find(self, model):
+        with dbapi2.connect(self.dsn) as connection:
+            cursor = connection.cursor()
+            
+            query = """SELECT * FROM specifications WHERE model LIKE '%s'""" % ('%'+model+'%')
+            cursor.execute(query)
+
+            specificationsdb = cursor.fetchall()
+        return render_template('specifications.html', specifications = specificationsdb)

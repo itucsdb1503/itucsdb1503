@@ -99,6 +99,19 @@
 		</table>	
 		</form>
 		</td>
+		<td>
+		<form id="searchbyModel" class= "klas" action="{{ url_for('specificationsPage') }}" method="post">
+		<table align="center" ,style="width:25%">
+				<th class= "klas">Model: </th>
+        		<td>
+        			<input type="text" name="model"/>
+				</td>
+				<td>
+        			<input value="Find Brand" name="searchbyModel" type="submit"/>
+				</td>	
+		</table>	
+		</form>
+		</td>
 		</table>
         
         <form id="updateSpecification" class= "klas" action="{{ url_for('specificationsPage') }}" method="post">

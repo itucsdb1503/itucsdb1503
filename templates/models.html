@@ -73,6 +73,19 @@
 		</table>	
 		</form>
 		</td>
+		<td>
+		<form id="searchbyName" class= "klas" action="{{ url_for('modelsPage') }}" method="post">
+		<table align="center" ,style="width:25%">
+				<th class= "klas">Name: </th>
+        		<td>
+        			<input type="text" name="name"/>
+				</td>
+				<td>
+        			<input value="Find Model" name="searchbyName" type="submit"/>
+				</td>	
+		</table>	
+		</form>
+		</td>
 		</table>
         
         <form id="updateModel" class= "klas" action="{{ url_for('modelsPage') }}" method="post">

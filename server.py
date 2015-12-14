@@ -615,6 +615,9 @@ def brandsPage():
         return page.deleteAll()
     elif 'AutoFillBrands' in request.form:
         return page.autoFill()
+    elif 'searchbyName' in request.form:
+        name = request.form['name']
+        return page.find(name)
     else:
         return redirect(url_for('home_page'))
 
@@ -645,6 +648,9 @@ def modelsPage():
         return page.deleteAll()
     elif 'AutoFillModels' in request.form:
         return page.autoFill()
+    elif 'searchbyName' in request.form:
+        name = request.form['name']
+        return page.find(name)
     else:
         return redirect(url_for('home_page'))
 
@@ -681,6 +687,9 @@ def specificationsPage():
         return page.deleteAll()
     elif 'AutoFillSpecifications' in request.form:
         return page.autoFill()
+    elif 'searchbyModel' in request.form:
+        model = request.form['model']
+        return page.find(model)
     else:
         return redirect(url_for('home_page'))
 
