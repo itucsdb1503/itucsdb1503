@@ -1,4 +1,4 @@
-Welcome to ITUCSDB1503's documentation!
+Welcome to itucsdb1503's documentation!
 =======================================
 
 :Team: MotoGP
