@@ -197,7 +197,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'itucsdb1503.tex', 'itucsdb1503 Documentation',
+  ('index', 'itucsdb1503.tex', 'ITUCSDB1503 Documentation',
    'MotoGP', 'manual'),
 ]
 
@@ -227,7 +227,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'itucsdb1503', 'itucsdb1503 Documentation',
+    ('index', 'itucsdb1503', 'ITUCSDB1503 Documentation',
      ['MotoGP'], 1)
 ]
 
@@ -241,8 +241,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'itucsdb1503', 'itucsdb1503 Documentation',
-   'MotoGP', 'itucsdb1503', 'One line description of project.',
+  ('index', 'itucsdb1503', 'ITUCSDB1503 Documentation',
+   'MotoGP', 'itucsdb1503', 'ITU DBMS Project for Fall 2015',
    'Miscellaneous'),
 ]
 
