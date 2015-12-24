@@ -3,10 +3,40 @@ Parts Implemented by Göktuğ Öcalan
 
 Parts implemented by me are the teams, countries and standings classes and tables. Their operations, html and css files are also implemented by me.
 
+Tables
+------
+
+1.Teams
+,,,,,,,
+The table has the following attributes:
+
+- **id:** Automatically generated ID. Type is serial. It is the primary key of the table.
+- **name:** Name of the team. Type is text. It has the quality unique.
+- **country:** Origin country of the team. Type is text. It references the "abbreviation" attribute of the countries table. It is restricted for delete and cascaded for update operations.
+- **constructor:** Motorycycle supplying brand for the team. Type is text. It can't be null.
+- **motorcycle:** Model of the supplied motorcycle. Type is text. It can't be null.
+- **riderNo:** Number of riders the team has. Type is integer. It defaults to 0.
+
+2.Countries
+,,,,,,,,,,,
+The table has the following attributes:
+
+- **name:** Name of the country. Type is text. It can't be null.
+- **abbreviation:** 3 letter abbreviation of the country defined by ISO. Type is text. It is the primary key of the table. It can't be null.
+- **continent:** Continent the country belongs to. Type is text. It can't be null.
+
+3.Standings
+,,,,,,,,,,,
+The table has the following attributes:
+
+- **position:** Teams position in the standings table. Type is integer. It is the primary key of the table.
+- **name:** Name of the team. Type is text. It references the "name" attribute of the teams table. It is cascaded for both update and delete.
+- **points:** Number of points the team has. Type is integer. It defaults to 0.
+
 Server.py
 ---------
 
-My parts in the server.py file can be divided into 3 very similar parts. Each part handles the requests for a different class and table. An object of the desired class is created and the given parameters are passed to intended functions. The following part is the code from the teams part::
+My contribution in the server.py file can be divided into 3 very similar parts. Each part handles the requests for a different class and table. An object of the desired class is created and the given parameters are passed to intended functions. The following part is the code from the teams part::
 
    @app.route('/teams', methods=['GET', 'POST'])
    def teamsPage():
@@ -175,8 +205,10 @@ This function is called every time the specific url for the class is requested. 
             now = datetime.datetime.now()
         return render_template('teams.html', teams = teamsdb, current_time=now.ctime())
 
-addClassName (addTeam, addCountry, addstanding):
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+addClassName:
+,,,,,,,,,,,,,
+
+**The name for this function is a placeholder. The actual functions in the code are "addTeam", "addCountry" and "addstanding".**
 
 This function is called when the corresponding addClassName form is sent from the html code. It is called from server.py and the information in the html form are passed as parameters. It inserts a new tuple to the table with the given attributes. All text are converted to uppercase. At the end, the page url is redirected to itself so it basically refreshes the page so the new values can be showed to the user::
 
@@ -191,8 +223,10 @@ This function is called when the corresponding addClassName form is sent from th
             connection.commit()
         return redirect(url_for('teamsPage'))
 
-updateClassName (updateTeam, updateCountry, updatestanding):
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+updateClassName:
+,,,,,,,,,,,,,,,,
+
+**The name for this function is a placeholder. The actual functions in the code are "updateTeam", "updateCountry" and "updatestanding".**
 
 This function is called when the corresponding updateClassName form is sent from the html code. The information in the form is passed through server.py as parameters for this function. All existing tuples that matches the parameters are updated with new attributes. Page is also refreshed again::
 
@@ -207,8 +241,10 @@ This function is called when the corresponding updateClassName form is sent from
             connection.commit()
         return redirect(url_for('teamsPage'))
 
-deleteClassName (deleteTeamId, deleteCountry, deletestanding):
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+deleteClassName:
+,,,,,,,,,,,,,,,,
+
+**The name for this function is a placeholder. The actual functions in the code are "deleteTeamId", "deleteCountry" and "deletestanding".**
 
 This function is called when the corresponding deleteClassName form is sent from the html code. Every tuple that matches the selected attribute are deleted. Page is also refreshed again::
 
@@ -222,8 +258,10 @@ This function is called when the corresponding deleteClassName form is sent from
             connection.commit()
         return redirect(url_for('teamsPage'))
 
-searchClassName (searchTeam, searchCountry, searchstanding):
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+searchClassName:
+,,,,,,,,,,,,,,,,
+
+**The name for this function is a placeholder. The actual functions in the code are "searchTeam", "searchCountry" and "searchstanding".**
 
 This function is called when the corresponding searchClassName form is sent from the html code. Given paramters are stored as a class variable. The page is refreshed which calls the loadPage function. Stored variables are used to select the intended part of the database by sending a select query. Variables are resetted to empty strings after the first loadPage so when the page is loaded again next time, the full database is listed. This logic works because every attribute in every tuple technically includes an empty string::
 
