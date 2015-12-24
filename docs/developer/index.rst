@@ -17,7 +17,10 @@ Our database consists of 12 tables distributed evenly among 4 members. Individua
 Code
 ----
 
-**explain the technical structure of your code**
+   Our project uses the implementation of flusk between python based server configuration and HTML pages. We use flusk request.form method to
+   call different python functions from corresponding classes and vice versa sends results from python functions to HTML pages by using the
+   render_template method from flusk. For SQL we used PostgreSQL database system with query entries from python class functions for the corresponding SQL
+   tables.
 
 .. toctree::
 

@@ -3,7 +3,9 @@ Parts Implemented by Nuri Mertcan Guner
 In this project I implemented parts containing ridersClass, yearstatsClass, personalClass and
 fansClass python classes to work with my corresponding SQL tables such as RIDERS, YEARSTATS,
 PERSONAL, FANS in the same order.All these classes share some basic operations but working with a
-different approach. Below, there are explanations for every operation on these tables.
+different approach. These python class functions are called from *server.py* for corresponding
+app.routes. There is also additional route as *reset* which drops tables then calls for fill functions
+in the correct order Below, there are explanations for every operation on these tables.
 
 * Create
 * Insert

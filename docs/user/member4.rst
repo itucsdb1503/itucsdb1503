@@ -288,3 +288,8 @@ different buttons to send request which are below them as **Delete Fan**.
 .. image:: images/fans_delete.png
    :scale: 50%
    :alt: Can not load image.
+
+Reset $ Fill DB
+---------------
+This link in the dropdown manu of navigation bar sends a request to empty tables in this document, then recreate them with the
+predefined default entries.
