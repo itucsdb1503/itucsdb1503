@@ -19,7 +19,10 @@ init Functions
    This function is implemented to create the any table included in this document with all of its
    columns if it does not exist with *CREATE TABLE IF NOT EXISTS* statement in SQL query.
 
+   Example from ridersClass:
+
 .. code-block:: python
+
     def init(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -47,7 +50,10 @@ fill Functions
    This function is implemented to insert some default rows to the table its class is created
    for. It inserts every information available and requiured in the table.
 
+   Example from ridersClass:
+
 .. code-block:: python
+
     def fill(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -66,7 +72,10 @@ load_tablename Functions
    server.py in order to use flusks render_template method to work with html tables which are
    implemented to list SQL table tuples with their columns to the user.
 
+   Example from ridersClass:
+
 .. code-block:: python
+
     def load_riders(self):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -106,6 +115,7 @@ add_rider_default Function
 
 
 .. code-block:: python
+
     def add_rider_default(self, name, surname, age, gender, team, brand, model, nation, years, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -124,6 +134,7 @@ update_rider_by_num Function
    to update the one that user wants and this information is also from *server.py* function call.
 
 .. code-block:: python
+
     def update_rider_by_num(self, num, name, surname, age, gender, team, brand, model, nation, years, bikeno):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -144,6 +155,7 @@ search_rider_default Function
    in the tuple that is wanted to get as a result.
 
 .. code-block:: python
+
     def search_rider_default(self, name, surname, team, brand, model, nation):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -164,6 +176,7 @@ del_rider_default Function
    function call.
 
 .. code-block:: python
+
     def del_rider_default(self, name, surname):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -181,6 +194,7 @@ del_rider_by_num Function
    column is primary key in the table this function can delete one rider at a time.
 
 .. code-block:: python
+
     def del_rider_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -220,6 +234,7 @@ add_stats_default Function
 
 
 .. code-block:: python
+
     def add_stats_default(self, year, races, victory, second, third, podium, pole, points, position, statid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -240,6 +255,7 @@ update_stats_by_num Function
    the foreign key in *YEARSTATS* table to match statistics with riders.
 
 .. code-block:: python
+
     def update_stats_by_num(self, num, year, races, victory, second, third, podium, pole, points, position, statid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -262,6 +278,7 @@ search_stats_default Function
    inputs.
 
 .. code-block:: python
+
     def search_stats_default(self, year, position):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -286,6 +303,7 @@ search_stats_by_rider Function
    statement is used with given inputs from *server.py* function call.
 
 .. code-block:: python
+
     def search_stats_by_rider(self, statid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -304,6 +322,7 @@ del_stats_by_num Function
    function call.Since *NUM* column is primary key in the table this function can delete one stat at a time.
 
 .. code-block:: python
+
     def del_stats_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -320,6 +339,7 @@ del_stats_by_rider Function
    This input information are sent from the *server.py* function call.
 
 .. code-block:: python
+
     def del_stats_by_rider(self, statid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -359,6 +379,7 @@ add_personal_default Function
 
 
 .. code-block:: python
+
     def add_personal_default(self, birth, weight, height, favcir, website, faceb, twit, insta, persid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -379,6 +400,7 @@ update_personal_by_rider Function
    the foreign key in *PERSONAL* table to match personal details with riders.
 
 .. code-block:: python
+
     def update_personal_by_rider(self, birth, weight, height, favcir, website, faceb, twit, insta, fans, persid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -399,6 +421,7 @@ search_personal_default Function
    in the table.
 
 .. code-block:: python
+
     def search_personal_default(self, persid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -417,6 +440,7 @@ del_personal_by_num Function
    function call.Since *NUM* column is primary key in the table this function can delete one tuple at a time.
 
 .. code-block:: python
+
     def del_personal_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -434,6 +458,7 @@ del_personal_by_rider Function
    rider at a time.
 
 .. code-block:: python
+
     def del_personal_by_rider(self, persid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -449,6 +474,7 @@ inc_fans Function
    query commands to increase corresponding tuples *FANS* column by one at a time.
 
 .. code-block:: python
+
        def inc_fans(self, num):
         with dbapi2.connect(app.config['dsn']) as connection:
             cursor = connection.cursor()
@@ -487,6 +513,7 @@ add_fans_default Function
 
 
 .. code-block:: python
+
     def add_fans_default(self, name, surname, mail, birth, fansid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -512,6 +539,7 @@ update_fans_by_mail Function
    the *FANSID* column to be changed.
 
 .. code-block:: python
+
     def update_fans_by_mail(self, name, surname, mail, birth, cmail):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -534,6 +562,7 @@ update_fans_by_mail Function
    the foreign key in *FANS* table to match fans with personal details.
 
 .. code-block:: python
+
     def update_fans_by_num(self, num, name, surname, mail, birth, fansid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -557,6 +586,7 @@ search_fans_default Function
    of flexible functionality thus can search only by *fansid* with the same query.
 
 .. code-block:: python
+
     def search_fans_default(self, name, surname, mail, fansid):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -580,6 +610,7 @@ del_fans_by_num Function
    function call.Since *NUM* column is primary key in the table this function can delete one tuple at a time.
 
 .. code-block:: python
+
     def del_fans_by_num(self, num):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
@@ -597,6 +628,7 @@ del_fans_by_mail Function
    to delete multiple tuple at a time.
 
 .. code-block:: python
+
     def del_fans_by_mail(self, mail):
         with dbapi2.connect(self.dsn) as connection:
             cursor = connection.cursor()
