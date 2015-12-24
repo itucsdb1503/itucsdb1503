@@ -6,8 +6,8 @@ Parts implemented by me are the teams, countries and standings classes and table
 Tables
 ------
 
-1.Teams
-,,,,,,,
+1. Teams
+,,,,,,,,
 The table has the following attributes:
 
 - **id:** Automatically generated ID. Type is serial. It is the primary key of the table.
@@ -17,16 +17,16 @@ The table has the following attributes:
 - **motorcycle:** Model of the supplied motorcycle. Type is text. It can't be null.
 - **riderNo:** Number of riders the team has. Type is integer. It defaults to 0.
 
-2.Countries
-,,,,,,,,,,,
+2. Countries
+,,,,,,,,,,,,
 The table has the following attributes:
 
 - **name:** Name of the country. Type is text. It can't be null.
 - **abbreviation:** 3 letter abbreviation of the country defined by ISO. Type is text. It is the primary key of the table. It can't be null.
 - **continent:** Continent the country belongs to. Type is text. It can't be null.
 
-3.Standings
-,,,,,,,,,,,
+3. Standings
+,,,,,,,,,,,,
 The table has the following attributes:
 
 - **position:** Teams position in the standings table. Type is integer. It is the primary key of the table.

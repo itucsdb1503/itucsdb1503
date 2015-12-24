@@ -1,4 +1,4 @@
-Welcome to itucsdb1503's documentation!
+Welcome to ITUCSDB1503's documentation!
 =======================================
 
 :Team: MotoGP
@@ -11,7 +11,7 @@ Welcome to itucsdb1503's documentation!
    * Nuri Mertcan Güner
    * Onur Can Çarkçı
 
-**project description goes here (a few paragraphs)**
+**Project Description**
 
 Contents:
 
