@@ -12,7 +12,7 @@ different approach. Below, there are explanations for every operation on these t
 * Delete
 
 General Basic Functions and Explanations
-========================================
+----------------------------------------
 
 init Functions
 ^^^^^^^^^^^^^^
@@ -87,7 +87,7 @@ load_tablename Functions
 
 
 Implementation of ridersClass (Riders Table)
-============================================
+--------------------------------------------
    This class is used to operate on *RIDERS* SQL table and it is implemented in *riders.py* file. This
    SQL table is created to have mandatory information about riders in MotoGP such as their names,
    surnames, team etc. There are also tables including references to this table that is also
@@ -205,7 +205,7 @@ del_rider_by_num Function
 
 
 Implementation of yearstatsClass (Stats Table)
-==============================================
+----------------------------------------------
    This class is used to operate on *YEARSTATS* SQL table and it is implemented in *stats.py* file. This
    SQL table is created to have mandatory information about riders annually or season statistics in MotoGP such
    as their races completed, victory count, podium count, position at the end of the year etc. This table
@@ -350,7 +350,7 @@ del_stats_by_rider Function
 
 
 Implementation of personalClass (Personal Details Table)
-========================================================
+--------------------------------------------------------
    This class is used to operate on *PERSONAL* SQL table and it is implemented in *personal.py* file. This
    SQL table is created to have detailed information about riders personalities and social accounts such
    as their birthdays, weights, heights, website links etc. This table has a foreign key column to the *NUM*
@@ -485,7 +485,7 @@ inc_fans Function
 
 
 Implementation of fansClass (Rider Fans Table)
-==============================================
+----------------------------------------------
    This class is used to operate on *FANS* SQL table and it is implemented in *fans.py* file. This
    SQL table is created to have detailed information about riders fans such
    as their names, surnames, birthdays and mail addresses. This table has a foreign key column to the *NUM*
