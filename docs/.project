@@ -14,4 +14,41 @@
 	<natures>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>user/images/riders_add.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_add.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_dashboard.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_dashboard.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_delete.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_delete.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_search.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_search.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_stats_navigation.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_stats_navigation.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_table.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_table.png</location>
+		</link>
+		<link>
+			<name>user/images/riders_update.png</name>
+			<type>1</type>
+			<location>E:/GitHub/EclipseGit/itucsdb1503/docs/user/images/riders_update.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
