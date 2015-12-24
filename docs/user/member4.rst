@@ -263,7 +263,7 @@ To complete update operation there is a button to send update request as **Updat
    :alt: Can not load image.
    :align: left
 
-.. image:: images/fans_update_mail.png
+.. image:: images/fans_update_index.png
    :scale: 50%
    :alt: Can not load image.
 
